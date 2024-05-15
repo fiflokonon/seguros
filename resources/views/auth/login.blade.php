@@ -2,7 +2,7 @@
 <html lang="en">
 <!--begin::Head-->
 <head>
-    <title>Crowdfunding - Connexion</title>
+    <title>Serugos - Login</title>
     <meta charset="utf-8" />
     <meta name="description" content="Apportez votre contribution aux personnes dans le besoin" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
