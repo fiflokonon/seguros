@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,19 +15,17 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $admin_role = Role::where('code', 'admin')->first();
         DB::table('users')->insert([
             [
-                'nom' => 'Support Trivia',
-                'email' => 'admin@triviaprive.com',
-                'indicatif' => '229',
-                'phone' => '66006601',
-                'photo_profil' => '',
-                'sexe' => 'M',
-                'point_livraison_id' => 2,
+                'first_name' => 'Admin',
+                'last_name' => 'Admin',
+                'email' => 'admin@admin.com',
+                'phone' => '+22956',
+                'sex' => 'M',
+                'role_id' => $admin_role->id,
                 'password' => Hash::make('password'),
-                'verified_email' => true,
-                'admin' => true,
-                'statut' => true
+                'status' => true
             ]
         ]);
     }

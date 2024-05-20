@@ -16,16 +16,32 @@ class RoleSeeder extends Seeder
         $client_role = Role::firstOrCreate([
             'code' => 'client'
         ], [
-            'title' => 'Client',
-            'description' => 'Utilisateur mobile',
+            'title' => 'Cliente',
+            'description' => 'Cliente',
             'status' => true
         ]);
 
         $admin_role = Role::firstOrCreate([
             'code' => 'admin'
         ], [
-            'title' => 'Admin',
-            'description' => 'Utilisateur système',
+            'title' => 'Súper Administrador',
+            'description' => 'Súper Administrador',
+            'status' => true
+        ]);
+
+        $gestor_role = Role::firstOrCreate([
+            'code' => 'manager'
+        ], [
+            'title' => 'Gestor',
+            'description' => 'Gestor',
+            'status' => true
+        ]);
+
+        $control_role = Role::firstOrCreate([
+            'code' => 'controller'
+        ], [
+            'title' => 'Gepetrol Control',
+            'description' => 'Gepetrol Control',
             'status' => true
         ]);
     }

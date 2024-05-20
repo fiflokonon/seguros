@@ -73,22 +73,23 @@
                         <!--begin::Heading-->
                         <div class="text-center mb-11">
                             <!--begin::Title-->
-                            <h1 class="text-dark fw-bolder mb-3">Connexion</h1>
+                            <h1 class="text-dark fw-bolder mb-3">Gepetrol Seguros</h1>
+                            <span>Accede a tu cuenta</span>
                             <!--end::Title-->
                         </div>
                         <!--begin::Heading-->
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
                             <!--begin::Email-->
-                            <label for="email" class="form-label">Email</label>
-                                <input id="email" type="text" placeholder="Entrez votre adresse mail" name="email" autocomplete="off" class="form-control bg-transparent" />
+                            <label for="email" class="form-label">Correo Electronico</label>
+                                <input id="email" type="text" placeholder="Correo Electronico" name="email" autocomplete="off" class="form-control bg-transparent" />
                             <!--end::Email-->
                         </div>
                         <!--end::Input group=-->
                         <div class="fv-row mb-3">
                             <!--begin::Password-->
-                            <label for="pass" class="form-label">Mot de passe</label>
-                            <input id="pass" type="password" placeholder="Entrez votre mot de passe" name="password" autocomplete="off" class="form-control bg-transparent" />
+                            <label for="pass" class="form-label">Contraseña</label>
+                            <input id="pass" type="password" placeholder="Contraseña" name="password" autocomplete="off" class="form-control bg-transparent" />
                             <!--end::Password-->
                         </div>
                         <!--end::Input group=-->
@@ -96,18 +97,18 @@
                         <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
                             <div></div>
                             <!--begin::Link-->
-                            <a href="{{ route('password.request') }}" class="link-info">Mot de passe oublié ?</a>
+                            <a href="{{ route('password.request') }}" class="link-info">¿Olvidé mi contraseña ?</a>
                             <!--end::Link-->
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Submit button-->
                         <div class="d-grid mb-10">
-                            <button type="submit" class="btn btn-info text-uppercase">Se connecter</button>
+                            <button type="submit" class="btn btn-info text-uppercase">Iniciar Sesión</button>
                         </div>
                         <!--end::Submit button-->
                         <!--begin::Sign up-->
-                        <div class="text-gray-500 text-center fw-semibold fs-6">Vous n'avez pas un compte?
-                            <a href="{{ route('register') }}" class="link-info">Créer un compte</a></div>
+                        <div class="text-gray-500 text-center fw-semibold fs-6">¿Aún no eres cliente?
+                            <a href="{{ route('register') }}" class="link-info">Registrarte</a></div>
                         <!--end::Sign up-->
                     </form>
                     <!--end::Form-->

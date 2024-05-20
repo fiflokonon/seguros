@@ -25,6 +25,7 @@ class User extends Authenticatable
         'profile_picture',
         'sex',
         'city',
+        'role_id',
         'district',
         'province',
         'id_passport',
@@ -78,5 +79,14 @@ class User extends Authenticatable
             return true;
         else
             return false;
+    }
+
+    public function is_admin()
+    {
+        if ($this->role()->code == 'admin'){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
