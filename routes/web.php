@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\CarCategoryController;
 use App\Http\Controllers\Dashboard\FuelTypeController;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\TarificationController;
 use App\Http\Controllers\Dashboard\TypeCarController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
@@ -45,3 +46,5 @@ Route::get('/fuel-types', [FuelTypeController::class, 'index'])->name('fuel_type
 Route::get('/type-cars', [TypeCarController::class, 'index'])->name('type_cars');
 
 Route::get('/categories', [CarCategoryController::class, 'index'])->name('categories');
+
+Route::get('/tarifications', [TarificationController::class, 'index'])->name('categories');
