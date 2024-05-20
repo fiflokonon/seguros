@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->bigInteger('min_power')->nullable();
-            $table->bigInteger('max_power')->nullable();
             $table->foreignId('fuel_type_id')->nullable();
+            $table->softDeletes();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

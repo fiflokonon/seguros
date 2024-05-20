@@ -29,7 +29,7 @@ class CarCategorySeeder extends Seeder
         foreach ($categories as $category){
             CarCategory::create([
                 'title' => $category,
-                'code_category' => random_int(0, 20),
+                'code_category' => random_int(0, 100),
                 'status' => true
             ]);
         }

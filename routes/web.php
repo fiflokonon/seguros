@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\CarCategoryController;
+use App\Http\Controllers\Dashboard\ComplaintController;
 use App\Http\Controllers\Dashboard\FuelTypeController;
+use App\Http\Controllers\Dashboard\PowerController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\TarificationController;
+use App\Http\Controllers\Dashboard\TrailerController;
 use App\Http\Controllers\Dashboard\TypeCarController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
@@ -47,4 +51,14 @@ Route::get('/type-cars', [TypeCarController::class, 'index'])->name('type_cars')
 
 Route::get('/categories', [CarCategoryController::class, 'index'])->name('categories');
 
-Route::get('/tarifications', [TarificationController::class, 'index'])->name('categories');
+Route::get('/tarifications', [TarificationController::class, 'index'])->name('tarifications');
+
+Route::get('/complaints', [ComplaintController::class, 'index'])->name('complaints');
+
+Route::get('/trailers', [TrailerController::class, 'index'])->name('trailers');
+
+Route::get('/powers', [PowerController::class, 'index'])->name('powers');
+
+Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
+
+

@@ -56,7 +56,7 @@
                                     </thead>
                                     <!--end::Table head-->
                                     <tbody>
-                                    @foreach($fuel_types as $type)
+                                    @foreach($types as $type)
                                         <tr>
                                             <td>{{ $type->title }}</td>
                                             @if( $type->status )
@@ -64,7 +64,7 @@
                                             @else
                                                 <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
                                             @endif
-                                            <td>{{ $type->created_at }}</td>
+                                            {{--<td>{{ $type->created_at }}</td>--}}
                                             <!--begin::Action=-->
                                             <td class="text-end">
                                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions

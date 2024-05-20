@@ -13,8 +13,6 @@ class TypeCar extends Model
     protected $fillable = [
         'title',
         'description',
-        'max_power',
-        'min_power',
         'fuel_type_id',
         'status'
     ];

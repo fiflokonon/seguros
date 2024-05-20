@@ -20,8 +20,6 @@ class TypeCarSeeder extends Seeder
         foreach ($car_types as $car_type){
             TypeCar::create([
                 'title' => $car_type,
-                'min_power' => 10,
-                'max_power' => 25,
                 'status' => true
             ]);
         }
