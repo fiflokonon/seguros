@@ -52,6 +52,14 @@
                     </span>
                     </a>
                 </div>
+                <div class="menu-item mb-1">
+                    <a href="{{ route('fuel_types') }}">
+                        <span class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-user"></i></span>
+                            <span class="menu-title">Tipos combustible</span>
+                    </span>
+                    </a>
+                </div>
                 <div class="menu-item">
                     <span class="menu-link">
                         <span class="menu-icon"><i class="fa fa-solid fa-hand-holding-usd"></i></span>

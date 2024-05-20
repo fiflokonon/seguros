@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('car_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
+            $table->string('code_category')->unique();
             $table->string('description')->nullable();
             $table->boolean('status')->default(false);
             $table->softDeletes();

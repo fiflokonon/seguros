@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Dashboard\CarCategoryController;
+use App\Http\Controllers\Dashboard\FuelTypeController;
 use App\Http\Controllers\Dashboard\RoleController;
+use App\Http\Controllers\Dashboard\TypeCarController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -36,3 +39,9 @@ Route::get('/roles/{id}/activate', [RoleController::class, 'activateRole'])->mid
 Route::get('/roles/{id}/deactivate', [RoleController::class, 'deactivateRole'])->middleware('check_permissions:edit-role')->name('deactivate_role');
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
+
+Route::get('/fuel-types', [FuelTypeController::class, 'index'])->name('fuel_types');
+
+Route::get('/type-cars', [TypeCarController::class, 'index'])->name('type_cars');
+
+Route::get('/categories', [CarCategoryController::class, 'index'])->name('categories');
