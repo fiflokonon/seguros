@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,21 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+        $code_admin_permissions = [
+            'get-dashboard',
+            'get-users',
+            'deactivate-users',
+            'edit-users',
+            'get-users-details',
+            'add-users',
+            'get-roles',
+            'add-roles',
+            'deactivate-roles',
+            'edit-roles',
+            'get-roles-details',
+            'get-parameters',
+            'edit-parameters',
+        ];
         $client_role = Role::firstOrCreate([
             'code' => 'client'
         ], [
@@ -44,5 +60,7 @@ class RoleSeeder extends Seeder
             'description' => 'Gepetrol Control',
             'status' => true
         ]);
+        $admin_permissions = Permission::whereIn('code', $code_admin_permissions)->get();
+        $admin_role->permissions()->sync($admin_permissions->pluck('id'));
     }
 }

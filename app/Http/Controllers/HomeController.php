@@ -30,7 +30,6 @@ class HomeController extends Controller
     {
         return view('dashboard.error.page-403');
     }
-
     public function error404()
     {
         return view('dashboard.error.page-404');

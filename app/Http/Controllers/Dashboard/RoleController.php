@@ -47,7 +47,7 @@ class RoleController extends Controller
             'status' => true
         ]);
         $role->permissions()->attach($request->input('permission', []));
-        return redirect()->route('rolelist')->with('success', 'Rôle ajouté avec succès.');
+        return redirect()->route('roles')->with('success', 'Rôle ajouté avec succès.');
     }
 
     public function activateRole(int $id)

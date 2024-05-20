@@ -5,7 +5,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="../../demo1/dist/index.html">
-            <img alt="Logo" src="assets/media/logos/logo-c-blue.png" class="h-50px logo"/>
+            <img alt="Logo" src="/assets/media/logos/logo-c-blue.png" class="h-50px logo"/>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -45,10 +45,12 @@
                     </a>
                 </div>
                 <div class="menu-item mb-1">
-                    <span class="menu-link">
-                        <span class="menu-icon"><i class="fa fa-user"></i></span>
-                        <span class="menu-title">Utilisateurs</span>
+                    <a href="{{ route('users') }}">
+                        <span class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-user"></i></span>
+                            <span class="menu-title">Utilisateurs</span>
                     </span>
+                    </a>
                 </div>
                 <div class="menu-item">
                     <span class="menu-link">

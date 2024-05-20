@@ -6,20 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CarCategory extends Model
+class Power extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'car_categories';
+    protected $table = 'powers';
     protected $fillable = [
-        'title',
-        'code_category',
-        'description',
-        'fuel_type_id',
+        'min_power',
+        'max_power',
         'status'
     ];
-
-    public function fuel_type()
-    {
-        return $this->belongsTo(FuelType::class);
-    }
 }
