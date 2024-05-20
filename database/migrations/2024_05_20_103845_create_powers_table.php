@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('powers', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('min_power');
+            $table->bigInteger('max_power');
+            $table->boolean('status')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

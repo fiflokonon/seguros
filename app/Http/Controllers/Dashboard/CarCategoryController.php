@@ -21,14 +21,15 @@ class CarCategoryController extends Controller
         // Valider les données entrantes
         $validatedData = $request->validate([
             'title' => 'required|string|max:255|unique:car_categories,title',
+            'code_category' => 'required|string|max:255|unique:car_categories,code_category',
         ]);
         // Générer un code unique de 3 chiffres
-        do {
+        /*do {
             $code = str_pad(random_int(0, 999), 3, '0', STR_PAD_LEFT);
         } while (CarCategory::where('code_category', $code)->exists());
-
+        *
+         */
         // Ajouter le code unique aux données validées
-        $validatedData['code_category'] = $code;
         $validatedData['status'] = true;
         // Créer la nouvelle catégorie de voiture
         $carCategory = CarCategory::create($validatedData);

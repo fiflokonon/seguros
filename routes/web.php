@@ -24,8 +24,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+#Route::get('/', function () {
+#    return view('welcome');
+#});
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 Route::get('/error-forbidden', [HomeController::class, 'error403'])->name('error-forbidden');
 Route::get('/error-not-found', [HomeController::class, 'error404'])->name('error-not-found');
@@ -50,6 +53,8 @@ Route::post('/fuel-types', [FuelTypeController::class, 'store'])->name('add_fuel
 
 
 Route::get('/type-cars', [TypeCarController::class, 'index'])->name('type_cars');
+Route::post('/type-cars', [TypeCarController::class, 'store'])->name('add_type_car');
+
 
 Route::get('/categories', [CarCategoryController::class, 'index'])->name('categories');
 Route::post('/categories', [CarCategoryController::class, 'store'])->name('add_category');
@@ -62,6 +67,7 @@ Route::get('/trailers', [TrailerController::class, 'index'])->name('trailers');
 Route::post('/trailers', [TrailerController::class, 'store'])->name('add_trailer');
 
 Route::get('/powers', [PowerController::class, 'index'])->name('powers');
+Route::post('/powers', [PowerController::class, 'store'])->name('add_power');
 
 Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 

@@ -143,7 +143,17 @@
                                     <label class="required fw-bold fs-6 mb-2">Categoría</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" name="title" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar la categoria del cocho" value="{{ old('title') }}" />
+                                    <input type="text" name="title" class="form-control mb-3 mb-lg-0" placeholder="Insertar la categoria del cocho" value="{{ old('title') }}" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Code categoría</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" name="code_category" class="form-control mb-3 mb-lg-0" placeholder="Insertar la categoria del cocho" value="{{ old('title') }}" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

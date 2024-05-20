@@ -1,5 +1,5 @@
 @extends('partials.dashboard.index')
-@section('title', 'Tipos de coche')
+@section('title', 'Potentias')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -41,14 +41,15 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <h4 class="card-title">Tipos de coche</h4>
-                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-primary waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nuevo tipo coche</b></button></div>
+                                <h4 class="card-title">Potentias</h4>
+                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-primary waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nueva potentia</b></button></div>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
                                     <!--begin::Table row-->
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                        <th class="min-w-125px">Nombre del Tipo de Coche</th>
+                                        <th class="min-w-125px">Min potentia</th>
+                                        <th class="min-w-125px">Max potentia</th>
                                         <th class="min-w-125px">Estado</th>
                                         <th class="text-end min-w-70px">Acciones</th>
                                     </tr>
@@ -56,10 +57,11 @@
                                     </thead>
                                     <!--end::Table head-->
                                     <tbody>
-                                    @foreach($types as $type)
+                                    @foreach($powers as $power)
                                         <tr>
-                                            <td>{{ $type->title }}</td>
-                                            @if( $type->status )
+                                            <td>{{ $power->min_power }}</td>
+                                            <td>{{ $power->max_power }}</td>
+                                            @if( $power->status )
                                                 <td><span class="badge rounded-pill bg-success">Actif</span></td>
                                             @else
                                                 <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
@@ -79,10 +81,10 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        @if( $type->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $type->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
+                                                        @if( $power->status)
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $power->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $type->id]) }}"><i class="ti-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $power->id]) }}"><i class="ti-check text-success"></i> Activer</a>
                                                         @endif
                                                     </div>
                                                     <!--end::Menu item-->
@@ -131,17 +133,27 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                         <!--begin::Form-->
-                        <form id="kt_modal_add_user_form" class="form" method="POST" action="{{ route('add_type_car') }}">
+                        <form id="kt_modal_add_user_form" class="form" method="POST" action="{{ route('add_power') }}">
                             @csrf
                             <!--begin::Scroll-->
                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
-                                    <label class="required fw-bold fs-6 mb-2">Tipo coche</label>
+                                    <label class="required fw-bold fs-6 mb-2">Min potentia</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" name="title" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar el tipo de coche" value="{{ old('title') }}" />
+                                    <input type="number" min="1" name="min_power" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar el tipo de coche" value="{{ old('min_power') }}" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Max potentia</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" min="1" name="max_power" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar el tipo de coche" value="{{ old('max_power') }}" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

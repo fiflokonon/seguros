@@ -25,13 +25,7 @@
 <!--begin::Root-->
 <div class="d-flex flex-column flex-root">
     <!--begin::Page bg image-->
-    <style>
-        body {
-            background-image: url('assets/media/bg-3.png');
-            background-size: cover
-        }
-        [data-theme="dark"] body { background-image: url('assets/media/bg-3.png'); }
-    </style>
+
     <!--end::Page bg image-->
     <!--begin::Authentication - Sign-in -->
     <div class="d-flex flex-column flex-column-fluid flex-lg-row">
@@ -45,8 +39,8 @@
                 </a>
                 <!--end::Logo-->
                 <!--begin::Title-->
-                <h1 class="text-white m-0 text-center mb-5">Bienvenue !</h1>
-                <h2 class="text-white fw-normal m-0 justify-content-center">Utilisez ces formulaires pour vous connecter ou créer gratuitement un nouveau compte afin de contribuer au projets communautaires de votre choix.</h2>
+                <h1 class="text-dark m-0 text-center mb-5">¡Bienvenido!</h1>
+                <h2 class="text-dark fw-normal m-0 justify-content-center">Tu Seguro de confianza Hoy, Mañana y Siempre</h2>
                 <!--end::Title-->
             </div>
             <!--begin::Aside-->

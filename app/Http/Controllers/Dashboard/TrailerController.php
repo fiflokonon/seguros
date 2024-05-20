@@ -25,7 +25,7 @@ class TrailerController extends Controller
         ]);
         $validatedData['status'] = true;
         // Créer la nouvelle catégorie de carburant
-        $fuelType = Trailer::create($validatedData);
+        $trailer = Trailer::create($validatedData);
         // Retourner une réponse appropriée
         return back()->with('success', 'Remolque insertien');
     }
