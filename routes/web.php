@@ -46,16 +46,20 @@ Route::get('/roles/{id}/deactivate', [RoleController::class, 'deactivateRole'])-
 Route::get('/users', [UserController::class, 'index'])->name('users');
 
 Route::get('/fuel-types', [FuelTypeController::class, 'index'])->name('fuel_types');
+Route::post('/fuel-types', [FuelTypeController::class, 'store'])->name('add_fuel_type');
+
 
 Route::get('/type-cars', [TypeCarController::class, 'index'])->name('type_cars');
 
 Route::get('/categories', [CarCategoryController::class, 'index'])->name('categories');
+Route::post('/categories', [CarCategoryController::class, 'store'])->name('add_category');
 
 Route::get('/tarifications', [TarificationController::class, 'index'])->name('tarifications');
 
 Route::get('/complaints', [ComplaintController::class, 'index'])->name('complaints');
 
 Route::get('/trailers', [TrailerController::class, 'index'])->name('trailers');
+Route::post('/trailers', [TrailerController::class, 'store'])->name('add_trailer');
 
 Route::get('/powers', [PowerController::class, 'index'])->name('powers');
 

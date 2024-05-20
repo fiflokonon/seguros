@@ -15,4 +15,18 @@ class FuelTypeController extends Controller
             'fuel_types' => $fuel_types
         ]);
     }
+
+    public function store(Request $request)
+    {
+        // Valider les données entrantes
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255|unique:fuel_types,title',
+            'description' => 'nullable|string',
+        ]);
+        $validatedData['status'] = true;
+        // Créer la nouvelle catégorie de carburant
+        $fuelType = FuelType::create($validatedData);
+        // Retourner une réponse appropriée
+        return back()->with('success', 'Tipo combustible insertien');
+    }
 }

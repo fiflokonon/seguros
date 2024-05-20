@@ -14,12 +14,7 @@ class CarCategory extends Model
         'title',
         'code_category',
         'description',
-        'fuel_type_id',
         'status'
     ];
 
-    public function fuel_type()
-    {
-        return $this->belongsTo(FuelType::class);
-    }
 }
