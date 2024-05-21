@@ -42,7 +42,7 @@
                                     </div>
                                 @endif
                                 <h4 class="card-title">Tipos de Combustible</h4>
-                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-primary waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nuevo tipo combustible</b></button></div>
+                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nuevo tipo combustible</b></button></div>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
@@ -66,7 +66,7 @@
                                             @endif
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" style="background-color: #013832; color: white" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -141,6 +141,16 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     <input type="text" name="title" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar el tipo de combustible" value="{{ old('title') }}" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Code combustible</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" name="code" class="form-control mb-3 mb-lg-0" placeholder="Insertar el codigo del combusitble" value="{{ old('code') }}" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

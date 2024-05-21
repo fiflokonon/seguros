@@ -69,7 +69,7 @@
                                         @endforeach
                                     </div>
                                     <div class="mb-3 row">
-                                        <button type="submit" class="btn btn-primary" >Enregistrer</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #013832; color: white">Enregistrer</button>
                                     </div>
                                 </div>
                             </div>

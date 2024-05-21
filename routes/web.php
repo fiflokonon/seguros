@@ -72,5 +72,7 @@ Route::get('/powers', [PowerController::class, 'index'])->name('powers');
 Route::post('/powers', [PowerController::class, 'store'])->name('add_power');
 
 Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
+Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
+
 
 

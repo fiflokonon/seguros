@@ -42,7 +42,7 @@
                                     </div>
                                 @endif
                                 <h4 class="card-title">Tipos de coche</h4>
-                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-primary waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nuevo tipo coche</b></button></div>
+                                <div class="float-lg-end"><button data-bs-toggle="modal" style="background-color: #013832; color: white" data-bs-target="#kt_modal_add_user" class="btn waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nuevo tipo coche</b></button></div>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
@@ -149,7 +149,7 @@
                             <!--end::Scroll-->
                             <!--begin::Actions-->
                             <div class="text-center pt-15">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn" style="background-color: #013832; color: white">
                                     Crear Tipo coche
                                     <span class="indicator-label"></span>
                                     <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

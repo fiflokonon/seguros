@@ -24,6 +24,7 @@ class FuelTypeController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255|unique:fuel_types,title',
             'description' => 'nullable|string',
+            'code' => 'required|string|max:255|unique:fuel_types,code',
             'power' => 'array',
         ]);
         $validatedData['status'] = true;

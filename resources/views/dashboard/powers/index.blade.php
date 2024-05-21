@@ -42,7 +42,7 @@
                                     </div>
                                 @endif
                                 <h4 class="card-title">Potentias</h4>
-                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-primary waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nueva potentia</b></button></div>
+                                <div class="float-lg-end"><button data-bs-toggle="modal" style="background-color: #013832; color: white" data-bs-target="#kt_modal_add_user" class="btn waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nueva potentia</b></button></div>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
