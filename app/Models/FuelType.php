@@ -13,11 +13,12 @@ class FuelType extends Model
     protected $fillable = [
         'title',
         'description',
+        'code',
         'status'
     ];
 
-    public function car_cateogories()
+    public function powers()
     {
-        return $this->hasMany(CarCategory::class);
+        return $this->belongsToMany(Power::class, 'power_fuel_types', 'fuel_type_id', 'power_id');
     }
 }

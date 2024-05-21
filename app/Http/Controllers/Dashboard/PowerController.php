@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\FuelType;
 use App\Models\Power;
 use Illuminate\Http\Request;
 use function Psy\bin;
@@ -13,7 +14,8 @@ class PowerController extends Controller
     {
         $powers = Power::all();
         return view('dashboard.powers.index', [
-            'powers' => $powers
+            'powers' => $powers,
+            'fuel_types' => FuelType::all()
         ]);
     }
 
@@ -22,7 +24,8 @@ class PowerController extends Controller
         // Valider les données entrantes
         $validatedData = $request->validate([
             'min_power' => 'required|integer|min:0',
-            'max_power' => 'required|integer|gt:min_power'
+            'max_power' => 'required|integer|gt:min_power',
+            'fuel_type' => 'array',
         ]);
         $existingPower = Power::where('min_power', $validatedData['min_power'])
             ->where('max_power', $validatedData['max_power'])
@@ -34,6 +37,7 @@ class PowerController extends Controller
         $validatedData['status'] = true;
         // Créer la nouvelle instance de Power
         $power = Power::create($validatedData);
+        $power->fuel_types()->attach($request->input('fuel_type', []));
         // Retourner une réponse appropriée
         return back()->with('success', 'Potentia insertien');
     }

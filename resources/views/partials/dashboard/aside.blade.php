@@ -1,8 +1,7 @@
 <!--begin::Aside-->
-<div id="kt_aside" class="aside aside-light aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
-     data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+<div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
     <!--begin::Brand-->
-    <div class="aside-logo flex-column-auto" id="kt_aside_logo">
+    <div class="aside-logo bg-light flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="../../demo1/dist/index.html">
             <img alt="Logo" src="/assets/media/logos/logo-c-blue.png" class="h-50px logo"/>
@@ -48,12 +47,7 @@
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                             <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
-                                    <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
-                                    <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
-                                    <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
-                                </svg>
+                                <i class="fa fa-users"></i>
                             </span>
                             <!--end::Svg Icon-->
                         </span>
@@ -77,14 +71,6 @@
                                 <span class="menu-title">Gestión de roles</span>
                             </a>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{ route('complaints') }}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Gestión de Sinietros</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -105,6 +91,14 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('tarifications') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Relacón Cotización</span>
+                            </a>
+                        </div>
                         <div class="menu-item">
                             <a class="menu-link" href="{{ route('categories') }}">
                                 <span class="menu-bullet">
@@ -156,6 +150,18 @@
                             </a>
                         </div>
                     </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link" href="{{ route('complaints') }}" title="Build your layout and export HTML for server side integration" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <i class="fa fa-hand-paper"></i>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Gestión de Sinietros</span>
+                    </a>
                 </div>
             </div>
             <!--end::Menu-->

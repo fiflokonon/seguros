@@ -1,5 +1,5 @@
 @extends('partials.dashboard.index')
-@section('title', 'Tipos de Combustible')
+@section('title', 'Relacón cotización')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -41,30 +41,35 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <h4 class="card-title">Tipos de Combustible</h4>
-                                <div class="float-lg-end"><a href="{{ route('add_role') }}" class="btn btn-primary waves-effect waves-light"> <i class="ti-plus"> <b>Nouveau role</b></i></a></div>
+                                <h4 class="card-title">Relacón cotización</h4>
+                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn btn-primary waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nueva cotización</b></button></div>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
                                     <!--begin::Table row-->
-                                    <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                        <th class="min-w-125px">Tipo de Combustible</th>
-                                        <th class="min-w-125px">Estado</th>
+                                    <tr class="text-start text-gray-400 fw-bolder fs-5 text-uppercase gs-0">
+                                        <th class="min-w-100px">Categoría</th>
+                                        <th class="min-w-100px">Tipo de Combustible</th>
+                                        <th class="min-w-100px">Tipo coche</th>
+                                        <th class="min-w-100px">Potencia Mínima</th>
+                                        <th class="min-w-100px">Potencia Máxima</th>
+                                        <th class="min-w-100px">Tipo de Remolque</th>
+                                        <th class="min-w-100px">Precio Inicial</th>
                                         <th class="text-end min-w-70px">Acciones</th>
                                     </tr>
                                     <!--end::Table row-->
                                     </thead>
                                     <!--end::Table head-->
                                     <tbody>
-                                    @foreach($fuel_types as $type)
+                                    @foreach($tarifications as $tarification)
                                         <tr>
-                                            <td>{{ $type->title }}</td>
-                                            @if( $type->status )
-                                                <td><span class="badge rounded-pill bg-success">Actif</span></td>
-                                            @else
-                                                <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
-                                            @endif
-                                            <td>{{ $type->created_at }}</td>
+                                            <td>{{ $tarification->car_category->title }}</td>
+                                            <td>{{ $tarification->fuel_type->title }}</td>
+                                            <td>{{ $tarification->type_car->title }}</td>
+                                            <td>{{ $tarification->power->min_power }}</td>
+                                            <td>{{ $tarification->power->max_power }}</td>
+                                            <td>{{ $tarification->trailer->title }}</td>
+                                            <td>{{ $tarification->price }}</td>
                                             <!--begin::Action=-->
                                             <td class="text-end">
                                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -79,10 +84,10 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        @if( $type->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $type->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
+                                                        @if( $tarification->status)
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $tarification->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $type->id]) }}"><i class="ti-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $tarification->id]) }}"><i class="ti-check text-success"></i> Activer</a>
                                                         @endif
                                                     </div>
                                                     <!--end::Menu item-->
@@ -103,6 +108,159 @@
             <!--end::Container-->
         </div>
         <!--end::Post-->
+        <!--begin::Modal - Add task-->
+        <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header" id="kt_modal_add_user_header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bolder">Nueva cotización</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--end::Modal header-->
+                    <!--begin::Modal body-->
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                        <!--begin::Form-->
+                        <form id="kt_modal_add_user_form" class="form" method="POST" action="{{ route('add_tarification') }}">
+                            @csrf
+                            <!--begin::Scroll-->
+                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Categoría</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="category" id="" class="form-control mb-3 mb-lg-0">
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo de Coche</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="type_car" id="" class="form-control mb-3 mb-lg-0">
+                                        @foreach($type_cars as $type)
+                                            <option value="{{ $type->id }}">{{ $type->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo de Combustible</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="fuel_type" id="" class="form-control mb-3 mb-lg-0">
+                                        @foreach($fuel_types as $fuel_type)
+                                            <option value="{{ $fuel_type->id }}">{{ $fuel_type->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo Remolque</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="trailer" id="" class="form-control mb-3 mb-lg-0">
+                                        @foreach($trailers as $trailer)
+                                            <option value="{{ $trailer->id }}">{{ $trailer->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Potencia</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="power" id="" class="form-control mb-3 mb-lg-0">
+                                        @foreach($powers as $power)
+                                            <option value="{{ $power->id }}">{{ $power->min_power }} CV - {{ $power->max_power }} CV</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Mínima place</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" name="min_place" class="form-control mb-3 mb-lg-0" placeholder="Insertar Mínima place " value="{{ old('price') }}" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Máxima place</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" name="max_place" class="form-control mb-3 mb-lg-0" placeholder="Insertar Máxima place" value="{{ old('price') }}" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Precio</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" name="price" class="form-control mb-3 mb-lg-0" placeholder="Insertar el precio" value="{{ old('price') }}" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                            </div>
+                            <!--end::Scroll-->
+                            <!--begin::Actions-->
+                            <div class="text-center pt-15">
+                                <button type="submit" class="btn btn-success">
+                                    Crear Categoría
+                                    <span class="indicator-label"></span>
+                                    <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+        <!--end::Modal - Add task-->
     </div>
 @endsection
 

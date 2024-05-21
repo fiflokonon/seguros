@@ -21,6 +21,7 @@ class FuelTypeSeeder extends Seeder
         foreach ($fuel_types as $fuel_type){
             FuelType::create([
                'title' => $fuel_type,
+               'code' => substr($fuel_type, 0, 1),
                'status' => true
             ]);
         }

@@ -64,7 +64,6 @@
                                             @else
                                                 <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
                                             @endif
-                                            <td>{{ $type->created_at }}</td>
                                             <!--begin::Action=-->
                                             <td class="text-end">
                                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -142,6 +141,25 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     <input type="text" name="title" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar el tipo de combustible" value="{{ old('title') }}" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Potencias</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <div class="mb-3 row">
+                                        @foreach($powers as $power)
+                                            <div class="col-4">
+                                                <div class="form-check mb-3">
+                                                    <input name="power[]" class="form-check-input" type="checkbox" id="formCheck1" value="{{ $power->id }}">
+                                                    <label class="form-check-label" for="formCheck1">{{ $power->min_power }} CV -  {{ $power->max_power }} CV</label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->

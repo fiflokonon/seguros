@@ -15,4 +15,9 @@ class Power extends Model
         'max_power',
         'status'
     ];
+
+    public function fuel_types()
+    {
+        return $this->belongsToMany(FuelType::class, 'power_fuel_types', 'power_id', 'fuel_type_id');
+    }
 }

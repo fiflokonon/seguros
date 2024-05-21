@@ -157,6 +157,25 @@
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo Combustible</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <div class="mb-3 row">
+                                        @foreach($fuel_types as $fuel_type)
+                                            <div class="col-4">
+                                                <div class="form-check mb-3">
+                                                    <input name="fuel_type[]" class="form-check-input" type="checkbox" id="formCheck1" value="{{ $fuel_type->id }}">
+                                                    <label class="form-check-label" for="formCheck1">{{ $fuel_type->title }}</label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
                             </div>
                             <!--end::Scroll-->
                             <!--begin::Actions-->

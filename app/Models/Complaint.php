@@ -14,11 +14,19 @@ class Complaint extends Model
         'title',
         'description',
         'user_id',
+        'manager_id',
+        'images',
+        'state',
         'status'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function manager()
+    {
+        $this->belongsTo(User::class, 'manager_id');
     }
 }

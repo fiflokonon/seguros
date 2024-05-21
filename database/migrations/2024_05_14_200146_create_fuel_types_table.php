@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('fuel_types', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
+            $table->string('code')->unique();
             $table->string('description')->nullable();
             $table->boolean('status')->default(false);
             $table->softDeletes();

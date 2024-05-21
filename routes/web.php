@@ -60,6 +60,8 @@ Route::get('/categories', [CarCategoryController::class, 'index'])->name('catego
 Route::post('/categories', [CarCategoryController::class, 'store'])->name('add_category');
 
 Route::get('/tarifications', [TarificationController::class, 'index'])->name('tarifications');
+Route::post('/tarifications', [TarificationController::class, 'store'])->name('add_tarification');
+
 
 Route::get('/complaints', [ComplaintController::class, 'index'])->name('complaints');
 

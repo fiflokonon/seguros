@@ -41,14 +41,13 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <h4 class="card-title">Tipos de Combustible</h4>
-                                <div class="float-lg-end"><a href="{{ route('add_role') }}" class="btn btn-primary waves-effect waves-light"> <i class="ti-plus"> <b>Nouveau role</b></i></a></div>
+                                <h4 class="card-title">Gestión de Sinietros</h4>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
                                     <!--begin::Table row-->
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                        <th class="min-w-125px">Tipo de Combustible</th>
+                                        <th class="min-w-125px">Titulo</th>
                                         <th class="min-w-125px">Estado</th>
                                         <th class="text-end min-w-70px">Acciones</th>
                                     </tr>
@@ -56,15 +55,15 @@
                                     </thead>
                                     <!--end::Table head-->
                                     <tbody>
-                                    @foreach($fuel_types as $type)
+                                    @foreach($complaints as $complaint)
                                         <tr>
-                                            <td>{{ $type->title }}</td>
-                                            @if( $type->status )
+                                            <td>{{ $complaint->title }}</td>
+                                            @if( $complaint->status )
                                                 <td><span class="badge rounded-pill bg-success">Actif</span></td>
                                             @else
                                                 <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
                                             @endif
-                                            <td>{{ $type->created_at }}</td>
+                                            <td>{{ $complaint->created_at }}</td>
                                             <!--begin::Action=-->
                                             <td class="text-end">
                                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -79,10 +78,10 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        @if( $type->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $type->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
+                                                        @if( $complaint->status)
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $complaint->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $type->id]) }}"><i class="ti-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $complaint->id]) }}"><i class="ti-check text-success"></i> Activer</a>
                                                         @endif
                                                     </div>
                                                     <!--end::Menu item-->
