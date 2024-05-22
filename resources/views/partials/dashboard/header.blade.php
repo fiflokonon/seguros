@@ -36,7 +36,13 @@
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <!--begin::Menu wrapper-->
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        <img src="/assets/media/avatars/300-1.jpg" alt="user" />
+                        @if(auth()->user()->profile_picture != null)
+                            <img alt="Logo" src="/profile_pics/{{auth()->user()->profile_picture}}"/>
+                        @else
+                        <div style="border: 1px solid black; border-radius: 50%; background-color: lightgrey; padding: 2px">
+                            <i class="fa fa-user text-black" style="font-size: 20px"></i>
+                        </div>
+                        @endif
                     </div>
                     <!--begin::User account menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
@@ -45,7 +51,11 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="/assets/media/avatars/300-1.jpg" />
+                                    @if(auth()->user()->profile_picture != null)
+                                        <img alt="Logo" src="/profile_pics/{{auth()->user()->profile_picture}}"/>
+                                    @else
+                                    <i class="fa fa-user"></i>
+                                    @endif
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
@@ -62,19 +72,21 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">Mon Profil</a>
+                            <a href="{{ route('profile') }}" class="menu-link px-5">Mi Perfil</a>
                         </div>
                         <!--end::Menu item-->
+                        @if(auth()->user()->role->code == 'client')
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
-                                <span class="menu-text">Mes Projets</span>
+                                <span class="menu-text">Historial de Facturas</span>
                                 <span class="menu-badge">
                                     <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
                                 </span>
                             </a>
                         </div>
                         <!--end::Menu item-->
+                        @endif
                         <!--begin::Menu separator-->
                         <div class="separator my-2"></div>
                         <!--end::Menu separator-->
@@ -82,7 +94,7 @@
                         <div class="menu-item px-5">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class=" btn menu-link px-5">Déconnexion</button>
+                                <button type="submit" class=" btn menu-link px-5">Cerrar Sesión</button>
                             </form>
                         </div>
                         <!--end::Menu item-->

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('province')->nullable();
             $table->string('id_passport')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->boolean('status')->default(0);
             $table->rememberToken();
             $table->timestamps();

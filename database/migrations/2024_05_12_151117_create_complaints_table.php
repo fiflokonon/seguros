@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('state')->default('en progreso');
             $table->foreignId('user_id');
-            $table->foreignId('manager_id')->constrained('users')->nullable();
+            $table->foreignId('manager_id')->nullable()->constrained('users');
             $table->json('images')->nullable();
             $table->boolean('status')->default(false);
             $table->softDeletes();

@@ -146,7 +146,7 @@
                                     <label class="required fw-bold fs-6 mb-2">Categoría</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <select name="category" id="" class="form-control mb-3 mb-lg-0">
+                                    <select name="category" id="" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                                         @endforeach
@@ -160,7 +160,7 @@
                                     <label class="required fw-bold fs-6 mb-2">Tipo de Coche</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <select name="type_car" id="" class="form-control mb-3 mb-lg-0">
+                                    <select name="type_car" id="" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
                                         @foreach($type_cars as $type)
                                             <option value="{{ $type->id }}">{{ $type->title }}</option>
                                         @endforeach
@@ -174,7 +174,7 @@
                                     <label class="required fw-bold fs-6 mb-2">Tipo de Combustible</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <select name="fuel_type" id="" class="form-control mb-3 mb-lg-0">
+                                    <select name="fuel_type" id="" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
                                         @foreach($fuel_types as $fuel_type)
                                             <option value="{{ $fuel_type->id }}">{{ $fuel_type->title }}</option>
                                         @endforeach
@@ -188,7 +188,7 @@
                                     <label class="required fw-bold fs-6 mb-2">Tipo Remolque</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <select name="trailer" id="" class="form-control mb-3 mb-lg-0">
+                                    <select name="trailer" id="" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
                                         @foreach($trailers as $trailer)
                                             <option value="{{ $trailer->id }}">{{ $trailer->title }}</option>
                                         @endforeach
@@ -202,7 +202,7 @@
                                     <label class="required fw-bold fs-6 mb-2">Potencia</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <select name="power" id="" class="form-control mb-3 mb-lg-0">
+                                    <select name="power" id="" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
                                         @foreach($powers as $power)
                                             <option value="{{ $power->id }}">{{ $power->min_power }} CV - {{ $power->max_power }} CV</option>
                                         @endforeach
@@ -244,7 +244,7 @@
                             <!--end::Scroll-->
                             <!--begin::Actions-->
                             <div class="text-center pt-15">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn" style="background-color: #013832; color: white">
                                     Crear Categoría
                                     <span class="indicator-label"></span>
                                     <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

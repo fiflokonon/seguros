@@ -1,5 +1,8 @@
 @extends('partials.dashboard.index')
 @section('title', ' Lista de Usuarios')
+@php
+$roles = \App\Models\Role::all();
+@endphp
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -19,6 +22,7 @@
             <!--end::Container-->
         </div>
         <!--end::Toolbar-->
+        @include('partials.dashboard.back_message')
         <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
@@ -34,7 +38,7 @@
                                     <!--begin::Toolbar-->
                                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                         <!--begin::Add user-->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
+                                        <button type="button" class="btn" style="background-color: #013832; color: white" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -58,7 +62,7 @@
                                                 <!--begin::Modal header-->
                                                 <div class="modal-header" id="kt_modal_add_user_header">
                                                     <!--begin::Modal title-->
-                                                    <h2 class="fw-bolder">Add User</h2>
+                                                    <h2 class="fw-bolder">Crear Nuevo Usuario</h2>
                                                     <!--end::Modal title-->
                                                     <!--begin::Close-->
                                                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -77,52 +81,27 @@
                                                 <!--begin::Modal body-->
                                                 <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                                                     <!--begin::Form-->
-                                                    <form id="kt_modal_add_user_form" class="form" action="#">
+                                                    <form id="kt_modal_add_user_form" method="POST" class="form" action="{{ route('add_user') }}">
+                                                        @csrf
                                                         <!--begin::Scroll-->
                                                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                                                             <!--begin::Input group-->
                                                             <div class="fv-row mb-7">
                                                                 <!--begin::Label-->
-                                                                <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
+                                                                <label class="required fw-bold fs-6 mb-2">Nombre</label>
                                                                 <!--end::Label-->
-                                                                <!--begin::Image input-->
-                                                                <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
-                                                                    <!--begin::Preview existing avatar-->
-                                                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/300-6.jpg);"></div>
-                                                                    <!--end::Preview existing avatar-->
-                                                                    <!--begin::Label-->
-                                                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                                                        <i class="bi bi-pencil-fill fs-7"></i>
-                                                                        <!--begin::Inputs-->
-                                                                        <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                                                        <input type="hidden" name="avatar_remove" />
-                                                                        <!--end::Inputs-->
-                                                                    </label>
-                                                                    <!--end::Label-->
-                                                                    <!--begin::Cancel-->
-                                                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-																				<i class="bi bi-x fs-2"></i>
-																			</span>
-                                                                    <!--end::Cancel-->
-                                                                    <!--begin::Remove-->
-                                                                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-																				<i class="bi bi-x fs-2"></i>
-																			</span>
-                                                                    <!--end::Remove-->
-                                                                </div>
-                                                                <!--end::Image input-->
-                                                                <!--begin::Hint-->
-                                                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-                                                                <!--end::Hint-->
+                                                                <!--begin::Input-->
+                                                                <input type="text" name="last_name" class="form-control mb-3 mb-lg-0" placeholder="Nombre" value="{{ old('last_name') }}"/>
+                                                                <!--end::Input-->
                                                             </div>
                                                             <!--end::Input group-->
                                                             <!--begin::Input group-->
                                                             <div class="fv-row mb-7">
                                                                 <!--begin::Label-->
-                                                                <label class="required fw-bold fs-6 mb-2">Full Name</label>
+                                                                <label class="required fw-bold fs-6 mb-2">Apellidos</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Input-->
-                                                                <input type="text" name="user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="Emma Smith" />
+                                                                <input type="text" name="first_name" class="form-control mb-3 mb-lg-0" placeholder="Apellidos" value="{{ old('first_name') }}" />
                                                                 <!--end::Input-->
                                                             </div>
                                                             <!--end::Input group-->
@@ -132,7 +111,27 @@
                                                                 <label class="required fw-bold fs-6 mb-2">Email</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Input-->
-                                                                <input type="email" name="user_email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com" value="smith@kpmg.com" />
+                                                                <input type="email" name="email" class="form-control mb-3 mb-lg-0" placeholder="Email" value="{{ old('email') }}" />
+                                                                <!--end::Input-->
+                                                            </div>
+                                                            <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <div class="fv-row mb-7">
+                                                                <!--begin::Label-->
+                                                                <label class="required fw-bold fs-6 mb-2">Teléfono</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Input-->
+                                                                <input type="tel" name="phone" class="form-control mb-3 mb-lg-0" placeholder="Teléfono" value="{{ old('phone') }}"/>
+                                                                <!--end::Input-->
+                                                            </div>
+                                                            <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <div class="fv-row mb-7">
+                                                                <!--begin::Label-->
+                                                                <label class="required fw-bold fs-6 mb-2">Contraseña</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Input-->
+                                                                <input type="password" name="password" class="form-control mb-3 mb-lg-0" placeholder="Contraseña"  />
                                                                 <!--end::Input-->
                                                             </div>
                                                             <!--end::Input group-->
@@ -142,17 +141,17 @@
                                                                 <label class="required fw-bold fs-6 mb-5">Role</label>
                                                                 <!--end::Label-->
                                                                 <!--begin::Roles-->
+                                                                @foreach($roles as $role)
                                                                 <!--begin::Input row-->
                                                                 <div class="d-flex fv-row">
                                                                     <!--begin::Radio-->
                                                                     <div class="form-check form-check-custom form-check-solid">
                                                                         <!--begin::Input-->
-                                                                        <input class="form-check-input me-3" name="user_role" type="radio" value="0" id="kt_modal_update_role_option_0" checked='checked' />
+                                                                        <input class="form-check-input me-3" name="role" type="radio" value="{{ $role->id }}" id="kt_modal_update_role_option_0" checked='{{ old('role') == $role->id ? 'checked' : '' }}' />
                                                                         <!--end::Input-->
                                                                         <!--begin::Label-->
                                                                         <label class="form-check-label" for="kt_modal_update_role_option_0">
-                                                                            <div class="fw-bolder text-gray-800">Administrator</div>
-                                                                            <div class="text-gray-600">Best for business owners and company administrators</div>
+                                                                            <div class="fw-bolder text-gray-800">{{ $role->title }}</div>
                                                                         </label>
                                                                         <!--end::Label-->
                                                                     </div>
@@ -160,42 +159,7 @@
                                                                 </div>
                                                                 <!--end::Input row-->
                                                                 <div class='separator separator-dashed my-5'></div>
-                                                                <!--begin::Input row-->
-                                                                <div class="d-flex fv-row">
-                                                                    <!--begin::Radio-->
-                                                                    <div class="form-check form-check-custom form-check-solid">
-                                                                        <!--begin::Input-->
-                                                                        <input class="form-check-input me-3" name="user_role" type="radio" value="1" id="kt_modal_update_role_option_1" />
-                                                                        <!--end::Input-->
-                                                                        <!--begin::Label-->
-                                                                        <label class="form-check-label" for="kt_modal_update_role_option_1">
-                                                                            <div class="fw-bolder text-gray-800">Developer</div>
-                                                                            <div class="text-gray-600">Best for developers or people primarily using the API</div>
-                                                                        </label>
-                                                                        <!--end::Label-->
-                                                                    </div>
-                                                                    <!--end::Radio-->
-                                                                </div>
-                                                                <!--end::Input row-->
-                                                                <div class='separator separator-dashed my-5'></div>
-                                                                <!--begin::Input row-->
-                                                                <div class="d-flex fv-row">
-                                                                    <!--begin::Radio-->
-                                                                    <div class="form-check form-check-custom form-check-solid">
-                                                                        <!--begin::Input-->
-                                                                        <input class="form-check-input me-3" name="user_role" type="radio" value="2" id="kt_modal_update_role_option_2" />
-                                                                        <!--end::Input-->
-                                                                        <!--begin::Label-->
-                                                                        <label class="form-check-label" for="kt_modal_update_role_option_2">
-                                                                            <div class="fw-bolder text-gray-800">Analyst</div>
-                                                                            <div class="text-gray-600">Best for people who need full access to analytics data, but don't need to update business settings</div>
-                                                                        </label>
-                                                                        <!--end::Label-->
-                                                                    </div>
-                                                                    <!--end::Radio-->
-                                                                </div>
-                                                                <!--end::Input row-->
-                                                                <div class='separator separator-dashed my-5'></div>
+                                                                @endforeach
                                                                 <!--end::Roles-->
                                                             </div>
                                                             <!--end::Input group-->
@@ -203,11 +167,10 @@
                                                         <!--end::Scroll-->
                                                         <!--begin::Actions-->
                                                         <div class="text-center pt-15">
-                                                            <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button>
-                                                            <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
-                                                                <span class="indicator-label">Submit</span>
-                                                                <span class="indicator-progress">Please wait...
-																		<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                            <button type="submit" class="btn"  style="background-color: #013832; color: white">
+                                                                Crear usario
+                                                                <span class="indicator-label"></span>
+                                                                <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                             </button>
                                                         </div>
                                                         <!--end::Actions-->
@@ -227,20 +190,6 @@
                             <!--end::Card header-->
                             <!--begin::Card body-->
                             <div class="card-body py-4">
-                                @if($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
                                 <!--begin::Table-->
                                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                                     <!--begin::Table head-->
@@ -315,7 +264,7 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/apps/user-management/users/view.html" class="menu-link px-3">Edit</a>
+                                                    <a href="{{ route('profile', $user->id) }}" class="menu-link px-3">Details</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->

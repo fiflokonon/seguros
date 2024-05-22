@@ -33,9 +33,13 @@ Route::get('/', function () {
 Route::get('/error-forbidden', [HomeController::class, 'error403'])->name('error-forbidden');
 Route::get('/error-not-found', [HomeController::class, 'error404'])->name('error-not-found');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
+Route::middleware(['auth'])->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile/{id?}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+Route::get('/profile/{id}/edit', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
+Route::post('/profile/{id}/update', [App\Http\Controllers\HomeController::class, 'update_profile'])->name('update_profile');
 
 Route::get('/roles', [RoleController::class, 'index'])->name('roles');
 Route::get('/add-role', [RoleController::class, 'indexAddRole'])->middleware('check_permissions:add-roles')->name('add_role');
@@ -47,6 +51,7 @@ Route::get('/roles/{id}/activate', [RoleController::class, 'activateRole'])->mid
 Route::get('/roles/{id}/deactivate', [RoleController::class, 'deactivateRole'])->middleware('check_permissions:edit-role')->name('deactivate_role');
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::post('/users', [UserController::class, 'store'])->name('add_user');
 
 Route::get('/fuel-types', [FuelTypeController::class, 'index'])->name('fuel_types');
 Route::post('/fuel-types', [FuelTypeController::class, 'store'])->name('add_fuel_type');
@@ -64,6 +69,9 @@ Route::post('/tarifications', [TarificationController::class, 'store'])->name('a
 
 
 Route::get('/complaints', [ComplaintController::class, 'index'])->name('complaints');
+Route::get('/new-complaint', [ComplaintController::class, 'add_complaint'])->name('new_complaint');
+Route::post('/add-complaint', [ComplaintController::class, 'store'])->name('add_complaint');
+
 
 Route::get('/trailers', [TrailerController::class, 'index'])->name('trailers');
 Route::post('/trailers', [TrailerController::class, 'store'])->name('add_trailer');
@@ -74,5 +82,5 @@ Route::post('/powers', [PowerController::class, 'store'])->name('add_power');
 Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
 
-
+});
 
