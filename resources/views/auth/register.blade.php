@@ -27,17 +27,17 @@
     <!--begin::Authentication - Sign-up -->
     <div class="d-flex flex-column flex-column-fluid flex-lg-row">
         <!--begin::Aside-->
-        <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
+        <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10" style="margin-top: -150px">
             <!--begin::Aside-->
             <div class="d-flex flex-column">
                 <!--begin::Logo-->
                 <a href="/" class="text-center mb-5">
-                    <img alt="Logo" src="assets/media/logos/Logo-crowd.png"  class="w-150px text-center"/>
+                    <img alt="Logo" src="assets/media/logos/Logo-crowd.png"  class="w-250px text-center"/>
                 </a>
                 <!--end::Logo-->
                 <!--begin::Title-->
-                <h1 class="text-black m-0 text-center mb-5">Bienvenue !</h1>
-                <h2 class="text-black fw-normal m-0 justify-content-center">Utilisez ces formulaires pour vous connecter ou créer gratuitement un nouveau compte afin de contribuer au projets communautaires de votre choix.</h2>
+                <h1 class="text-black m-0 text-center mb-5">¡Bienvenido!</h1>
+                <h2 class="text-black fw-normal m-0 justify-content-center">Tu Seguro de confianza Hoy, Mañana y Siempre</h2>
                 <!--end::Title-->
             </div>
             <!--begin::Aside-->
@@ -64,41 +64,41 @@
                         <!--begin::Heading-->
                         <div class="text-center mb-11">
                             <!--begin::Title-->
-                            <h1 class="text-dark fw-bolder mb-3">Inscription</h1>
+                            <h1 class="text-dark fw-bolder mb-3">Registrarse</h1>
                             <!--end::Title-->
                         </div>
                         <!--begin::Heading-->
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
-                            <label for="" class="form-label">Nom</label>
-                            <input type="text" placeholder="Nom" name="last_name" autocomplete="off" class="form-control bg-transparent" value="{{ old('last_name') }}"/>
+                            <label for="" class="form-label required">Nombre</label>
+                            <input type="text" placeholder="Nombre" name="last_name" autocomplete="off" class="form-control bg-transparent" value="{{ old('last_name') }}"/>
                         </div>
                         <!--begin::Input group-->
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
-                            <label for="" class="form-label">Prénoms</label>
-                            <input type="text" placeholder="Prénoms" name="first_name" autocomplete="off" class="form-control bg-transparent" value="{{ old('first_name') }}"/>
+                            <label for="" class="form-label required">Apellidos</label>
+                            <input type="text" placeholder="Apellidos" name="first_name" autocomplete="off" class="form-control bg-transparent" value="{{ old('first_name') }}"/>
                         </div>
                         <!--begin::Input group-->
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
-                            <label for="" class="form-label">Email</label>
-                            <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" value="{{ old('email') }}"/>
+                            <label for="" class="form-label">Correo Electronico</label>
+                            <input type="text" placeholder="Correo Electronico" name="email" autocomplete="off" class="form-control bg-transparent" value="{{ old('email') }}"/>
                         </div>
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
-                            <label for="" class="form-label">Numéro de téléphone</label>
-                            <input type="tel" placeholder="Numéro de téléphone" name="phone" autocomplete="off" class="form-control bg-transparent"  value="{{ old('phone') }}"/>
+                            <label for="" class="form-label">Teléfono</label>
+                            <input type="tel" placeholder="+240" name="phone" autocomplete="off" class="form-control bg-transparent"  value="{{ old('phone') }}"/>
                         </div>
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
-                            <label for="" class="form-label">Mot de passe</label>
-                            <input type="password" placeholder="Mot de passe" name="password" autocomplete="off" class="form-control bg-transparent" />
+                            <label for="" class="form-label required">Contraseña</label>
+                            <input type="password" placeholder="Contraseña" name="password" autocomplete="off" class="form-control bg-transparent" />
                         </div>
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
-                            <label for="" class="form-label">Confirmer mot de passe</label>
-                            <input type="password" placeholder="Confirmer mot de passe" name="password_confirmation" autocomplete="off" class="form-control bg-transparent" />
+                            <label for="" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" placeholder="Contraseña" name="password_confirmation" autocomplete="off" class="form-control bg-transparent" />
                         </div>
                         <!--begin::Accept-->
                         {{--<div class="fv-row mb-8">
@@ -111,12 +111,12 @@
                         <!--end::Accept-->
                         <!--begin::Submit button-->
                         <div class="d-grid mb-10">
-                            <button type="submit" class="btn btn-info text-uppercase">S'inscrire</button>
+                            <button type="submit" class="btn text-uppercase" style="background-color: #013832; color: white">Registrar</button>
                         </div>
                         <!--end::Submit button-->
                         <!--begin::Sign up-->
-                        <div class="text-gray-500 text-center fw-semibold fs-6">Avez-vous déjà un compte?
-                            <a href="{{ route('login') }}" class="link-info fw-semibold">Connectez-vous</a></div>
+                        <div class="text-gray-500 text-center fw-semibold fs-6">¿Ya eres cliente?
+                            <a href="{{ route('login') }}" class="link-info fw-semibold">Iniciar sesión</a></div>
                         <!--end::Sign up-->
                     </form>
                     <!--end::Form-->

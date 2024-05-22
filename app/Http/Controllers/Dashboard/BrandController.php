@@ -53,10 +53,8 @@ class BrandController extends Controller
             'image' => $imagePath, // Affecter null si aucune image n'est téléchargée
             'status' => true,
         ]);
-
         // Sauvegarder le nouvel enregistrement de marque dans la base de données
         $brand->save();
-
         // Redirection avec un message de succès
         return redirect()->back()->with('success', 'Brand created successfully.');
     }

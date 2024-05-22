@@ -42,7 +42,7 @@
                                     </div>
                                 @endif
                                 <h4 class="card-title">Lista de Roles</h4>
-                                <div class="float-lg-end"><a href="{{ route('add_role') }}" style="background-color: #013832; color: white" class="btn waves-effect waves-light"> <i class="ti-plus"> <b>Nouveau role</b></i></a></div>
+                                <div class="float-lg-end"><a href="{{ route('add_role') }}" style="background-color: #013832; color: white" class="btn waves-effect waves-light"> <i class="fa fa-plus"></i> <b>Nouveau role</b></a></div>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>

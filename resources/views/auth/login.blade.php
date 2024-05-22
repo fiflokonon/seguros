@@ -97,7 +97,7 @@
                         <!--end::Wrapper-->
                         <!--begin::Submit button-->
                         <div class="d-grid mb-10">
-                            <button type="submit" class="btn btn-info text-uppercase">Iniciar Sesión</button>
+                            <button type="submit" class="btn text-uppercase" style="background-color: #013832; color: white">Iniciar Sesión</button>
                         </div>
                         <!--end::Submit button-->
                         <!--begin::Sign up-->

@@ -1,4 +1,5 @@
 @extends('partials.dashboard.index')
+@section('title', 'Lista de Roles')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -10,7 +11,7 @@
                      data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                      class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                     <!--begin::Title-->
-                    <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Tableau de bord</h1>
+                    <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Dashboard</h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
@@ -24,7 +25,7 @@
             <div id="kt_content_container" class="container-xxl">
                 <div class="row">
                     <div class="col-12">
-                        <form method="POST" action="./new-role">
+                        <form method="POST" action="./roles/{{$role->id}}/edit">
                             @csrf
                             <div class="card">
                                 <div class="card-body">
@@ -42,17 +43,17 @@
                                             {{ session('success') }}
                                         </div>
                                     @endif
-                                    <h4 class="card-title">Ajout de role</h4>
+                                    <h4 class="card-title text-center mb-3">Modification de rôle</h4>
                                     <div class="mb-3 row">
-                                        <label for="example-text-input" class="col-md-2 col-form-label">Role</label>
+                                        <label for="example-text-input" class="col-md-2 col-form-label">Rôle</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" name="title" type="text" id="example-text-input" placeholder="Admin">
+                                            <input value="{{ $role->title }}" class="form-control" name="title" type="text" id="example-text-input" placeholder="Admin">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="example-email-input" class="col-md-2 col-form-label">Description</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" name="description" type="text" id="example-text-input" placeholder="Description">
+                                            <input value="{{ $role->description }}" class="form-control" name="description" type="text" id="example-text-input" placeholder="Description">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -62,8 +63,8 @@
                                         @foreach($permissions as $permission)
                                             <div class="col-4">
                                                 <div class="form-check mb-3">
-                                                    <input name="permission[]" class="form-check-input" type="checkbox" id="formCheck1" value="{{ $permission->id }}">
-                                                    <label class="form-check-label" for="formCheck1">{{ $permission->title }}</label>
+                                                    <input name="permission[]" class="form-check-input" type="checkbox" id="formCheck{{ $permission->id }}" value="{{ $permission->id }}" @if(in_array($permission->id, $role->permissions->pluck('id')->toArray())) checked @endif>
+                                                    <label class="form-check-label" for="formCheck{{ $permission->id }}">{{ $permission->title }}</label>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -83,5 +84,6 @@
         <!--end::Post-->
     </div>
 @endsection
+
 
 
