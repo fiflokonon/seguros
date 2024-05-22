@@ -313,7 +313,7 @@
                                     <!--begin::Label-->
                                     <!--begin::Label-->
                                     <div class="col-lg-8">
-                                        <!--begin::Input-->
+
                                         <select name="sex"  data-control="select2" class="form-select form-select-lg">
                                             <option value="M" {{ old('sex', $user->language) == 'M' ? 'selected' : '' }}>M</option>
                                             <option value="F" {{ old('sex', $user->language) == 'F' ? 'selected' : '' }}>F</option>

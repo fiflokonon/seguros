@@ -52,16 +52,16 @@
                                     @endforeach
                                 </div>
                                 <div class="mb-3 row">
-                                        <label for="example-text-input" class="col-md-12 col-form-label">Si tu marca no está entre las más buscadas, por favor selecciona de esta lista.</label>
-                                        <div class="col-md-10">
-                                            <select name="brand" id="brand-select" data-control="select2" class="form-select form-select-lg">
-                                                <option selected disabled>Seleccione una Marca</option>
-                                                @foreach($minos as $brand)
-                                                    <option value="{{ $brand->id }}">{{ $brand->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                    <label for="example-text-input" class="col-md-12 col-form-label">Si tu marca no está entre las más buscadas, por favor selecciona de esta lista.</label>
+                                    <div class="col-md-10">
+                                        <select name="brand" id="brand-select" data-control="select2" class="form-select form-select-lg">
+                                            <option selected disabled>Seleccione una Marca</option>
+                                            @foreach($minos as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->title }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
+                                </div>
                                 <!-- Button will be shown here -->
                                 <div id="next-button-container" style="display:none;">
                                     <a id="next-button" class="btn btn-primary" href="#">Siguiente</a>
