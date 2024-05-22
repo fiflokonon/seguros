@@ -58,4 +58,14 @@ class BrandController extends Controller
         // Redirection avec un message de succès
         return redirect()->back()->with('success', 'Brand created successfully.');
     }
+
+    public function client_brands()
+    {
+        $mas = Brand::where('most_used', true)->get();
+        $minos = Brand::where('most_used', false)->get();
+        return view('dashboard.client.brands', [
+            'mas' => $mas,
+            'minos' => $minos
+        ]);
+    }
 }

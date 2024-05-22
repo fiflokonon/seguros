@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\TrailerController;
 use App\Http\Controllers\Dashboard\TypeCarController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +82,8 @@ Route::post('/powers', [PowerController::class, 'store'])->name('add_power');
 
 Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
+Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
+Route::get('/brands/{id}/invoice-form', [InvoiceController::class, 'invoice_form'])->name('invoice_form');
 
 });
 
