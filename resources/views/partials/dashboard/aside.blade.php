@@ -39,7 +39,7 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
-                @if(auth()->user()->role->code == 'admin')
+                @if(auth()->user() !=null && auth()->user()->role->code == 'admin')
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
                             <span class="menu-icon">
@@ -161,7 +161,7 @@
                             <span class="menu-title">Gestión de Sinietros</span>
                         </a>
                     </div>
-                @elseif(auth()->user()->role->code == 'client')
+                @elseif(auth()->user() !=null && auth()->user()->role->code == 'client')
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
                             <span class="menu-icon">

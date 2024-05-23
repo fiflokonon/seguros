@@ -36,7 +36,7 @@
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <!--begin::Menu wrapper-->
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        @if(auth()->user()->profile_picture != null)
+                        @if(auth()->user() !=null && auth()->user()->profile_picture != null)
                             <img alt="Logo" src="/profile_pics/{{auth()->user()->profile_picture}}"/>
                         @else
                         <div style="border: 1px solid black; border-radius: 50%; background-color: lightgrey; padding: 2px">
@@ -51,7 +51,7 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    @if(auth()->user()->profile_picture != null)
+                                    @if(auth()->user() !=null && auth()->user()->profile_picture != null)
                                         <img alt="Logo" src="/profile_pics/{{auth()->user()->profile_picture}}"/>
                                     @else
                                     <i class="fa fa-user"></i>
@@ -60,8 +60,8 @@
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bolder d-flex align-items-center fs-5">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</div>
-                                    <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{ auth()->user()->email }}</a>
+                                    <div class="fw-bolder d-flex align-items-center fs-5">{{ auth()->user() !=null ? auth()->user()->first_name :'' }} {{ auth()->user() !=null ? auth()->user()->last_name : ''}}</div>
+                                    <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{ auth()->user() !=null ? auth()->user()->email: '' }}</a>
                                 </div>
                                 <!--end::Username-->
                             </div>
@@ -75,7 +75,7 @@
                             <a href="{{ route('profile') }}" class="menu-link px-5">Mi Perfil</a>
                         </div>
                         <!--end::Menu item-->
-                        @if(auth()->user()->role->code == 'client')
+                        @if(auth()->user() !=null && auth()->user()->role->code == 'client')
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
                             <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
