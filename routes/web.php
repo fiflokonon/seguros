@@ -69,7 +69,7 @@ Route::get('/tarifications', [TarificationController::class, 'index'])->name('ta
 Route::post('/tarifications', [TarificationController::class, 'store'])->name('add_tarification');
 
 
-Route::get('/complaints', [ComplaintController::class, 'index'])->name('complaints');
+Route::get('/complaints-list', [ComplaintController::class, 'index'])->name('complaints');
 Route::get('/new-complaint', [ComplaintController::class, 'add_complaint'])->name('new_complaint');
 Route::post('/add-complaint', [ComplaintController::class, 'store'])->name('add_complaint');
 
@@ -86,4 +86,8 @@ Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_b
 Route::get('/brands/{id}/invoice-form', [InvoiceController::class, 'invoice_form'])->name('invoice_form');
 
 });
+
+// routes/web.php
+Route::get('/get-powers/{fuelTypeId}', [InvoiceController::class, 'getPowers']);
+
 
