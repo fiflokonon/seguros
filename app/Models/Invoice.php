@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use function Symfony\Component\Translation\t;
 
 class Invoice extends Model
 {
@@ -16,7 +17,7 @@ class Invoice extends Model
         'power_id',
         'type_car_id',
         'car_category_id',
-        'number_place',
+        'place_number',
         'brand_id',
         'trailer_id',
         'regis_number',
@@ -24,11 +25,33 @@ class Invoice extends Model
         'first_name',
         'last_name',
         'email',
-        'total'
+        'total',
+        'status',
+        'initial_price',
+        'attestation_price',
+        'accessories_price',
+        'code',
+        'sub_total',
+        'vat'
     ];
 
-    public function parameters()
+    public function accessories()
     {
         return $this->belongsToMany(Parameter::class, 'invoice_parameters', 'invoice_id', 'parameter_id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function trailer()
+    {
+        return $this->belongsTo(Trailer::class);
+    }
+
+    public function power()
+    {
+        return $this->belongsTo(Power::class);
     }
 }

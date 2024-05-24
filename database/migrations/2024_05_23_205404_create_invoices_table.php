@@ -26,7 +26,13 @@ return new class extends Migration
             $table->foreignId('brand_id')->nullable();
             $table->foreignId('trailer_id')->nullable();
             $table->string('model')->nullable();
-            $table->bigInteger('number_place')->nullable();
+            $table->bigInteger('place_number')->nullable();
+            $table->string('code')->unique();
+            $table->double('initial_price')->default(0);
+            $table->double('attestation_price')->default(0);
+            $table->double('sub_total')->default(0);
+            $table->double('accessories_price')->default(0);
+            $table->double('vat')->default(0);
             $table->string('regis_number')->nullable();
             $table->boolean('status')->default(false);
             $table->double('total')->default(0);

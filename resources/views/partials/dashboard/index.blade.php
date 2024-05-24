@@ -10,9 +10,11 @@
 <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
     <div class="page d-flex flex-row flex-column-fluid">
+        @if(auth()->user() != null)
         <!--begin::Aside-->
         @include('partials.dashboard.aside')
         <!--end::Aside-->
+        @endif
         <!--begin::Wrapper-->
         <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
             <!--begin::Header-->

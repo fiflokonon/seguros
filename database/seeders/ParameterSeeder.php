@@ -32,6 +32,12 @@ class ParameterSeeder extends Seeder
                 'accessory' => true,
                 'status' => true
             ],
+            [
+                'title' => 'Attestación',
+                'value' => 2000,
+                'accessory' => false,
+                'status' => true
+            ],
         ]);
     }
 }

@@ -90,6 +90,7 @@ Route::get('/brands/{id}/invoice-form', [InvoiceController::class, 'invoice_form
 // routes/web.php
 Route::get('/get-powers/{fuelTypeId}', [InvoiceController::class, 'getPowers']);
 Route::get('/brands/{id}/invoice-form', [InvoiceController::class, 'invoice_form'])->name('invoice_form');
-Route::post('/brands/{id}/create-invoice', [InvoiceController::class, 'store'])->name('create_invoice');;
+Route::post('/brands/{id}/create-invoice', [InvoiceController::class, 'store'])->name('create_invoice');
+Route::get('/invoices/{id}/details', [InvoiceController::class, 'invoice_details'])->name('invoice_details');
 
 

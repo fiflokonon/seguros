@@ -63,8 +63,7 @@
                             </div>
                             <!--end::Nav-->
                             <!--begin::Form-->
-                            <form class="mx-auto mw-600px w-100 pt-15 pb-10" novalidate="novalidate" id="kt_create_account_form" method="POST" action="{{ route('create_invoice') }}">
-                                @csrf
+                            <form class="mx-auto mw-600px w-100 pt-15 pb-10" novalidate="novalidate" id="kt_create_account_form" method="POST" action="{{ route('create_invoice', $brand) }}">
                                 <!--begin::Step 1-->
                                 <div class="current" data-kt-stepper-element="content">
                                     <!--begin::Wrapper-->
@@ -87,8 +86,7 @@
                                             <label class="form-label mb-3">Has seleccionado : </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span
-                                                class="fw-bold text-gray-800 form-control-lg fs-6">{{ $brand->title }}</span>
+                                            <span class="fw-bold text-gray-800 form-control-lg fs-6">{{ $brand->title }}</span>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -99,7 +97,7 @@
                                             <label class="form-label mb-3 required">¿Y el modelo? : </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" name="model" class="form-control form-control-lg" placeholder="ej. Avensis 2.0"/>
+                                            <input type="text" name="model" class="form-control form-control-lg" placeholder="ej. Avensis 2.0" value="{{ old('model') }}"/>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -115,7 +113,7 @@
                                                    oninput="formatMatricula()"
                                                    pattern="^[A-Z]{2}\s*-\s*[0-9]{3}\s*-\s*[A-Z]{1,2}$"
                                                    class="form-control form-control-lg"
-                                                   placeholder="ej. AN - 252 - AZ"/>
+                                                   placeholder="ej. AN - 252 - AZ" value="{{ old('regis_number') }}"/>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -127,7 +125,7 @@
                                                 : </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="number" min="2" max="10" name="place_number" class="form-control form-control-lg"/>
+                                            <input type="number" min="2" max="10" name="place_number" class="form-control form-control-lg" {{ old('place_number') }}/>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -172,7 +170,7 @@
                                             <label class="form-label mb-3 required">Tipo de Combustible :</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select name="type_car" id="fuel-type-select"
+                                            <select name="fuel_type" id="fuel-type-select"
                                                     class="form-select form-select-lg">
                                                 @foreach($fuel_types as $type)
                                                     <option
@@ -240,7 +238,7 @@
                                             @foreach($accessories as $accessory)
                                             <!--begin::Input-->
                                             <div class="form-check mb-3">
-                                                <input name="accessory[]" class="form-check-input" type="checkbox" id="formCheck1" value="">
+                                                <input name="accessory[]" class="form-check-input" type="checkbox" id="formCheck1" value="{{ $accessory->id }}">
                                                 <label class="form-check-label" for="formCheck1">{{ $accessory->title }}(
                                                     {{ number_format($accessory->value, 0, ',', '.') }} xfa )</label>
                                             </div>
@@ -355,8 +353,8 @@
                                             </div>
                                             <!--end::Notice-->
                                             <!--end::Alert-->
-                                            <div class="col text-center">
-                                                <button type="submit" class="btn" >Validar factura</button>
+                                            <div class="col text-center mt-3">
+                                                <button type="button" id="factura" class="btn" style="background-color: #013832; color: white"  >Validar factura</button>
                                             </div>
                                         </div>
                                         <!--end::Body-->
@@ -368,7 +366,7 @@
                                 <div class="d-flex flex-stack pt-15">
                                     <!--begin::Wrapper-->
                                     <div class="mr-2">
-                                        <button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous">
+                                        <button type="button" class="btn btn-lg me-3" style="background-color: #013832; color: white" data-kt-stepper-action="previous">
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr063.svg-->
                                             <span class="svg-icon svg-icon-4 me-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -382,7 +380,7 @@
                                     <!--end::Wrapper-->
                                     <!--begin::Wrapper-->
                                     <div>
-                                        <button type="button" class="btn btn-lg btn-primary me-3" data-kt-stepper-action="submit">
+                                        <button type="button" class="btn btn-lg me-3" style="background-color: #013832; color: white"  data-kt-stepper-action="submit">
                                             <span class="indicator-label">Enviar
                                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                                 <span class="svg-icon svg-icon-3 ms-2 me-0">
@@ -395,7 +393,7 @@
                                             </span>
                                             <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
-                                        <button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Siguiente
+                                        <button type="button" class="btn btn-lg" style="background-color: #013832; color: white"  data-kt-stepper-action="next">Siguiente
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                             <span class="svg-icon svg-icon-4 ms-1 me-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -493,6 +491,71 @@
                     fetchPowers(initialFuelTypeId);
                 }
             });
+
+            document.addEventListener("DOMContentLoaded", function() {
+                // Sélectionner le formulaire
+                const form = document.getElementById("kt_create_account_form");
+                const submitButton = document.getElementById("factura");
+
+                // Ajouter un événement pour le bouton de soumission
+                submitButton.addEventListener("click", function(e) {
+                    e.preventDefault(); // Empêcher la soumission traditionnelle du formulaire
+                    console.log("Submission click");
+                    // Récupérer les données du formulaire
+                    const formData = new FormData(form);
+
+                    // Ajouter le token CSRF à la requête
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    formData.append('_token', csrfToken);
+
+                    // Envoyer la requête via fetch
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.success) {
+                                // Redirection en cas de succès avec l'ID de la facture
+                                const invoiceId = data.invoice_id;
+                                window.location.href = `/invoices/${invoiceId}/details`;
+                            } else if(!data.success){
+                                // Gérer les erreurs
+                                console.error('Erreur:', data.message);
+                                Swal.fire({
+                                    text: data.message,
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok",
+                                    customClass: { confirmButton: "btn btn-light" }
+                                });
+                            }
+                            else {
+                                // Gérer les erreurs
+                                console.error('Erreur:', data.message);
+                                Swal.fire({
+                                    text: "Erreur lors de l'envoi du formulaire. Veuillez réessayer.",
+                                    icon: "error",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, compris!",
+                                    customClass: { confirmButton: "btn btn-light" }
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erreur:', error);
+                            Swal.fire({
+                                text: "Erreur lors de l'envoi du formulaire. Veuillez réessayer.",
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Ok, compris!",
+                                customClass: { confirmButton: "btn btn-light" }
+                            });
+                        });
+                });
+            });
+
 
         </script>
     </div>
