@@ -33,6 +33,7 @@
         <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
             <!--begin::Aside-->
             <div class="d-flex flex-column">
+                <a href="{{ route('client_brands') }}" class="btn btn-lg mb-2" style="background-color: #013832; color: white"><i class="fa fa-car"></i>  CALCULA TU SEGURO DE FORMA RÁPIDA Y SENCILLA.</a>
                 <!--begin::Logo-->
                 <a href="/" class="text-center mb-5">
                     <img alt="Logo" src="assets/media/logos/Logo-crowd.png"  class="w-150px text-center"/>
@@ -72,6 +73,11 @@
                             <!--end::Title-->
                         </div>
                         <!--begin::Heading-->
+                        @if (session('warning'))
+                            <div class="alert alert-warning">
+                                {{ session('warning') }}
+                            </div>
+                        @endif
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
                             <!--begin::Email-->

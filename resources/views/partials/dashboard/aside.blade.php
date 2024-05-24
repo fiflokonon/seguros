@@ -147,6 +147,14 @@
                                     <span class="menu-title">Potentia</span>
                                 </a>
                             </div>
+                            <div class="menu-item">
+                                <a class="menu-link" href="{{ route('parameters') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Parámetros</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="menu-item">

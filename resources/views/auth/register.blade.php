@@ -2,7 +2,7 @@
 <html lang="fr">
 <!--begin::Head-->
 <head><base href="../../../">
-    <title>Crowdfunding - Inscription</title>
+    <title>Serugos - Registrarse</title>
     <meta charset="utf-8" />
     <meta name="description" content="Apportez votre contribution aux personnes dans le besoin" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,9 +18,6 @@
 <!--end::Head-->
 <!--begin::Body-->
 <body data-kt-name="metronic" id="kt_body" class="app-blank bgi-size-cover bgi-position-center bgi-no-repeat">
-<!--begin::Theme mode setup on page load-->
-<script>if ( document.documentElement ) { const defaultThemeMode = "system"; const name = document.body.getAttribute("data-kt-name"); let themeMode = localStorage.getItem("kt_" + ( name !== null ? name + "_" : "" ) + "theme_mode_value"); if ( themeMode === null ) { if ( defaultThemeMode === "system" ) { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } else { themeMode = defaultThemeMode; } } document.documentElement.setAttribute("data-theme", themeMode); }</script>
-<!--end::Theme mode setup on page load-->
 <!--begin::Main-->
 <!--begin::Root-->
 <div class="d-flex flex-column flex-root">
@@ -30,6 +27,7 @@
         <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10" style="margin-top: -150px">
             <!--begin::Aside-->
             <div class="d-flex flex-column">
+                <a href="{{ route('client_brands') }}" class="btn btn-lg mb-2" style="background-color: #013832; color: white"><i class="fa fa-car"></i>  CALCULA TU SEGURO DE FORMA RÁPIDA Y SENCILLA.</a>
                 <!--begin::Logo-->
                 <a href="/" class="text-center mb-5">
                     <img alt="Logo" src="assets/media/logos/Logo-crowd.png"  class="w-250px text-center"/>
@@ -68,6 +66,11 @@
                             <!--end::Title-->
                         </div>
                         <!--begin::Heading-->
+                        @if (session('warning'))
+                            <div class="alert alert-warning">
+                                {{ session('warning') }}
+                            </div>
+                        @endif
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
                             <label for="" class="form-label required">Nombre</label>

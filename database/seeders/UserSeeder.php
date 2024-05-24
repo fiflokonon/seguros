@@ -25,7 +25,9 @@ class UserSeeder extends Seeder
                 'sex' => 'M',
                 'role_id' => $admin_role->id,
                 'password' => Hash::make('password'),
-                'status' => true
+                'status' => true,
+                'verified_email' => true,
+                'email_verified_at' => now()
             ]
         ]);
     }

@@ -17,17 +17,19 @@
         @endif
         <!--begin::Wrapper-->
         <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            @if(auth()->user() != null)
             <!--begin::Header-->
             @include('partials.dashboard.header')
             <!--end::Header-->
-
+            @endif
             <!--begin::Content-->
             @yield('content')
             <!--end::Content-->
-
+            @if(auth()->user() != null)
             <!--begin::Footer-->
             @include('partials.dashboard.footer')
-            <!--end::Footer-->
+            <!--end::Footer-->:
+            @endif
         </div>
         <!--end::Wrapper-->
     </div>

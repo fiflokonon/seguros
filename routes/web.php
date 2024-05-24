@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\CarCategoryController;
 use App\Http\Controllers\Dashboard\ComplaintController;
 use App\Http\Controllers\Dashboard\FuelTypeController;
+use App\Http\Controllers\Dashboard\ParameterController;
 use App\Http\Controllers\Dashboard\PowerController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\TarificationController;
@@ -36,7 +37,7 @@ Route::get('/error-not-found', [HomeController::class, 'error404'])->name('error
 
 Auth::routes(['verify' => true]);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile/{id?}', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 Route::get('/profile/{id}/edit', [App\Http\Controllers\HomeController::class, 'edit_profile'])->name('edit_profile');
@@ -83,11 +84,12 @@ Route::post('/powers', [PowerController::class, 'store'])->name('add_power');
 Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
 Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
-Route::get('/brands/{id}/invoice-form', [InvoiceController::class, 'invoice_form'])->name('invoice_form');
+Route::get('/parameters', [ParameterController::class, 'index'])->name('parameters');
 
 });
 
 // routes/web.php
+Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
 Route::get('/get-powers/{fuelTypeId}', [InvoiceController::class, 'getPowers']);
 Route::get('/brands/{id}/invoice-form', [InvoiceController::class, 'invoice_form'])->name('invoice_form');
 Route::post('/brands/{id}/create-invoice', [InvoiceController::class, 'store'])->name('create_invoice');

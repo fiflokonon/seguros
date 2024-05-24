@@ -1,5 +1,5 @@
 @extends('partials.dashboard.index')
-@section('title', 'Tipos de Combustible')
+@section('title', 'Parámetros')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -41,14 +41,14 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <h4 class="card-title">Tipos de Combustible</h4>
-                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nuevo tipo combustible</b></button></div>
+                                <h4 class="card-title">Parámetros</h4>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
                                     <!--begin::Table row-->
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                        <th class="min-w-125px">Tipo de Combustible</th>
+                                        <th class="min-w-125px">Titulo</th>
+                                        <th class="min-w-125px">Accessorio</th>
                                         <th class="min-w-125px">Estado</th>
                                         <th class="text-end min-w-70px">Acciones</th>
                                     </tr>
@@ -56,10 +56,15 @@
                                     </thead>
                                     <!--end::Table head-->
                                     <tbody>
-                                    @foreach($fuel_types as $type)
+                                    @foreach($parameters as $parameter)
                                         <tr>
-                                            <td>{{ $type->title }}</td>
-                                            @if( $type->status )
+                                            <td>{{ $parameter->title }}</td>
+                                            @if( $parameter->accessory )
+                                                <td><span class="badge rounded-pill bg-success">Si</span></td>
+                                            @else
+                                                <td><span class="badge rounded-pill bg-danger">No</span></td>
+                                            @endif
+                                            @if( $parameter->status )
                                                 <td><span class="badge rounded-pill bg-success">Actif</span></td>
                                             @else
                                                 <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
@@ -78,10 +83,10 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        @if( $type->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $type->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
+                                                        @if( $parameter->status)
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $parameter->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $type->id]) }}"><i class="ti-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $parameter->id]) }}"><i class="ti-check text-success"></i> Activer</a>
                                                         @endif
                                                     </div>
                                                     <!--end::Menu item-->
@@ -114,7 +119,7 @@
                         <h2 class="fw-bolder">Nuevo tipo combustible</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" style="background-color: #013832; color: white"  data-kt-users-modal-action="close">
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
