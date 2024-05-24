@@ -49,6 +49,7 @@
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                         <th class="min-w-125px">Titulo</th>
                                         <th class="min-w-125px">Accessorio</th>
+                                        <th class="min-w-125px">Valor</th>
                                         <th class="min-w-125px">Estado</th>
                                         <th class="text-end min-w-70px">Acciones</th>
                                     </tr>
@@ -64,6 +65,7 @@
                                             @else
                                                 <td><span class="badge rounded-pill bg-danger">No</span></td>
                                             @endif
+                                            <td>{{ $parameter->value }}</td>
                                             @if( $parameter->status )
                                                 <td><span class="badge rounded-pill bg-success">Actif</span></td>
                                             @else
@@ -71,14 +73,15 @@
                                             @endif
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" style="background-color: #013832; color: white" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																<path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
 															</svg>
 														</span>
-                                                    <!--end::Svg Icon--></a>
+                                                    <!--end::Svg Icon-->
+                                                </a>
                                                 <!--begin::Menu-->
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
@@ -107,98 +110,6 @@
             <!--end::Container-->
         </div>
         <!--end::Post-->
-        <!--begin::Modal - Add task-->
-        <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px">
-                <!--begin::Modal content-->
-                <div class="modal-content">
-                    <!--begin::Modal header-->
-                    <div class="modal-header" id="kt_modal_add_user_header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Nuevo tipo combustible</h2>
-                        <!--end::Modal title-->
-                        <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </div>
-                        <!--end::Close-->
-                    </div>
-                    <!--end::Modal header-->
-                    <!--begin::Modal body-->
-                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                        <!--begin::Form-->
-                        <form id="kt_modal_add_user_form" class="form" method="POST" action="{{ route('add_fuel_type') }}">
-                            @csrf
-                            <!--begin::Scroll-->
-                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="required fw-bold fs-6 mb-2">Tipo combustible</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" name="title" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar el tipo de combustible" value="{{ old('title') }}" />
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="required fw-bold fs-6 mb-2">Code combustible</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="text" name="code" class="form-control mb-3 mb-lg-0" placeholder="Insertar el codigo del combusitble" value="{{ old('code') }}" />
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="required fw-bold fs-6 mb-2">Potencias</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <div class="mb-3 row">
-                                        @foreach($powers as $power)
-                                            <div class="col-4">
-                                                <div class="form-check mb-3">
-                                                    <input name="power[]" class="form-check-input" type="checkbox" id="formCheck1" value="{{ $power->id }}">
-                                                    <label class="form-check-label" for="formCheck1">{{ $power->min_power }} CV -  {{ $power->max_power }} CV</label>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            <!--end::Scroll-->
-                            <!--begin::Actions-->
-                            <div class="text-center pt-15">
-                                <button type="submit" class="btn btn-success">
-                                    Crear Tipo combustible
-                                    <span class="indicator-label"></span>
-                                    <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                </button>
-                            </div>
-                            <!--end::Actions-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Modal body-->
-                </div>
-                <!--end::Modal content-->
-            </div>
-            <!--end::Modal dialog-->
-        </div>
-        <!--end::Modal - Add task-->
     </div>
 @endsection
 
