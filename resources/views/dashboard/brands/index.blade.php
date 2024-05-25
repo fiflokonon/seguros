@@ -296,7 +296,7 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="../../demo1/dist/apps/user-management/users/view.html" class="menu-link px-3">Edit</a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_update_user" onclick="setBrandData({{ $brand->id }}, '{{ $brand->title }}', {{ $brand->most_used }}, '{{ $brand->image }}')" class="menu-link px-3"> <i class="fa fa-pen-alt text-dark"></i> Modifiar</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
@@ -326,6 +326,158 @@
             <!--end::Container-->
         </div>
         <!--end::Post-->
+
+        <!--begin::Modal - Update task-->
+        <div class="modal fade" id="kt_modal_update_user" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header" id="kt_modal_update_user_header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bolder">Actualizar marca</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--end::Modal header-->
+                    <!--begin::Modal body-->
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                        <!--begin::Form-->
+                        <form id="kt_modal_update_user_form" class="form" method="POST" action="{{ route('update_brand') }}" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id" id="update_brand_id">
+                            <!--begin::Scroll-->
+                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_user_header" data-kt-scroll-wrappers="#kt_modal_update_user_scroll" data-kt-scroll-offset="300px">
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Marca</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" name="title" id="update_brand_title" class="form-control mb-3 mb-lg-0" placeholder="Insertar el titulo de la marca" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-5">Tipo</label>
+                                    <!--end::Label-->
+                                    <!--begin::Roles-->
+                                    <!--begin::Input row-->
+                                    <div class="d-flex fv-row">
+                                        <!--begin::Radio-->
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <!--begin::Input-->
+                                            <input class="form-check-input me-3" name="most_used" type="radio" value="1" id="kt_modal_update_role_option_0" />
+                                            <!--end::Input-->
+                                            <!--begin::Label-->
+                                            <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                                <div class="fw-bolder text-gray-800">Mas bucadas</div>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <!--end::Radio-->
+                                    </div>
+                                    <!--end::Input row-->
+                                    <div class='separator separator-dashed my-5'></div>
+                                    <!--begin::Input row-->
+                                    <div class="d-flex fv-row">
+                                        <!--begin::Radio-->
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <!--begin::Input-->
+                                            <input class="form-check-input me-3" name="most_used" type="radio" value="0" id="kt_modal_update_role_option_1" />
+                                            <!--end::Input-->
+                                            <!--begin::Label-->
+                                            <label class="form-check-label" for="kt_modal_update_role_option_1">
+                                                <div class="fw-bolder text-gray-800">No mas bucadas</div>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <!--end::Radio-->
+                                    </div>
+                                    <!--end::Input row-->
+                                    <div class='separator separator-dashed my-5'></div>
+                                    <!--end::Roles-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7" id="update_image-upload-group" style="display: none;">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Imagen</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="file" name="image" class="form-control form-control-solid mb-3 mb-lg-0"/>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                            </div>
+                            <!--end::Scroll-->
+                            <div class="text-center pt-15">
+                                <button type="submit" class="btn"  style="background-color: #013832; color: white">
+                                    Actualizar marca
+                                    <span class="indicator-label"></span>
+                                    <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+        <!--end::Modal - Update task-->
     </div>
+    <script>
+        function setBrandData(id, title, most_used, image) {
+            document.getElementById('update_brand_id').value = id;
+            document.getElementById('update_brand_title').value = title;
+
+            if (most_used === 1) {
+                document.getElementById('kt_modal_update_role_option_0').checked = true;
+                document.getElementById('update_image-upload-group').style.display = 'block';
+                document.querySelector('#update_image-upload-group input[name="image"]').setAttribute('required', 'required');
+            } else {
+                document.getElementById('kt_modal_update_role_option_1').checked = true;
+                document.getElementById('update_image-upload-group').style.display = 'none';
+                document.querySelector('#update_image-upload-group input[name="image"]').removeAttribute('required');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const mostUsedRadiosUpdate = document.querySelectorAll('#kt_modal_update_user_form input[name="most_used"]');
+            const imageUploadGroupUpdate = document.getElementById('update_image-upload-group');
+
+            mostUsedRadiosUpdate.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.value == '1') {
+                        imageUploadGroupUpdate.style.display = 'block';
+                        imageUploadGroupUpdate.querySelector('input[name="image"]').setAttribute('required', 'required');
+                    } else {
+                        imageUploadGroupUpdate.style.display = 'none';
+                        imageUploadGroupUpdate.querySelector('input[name="image"]').removeAttribute('required');
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection
 

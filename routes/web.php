@@ -83,8 +83,10 @@ Route::post('/powers', [PowerController::class, 'store'])->name('add_power');
 
 Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
+Route::post('/brands/update', [BrandController::class, 'update'])->name('update_brand');
 Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
 Route::get('/parameters', [ParameterController::class, 'index'])->name('parameters');
+
 
 });
 

@@ -59,6 +59,30 @@ class BrandController extends Controller
         return redirect()->back()->with('success', 'Brand created successfully.');
     }
 
+    public function update(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|exists:brands,id',
+            'title' => 'required|string|max:255',
+            'most_used' => 'required|boolean',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $brand = Brand::find($validatedData['id']);
+        $brand->title = $validatedData['title'];
+        $brand->most_used = $validatedData['most_used'];
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('brands', 'public');
+            $brand->image = '/storage/' . $imagePath;
+        }
+
+        $brand->save();
+
+        return redirect()->back()->with('success', 'Marca actualizada con éxito');
+    }
+
+
     public function client_brands()
     {
         $mas = Brand::where('most_used', true)->get();
