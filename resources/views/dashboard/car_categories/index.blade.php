@@ -267,7 +267,7 @@
                         <!--end::Scroll-->
                         <!--begin::Actions-->
                         <div class="text-center pt-15">
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn" style="background-color: #013832; color: white">
                                 Actualizar Categoría
                                 <span class="indicator-label"></span>
                                 <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

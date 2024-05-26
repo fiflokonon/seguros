@@ -29,4 +29,21 @@ class TypeCarController extends Controller
         // Retourner une réponse appropriée
         return back()->with('success', 'Tipo coche insertien');
     }
+
+    public function update(Request $request)
+    {
+        // Validation des données
+        $request->validate([
+            'id' => 'required|integer|exists:type_cars,id',
+            'title' => 'required|string|max:255',
+        ]);
+        // Récupération du type de voiture à mettre à jour
+        $typeCar = TypeCar::findOrFail($request->id);
+        // Mise à jour des attributs du type de voiture
+        $typeCar->title = $request->input('title');
+        // Sauvegarde des modifications
+        $typeCar->save();
+        // Redirection avec un message de succès
+        return redirect()->back()->with('success', 'Tipo coche actualizado con éxito.');
+    }
 }

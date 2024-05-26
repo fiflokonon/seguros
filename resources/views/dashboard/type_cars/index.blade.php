@@ -80,10 +80,15 @@
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
                                                         @if( $type->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $type->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $type->id]) }}"><i class="fa fa-check text-danger"></i> Désactiver</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $type->id]) }}"><i class="ti-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $type->id]) }}"><i class="fa fa-check text-success"></i> Activer</a>
                                                         @endif
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <button class="btn menu-link px-3" onclick="openUpdateTypeCarModal({{ json_encode($type) }})" ><i class="fa fa-pen-alt text-danger"></i> Editar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -166,6 +171,57 @@
             <!--end::Modal dialog-->
         </div>
         <!--end::Modal - Add task-->
+
+        <!--begin::Modal - Update task-->
+        <div class="modal fade" id="kt_modal_update_type_car" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <div class="modal-content">
+                    <div class="modal-header" id="kt_modal_update_type_car_header">
+                        <h2 class="fw-bolder">Actualizar Tipo Coche</h2>
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                        <form id="kt_modal_update_type_car_form" class="form" method="POST" action="{{ route('update_type_car') }}">
+                            @csrf
+                            <input type="hidden" name="id" id="update_type_car_id">
+                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_type_car_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_type_car_header" data-kt-scroll-wrappers="#kt_modal_update_type_car_scroll" data-kt-scroll-offset="300px">
+                                <div class="fv-row mb-7">
+                                    <label class="required fw-bold fs-6 mb-2">Tipo coche</label>
+                                    <input type="text" name="title" id="update_type_car_title" class="form-control mb-3 mb-lg-0" placeholder="Insertar el tipo de coche" />
+                                </div>
+                            </div>
+                            <div class="text-center pt-15">
+                                <button type="submit" class="btn" style="background-color: #013832; color: white">
+                                    Actualizar Tipo Coche
+                                    <span class="indicator-label"></span>
+                                    <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end::Modal - Update task-->
+
+
+        <script>
+            function openUpdateTypeCarModal(typeCar) {
+                document.getElementById('update_type_car_id').value = typeCar.id;
+                document.getElementById('update_type_car_title').value = typeCar.title;
+
+                $('#kt_modal_update_type_car').modal('show');
+            }
+        </script>
+
+
     </div>
 @endsection
 
