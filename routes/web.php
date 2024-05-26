@@ -81,6 +81,7 @@ Route::post('/add-complaint', [ComplaintController::class, 'store'])->name('add_
 
 Route::get('/trailers', [TrailerController::class, 'index'])->name('trailers');
 Route::post('/trailers', [TrailerController::class, 'store'])->name('add_trailer');
+Route::post('/trailers/update', [TrailerController::class, 'update'])->name('update_trailer');
 
 Route::get('/powers', [PowerController::class, 'index'])->name('powers');
 Route::post('/powers', [PowerController::class, 'store'])->name('add_power');

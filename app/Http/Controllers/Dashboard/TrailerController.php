@@ -29,4 +29,18 @@ class TrailerController extends Controller
         // Retourner une réponse appropriée
         return back()->with('success', 'Remolque insertien');
     }
+
+    public function update(Request $request)
+    {
+        // Validation des données
+        $request->validate([
+            'id' => 'required|integer|exists:trailer_types,id',
+            'title' => 'required|string|max:255',
+        ]);
+        $trailer = Trailer::findOrFail($request->id);
+        $trailer->title = $request->input('title');
+        $trailer->save();
+        return redirect()->back()->with('success', 'Tipo remolque actualizado con éxito.');
+    }
+
 }
