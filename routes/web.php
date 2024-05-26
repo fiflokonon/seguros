@@ -66,6 +66,8 @@ Route::post('/type-cars', [TypeCarController::class, 'store'])->name('add_type_c
 
 Route::get('/categories', [CarCategoryController::class, 'index'])->name('categories');
 Route::post('/categories', [CarCategoryController::class, 'store'])->name('add_category');
+Route::post('/categories/update', [CarCategoryController::class, 'update'])->name('update_category');
+
 
 Route::get('/tarifications', [TarificationController::class, 'index'])->name('tarifications');
 Route::post('/tarifications', [TarificationController::class, 'store'])->name('add_tarification');

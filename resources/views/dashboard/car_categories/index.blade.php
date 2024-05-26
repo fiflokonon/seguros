@@ -95,12 +95,17 @@
                                                         @if( $category->status)
                                                             <a class="menu-link px-3"
                                                                href="{{ route('deactivate_role', ['id' => $category->id]) }}"><i
-                                                                    class="ti-trash text-danger"></i> Désactiver</a>
+                                                                    class="fa fa-trash text-danger"></i> Désactiver</a>
                                                         @else
                                                             <a class="menu-link px-3"
                                                                href="{{ route('activate_role', ['id' => $category->id]) }}"><i
-                                                                    class="ti-check text-success"></i> Activer</a>
+                                                                    class="fa fa-check text-success"></i> Activer</a>
                                                         @endif
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                            <button class="btn menu-link px-3" onclick="openUpdateCategoryModal({{ json_encode($category) }})" ><i class="fa fa-pen-alt text-dark"></i> Modifiar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
