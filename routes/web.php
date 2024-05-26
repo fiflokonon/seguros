@@ -57,6 +57,7 @@ Route::post('/users', [UserController::class, 'store'])->name('add_user');
 
 Route::get('/fuel-types', [FuelTypeController::class, 'index'])->name('fuel_types');
 Route::post('/fuel-types', [FuelTypeController::class, 'store'])->name('add_fuel_type');
+Route::post('/fuel-types/update', [FuelTypeController::class, 'update'])->name('update_fuel_type');
 
 
 Route::get('/type-cars', [TypeCarController::class, 'index'])->name('type_cars');

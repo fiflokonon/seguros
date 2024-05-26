@@ -34,4 +34,29 @@ class FuelTypeController extends Controller
         // Retourner une réponse appropriée
         return back()->with('success', 'Tipo combustible insertien');
     }
+
+    public function update(Request $request)
+    {
+        // Valider les données entrantes
+        $request->validate([
+            'id' => 'required|exists:fuel_types,id',
+            'title' => 'required|string|max:255',
+            'code' => 'required|string|max:50',
+            'power' => 'array',
+            'power.*' => 'exists:powers,id',
+        ]);
+        // Rechercher l'élément à mettre à jour
+        $fuelType = FuelType::findOrFail($request->id);
+        // Mettre à jour les champs de l'élément
+        $fuelType->title = $request->title;
+        $fuelType->code = $request->code;
+        // Gérer les relations (comme les puissances)
+        if ($request->has('power')) {
+            $fuelType->powers()->sync($request->power);
+        }
+        // Enregistrer les modifications
+        $fuelType->save();
+        // Rediriger avec un message de succès
+        return redirect()->back()->with('success', 'Tipo de combustible actualizado con éxito.');
+    }
 }
