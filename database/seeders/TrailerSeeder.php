@@ -16,7 +16,7 @@ class TrailerSeeder extends Seeder
         $trailers = [
             'Remolque',
             'Véhiculo con Remolque',
-            'Véhicculo sin Remolque'
+            'Véhiculo sin Remolque'
         ];
 
         foreach ($trailers as $trailer){

@@ -42,7 +42,7 @@
                                     </div>
                                 @endif
                                 <h4 class="card-title">Tipos de Combustible</h4>
-                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn waves-effect waves-light"> <i class="fa fa-plus"></i><b>Nuevo tipo combustible</b></button></div>
+                                <div class="float-lg-end"><button data-bs-toggle="modal" data-bs-target="#kt_modal_add_user" class="btn waves-effect waves-light" style="background-color: #013832; color: white"> <i class="fa fa-plus"></i><b>Nuevo tipo combustible</b></button></div>
                                 <table  class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
                                     <!--begin::Table head-->
                                     <thead>
@@ -66,7 +66,7 @@
                                             @endif
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                <a class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Acciones
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -89,7 +89,7 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <button class="btn menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_fuel_type" data-id="{{ $type->id }}" data-title="{{ $type->title }}" data-code="{{ $type->code }}" data-powers="{{ $type->powers}}"><i class="fa fa-pen text-success"></i> Modifier</button>
+                                                        <button class="btn menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_fuel_type" data-id="{{ $type->id }}" data-title="{{ $type->title }}" data-code="{{ $type->code }}" data-powers="{{ $type->powers->pluck('id')}}"><i class="fa fa-pen text-success"></i> Modifier</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -294,16 +294,24 @@
             // Example data, replace with your actual data
             const powers = @json($powers);
 
+            // Function to clean the checkedPowers string
+            function cleanCheckedPowers(checkedPowersStr) {
+                // Remove leading ['[ and trailing ]']
+                return checkedPowersStr.replace(/^\['\[/, '').replace(/\]'\]$/, '');
+            }
+
             // Function to populate the powers checkboxes
-            function populatePowers(checkedPowers) {
+            function populatePowers(checkedPowersStr) {
+                const checkedPowers = cleanCheckedPowers(checkedPowersStr);
                 const powersContainer = document.getElementById('update_fuel_type_powers');
                 powersContainer.innerHTML = ''; // Clear existing checkboxes
+
                 powers.forEach(power => {
-                    const isChecked = checkedPowers.includes(power.id.toString());
+                    const isChecked = checkedPowers.includes(power.id);
                     const checkbox = `
                 <div class="col-4">
                     <div class="form-check mb-3">
-                        <input name="power[]" class="form-check-input" type="checkbox" id="update_formCheck_${power.id}" value="${power.id}" ${isChecked ? 'checked' : ''}>
+                        <input name="power[]" class="form-check-input" type="checkbox" id="update_formCheck_${power.id}" value="${power.id}" ${isChecked ? 'checked="checked"' : ''}>
                         <label class="form-check-label" for="update_formCheck_${power.id}">${power.min_power} CV - ${power.max_power} CV</label>
                     </div>
                 </div>`;
@@ -318,7 +326,7 @@
                     const fuelTypeId = this.getAttribute('data-id');
                     const fuelTypeTitle = this.getAttribute('data-title');
                     const fuelTypeCode = this.getAttribute('data-code');
-                    const fuelTypePowers = this.getAttribute('data-powers').split(',');
+                    const fuelTypePowers = this.getAttribute('data-powers');
 
                     document.getElementById('update_fuel_type_id').value = fuelTypeId;
                     document.getElementById('update_fuel_type_title').value = fuelTypeTitle;
@@ -328,6 +336,7 @@
                 });
             });
         });
+
     </script>
 
 @endsection

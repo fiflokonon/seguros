@@ -72,6 +72,7 @@ Route::post('/categories/update', [CarCategoryController::class, 'update'])->nam
 
 Route::get('/tarifications', [TarificationController::class, 'index'])->name('tarifications');
 Route::post('/tarifications', [TarificationController::class, 'store'])->name('add_tarification');
+Route::post('/tarifications/update', [TarificationController::class, 'update'])->name('update_tarification');
 
 
 Route::get('/complaints-list', [ComplaintController::class, 'index'])->name('complaints');

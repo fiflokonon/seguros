@@ -76,4 +76,31 @@ class TarificationController extends Controller
             return back()->withErrors($e->getMessage());
         }
     }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:tarifications,id',
+            'category' => 'required|exists:categories,id',
+            'type_car' => 'required|exists:type_cars,id',
+            'fuel_type' => 'required|exists:fuel_types,id',
+            'trailer' => 'required|exists:trailers,id',
+            'power' => 'required|exists:powers,id',
+            'min_place' => 'required|numeric|min:1',
+            'max_place' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:0',
+        ]);
+        $tarification = Tarification::find($request->id);
+        $tarification->category_id = $request->category;
+        $tarification->type_car_id = $request->type_car;
+        $tarification->fuel_type_id = $request->fuel_type;
+        $tarification->trailer_id = $request->trailer;
+        $tarification->power_id = $request->power;
+        $tarification->min_place = $request->min_place;
+        $tarification->max_place = $request->max_place;
+        $tarification->price = $request->price;
+        $tarification->save();
+        return redirect()->back()->with('success', 'Cotización actualizada con éxito.');
+    }
+
 }

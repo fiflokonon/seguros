@@ -72,7 +72,7 @@
                                             <td>{{ $tarification->price }}</td>
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                <a class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Acciones
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -85,10 +85,15 @@
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
                                                         @if( $tarification->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $tarification->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $tarification->id]) }}"><i class="fa fa-trash text-danger"></i> Désactiver</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $tarification->id]) }}"><i class="ti-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $tarification->id]) }}"><i class="fa fa-check text-success"></i> Activer</a>
                                                         @endif
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <button class="btn menu-link px-3" onclick="openUpdateTarificationModal({{ $tarification->id }}, '{{ $tarification->category_id }}', '{{ $tarification->type_car_id }}', '{{ $tarification->fuel_type_id }}', '{{ $tarification->trailer_id }}', '{{ $tarification->power_id }}', '{{ $tarification->min_place }}', '{{ $tarification->max_place }}', '{{ $tarification->price }}')"><i class="fa fa-pen-alt text-dark"></i> Modificar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -261,6 +266,190 @@
             <!--end::Modal dialog-->
         </div>
         <!--end::Modal - Add task-->
+
+        <!--begin::Modal - Update Tarification-->
+        <div class="modal fade" id="kt_modal_update_tarification" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header" id="kt_modal_update_tarification_header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bolder">Actualizar Cotización</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--end::Modal header-->
+                    <!--begin::Modal body-->
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                        <!--begin::Form-->
+                        <form id="kt_modal_update_tarification_form" class="form" method="POST" action="{{ route('update_tarification') }}">
+                            @csrf
+                            @method('PUT')
+                            <!-- Hidden input for the tarification ID -->
+                            <input type="hidden" id="update_tarification_id" name="id">
+
+                            <!--begin::Scroll-->
+                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_tarification_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_tarification_header" data-kt-scroll-wrappers="#kt_modal_update_tarification_scroll" data-kt-scroll-offset="300px">
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Categoría</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="category" id="update_tarification_category" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo de Coche</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="type_car" id="update_tarification_type_car" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
+                                        @foreach($type_cars as $type)
+                                            <option value="{{ $type->id }}">{{ $type->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo de Combustible</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="fuel_type" id="update_tarification_fuel_type" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
+                                        @foreach($fuel_types as $fuel_type)
+                                            <option value="{{ $fuel_type->id }}">{{ $fuel_type->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo Remolque</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="trailer" id="update_tarification_trailer" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
+                                        @foreach($trailers as $trailer)
+                                            <option value="{{ $trailer->id }}">{{ $trailer->title }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Potencia</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select name="power" id="update_tarification_power" class="form-select form-select-solid form-select-lg fw-bold" data-control="select2">
+                                        @foreach($powers as $power)
+                                            <option value="{{ $power->id }}">{{ $power->min_power }} CV - {{ $power->max_power }} CV</option>
+                                        @endforeach
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Mínima place</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" id="update_tarification_min_place" name="min_place" class="form-control mb-3 mb-lg-0" placeholder="Insertar Mínima place " />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Máxima place</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" id="update_tarification_max_place" name="max_place" class="form-control mb-3 mb-lg-0" placeholder="Insertar Máxima place" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Precio</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" id="update_tarification_price" name="price" class="form-control mb-3 mb-lg-0" placeholder="Insertar el precio" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                            </div>
+                            <!--end::Scroll-->
+
+                            <!--begin::Actions-->
+                            <div class="text-center pt-15">
+                                <button type="submit" class="btn" style="background-color: #013832; color: white">
+                                    Actualizar Cotización
+                                    <span class="indicator-label"></span>
+                                    <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+        <!--end::Modal - Update Tarification-->
+        <script>
+            function openUpdateTarificationModal(id, categoryId, typeCarId, fuelTypeId, trailerId, powerId, minPlace, maxPlace, price) {
+                // Pré-remplir les champs du formulaire avec les valeurs existantes
+                document.getElementById('update_tarification_id').value = id;
+                document.getElementById('update_tarification_category').value = categoryId;
+                document.getElementById('update_tarification_type_car').value = typeCarId;
+                document.getElementById('update_tarification_fuel_type').value = fuelTypeId;
+                document.getElementById('update_tarification_trailer').value = trailerId;
+                document.getElementById('update_tarification_power').value = powerId;
+                document.getElementById('update_tarification_min_place').value = minPlace;
+                document.getElementById('update_tarification_max_place').value = maxPlace;
+                document.getElementById('update_tarification_price').value = price;
+
+                // Ouvrir le modal
+                $('#kt_modal_update_tarification').modal('show');
+            }
+        </script>
+
     </div>
 @endsection
 

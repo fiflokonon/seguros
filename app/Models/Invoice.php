@@ -27,6 +27,7 @@ class Invoice extends Model
         'email',
         'total',
         'status',
+        'state',
         'initial_price',
         'attestation_price',
         'accessories_price',

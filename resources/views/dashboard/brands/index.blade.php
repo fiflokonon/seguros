@@ -449,13 +449,12 @@
         function setBrandData(id, title, most_used, image) {
             document.getElementById('update_brand_id').value = id;
             document.getElementById('update_brand_title').value = title;
-
-            if (most_used === 1) {
-                document.getElementById('kt_modal_update_role_option_0').checked = true;
+            if (most_used === 1 || most_used === true) {
+                document.getElementById('kt_modal_update_role_option_0').setAttribute('checked', 'checked');
                 document.getElementById('update_image-upload-group').style.display = 'block';
                 document.querySelector('#update_image-upload-group input[name="image"]').setAttribute('required', 'required');
             } else {
-                document.getElementById('kt_modal_update_role_option_1').checked = true;
+                document.getElementById('kt_modal_update_role_option_1').setAttribute('checked', 'checked');
                 document.getElementById('update_image-upload-group').style.display = 'none';
                 document.querySelector('#update_image-upload-group input[name="image"]').removeAttribute('required');
             }

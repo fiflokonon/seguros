@@ -105,7 +105,7 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                            <button class="btn menu-link px-3" onclick="openUpdateCategoryModal({{ json_encode($category) }})" ><i class="fa fa-pen-alt text-dark"></i> Modifiar</button>
+                                                        <button class="btn menu-link px-3" onclick="openUpdateCategoryModal({{ json_encode($category) }})" ><i class="fa fa-pen-alt text-dark"></i> Modifiar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>

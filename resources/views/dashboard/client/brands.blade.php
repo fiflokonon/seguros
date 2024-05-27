@@ -54,7 +54,7 @@
                                 <div class="mb-3 row">
                                     <label for="example-text-input" class="col-md-12 col-form-label">Si tu marca no está entre las más buscadas, por favor selecciona de esta lista.</label>
                                     <div class="col-md-10">
-                                        <select name="brand" id="brand-select" class="form-select form-select-lg">
+                                        <select name="brand" id="brand-select" class="form-select form-select-lg" data-control="select2">
                                             <option selected disabled>Seleccione una Marca</option>
                                             @foreach($minos as $brand)
                                                 <option value="{{ $brand->id }}">{{ $brand->title }}</option>

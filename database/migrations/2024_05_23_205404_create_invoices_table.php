@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('brand_id')->nullable();
             $table->foreignId('trailer_id')->nullable();
             $table->string('model')->nullable();
+            $table->string('state')->nullable();
             $table->bigInteger('place_number')->nullable();
             $table->string('code')->unique();
             $table->double('initial_price')->default(0);

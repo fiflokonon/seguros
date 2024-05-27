@@ -69,7 +69,7 @@
                                             {{--<td>{{ $type->created_at }}</td>--}}
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                <a class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Acciones
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -185,7 +185,7 @@
                             <!--end::Scroll-->
                             <!--begin::Actions-->
                             <div class="text-center pt-15">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn" style="background-color: #013832; color: white">
                                     Crear potentia
                                     <span class="indicator-label"></span>
                                     <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -283,7 +283,7 @@
 
                             <!--begin::Actions-->
                             <div class="text-center pt-15">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn" style="background-color: #013832; color: white">
                                     Actualizar potentia
                                     <span class="indicator-label"></span>
                                     <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -315,13 +315,21 @@
                 // Cocher les cases correspondant aux types de carburant
                 fuelTypes.forEach(fuelType => {
                     console.log("Fuel type:", fuelType);
-                    document.querySelector(`input[name="fuel_type[]"][value="${fuelType}"]`).checked = 1;
+                    const checkbox = document.querySelector(`input[name="fuel_type[]"][value="${fuelType}"]`);
+                    console.log("Check", checkbox);
+                    if (checkbox) {
+                        checkbox.setAttribute("checked", "checked"); // Utiliser directement la propriété checked
+                    }
                 });
 
-                // Ouvrir le modal
-                $('#kt_modal_update_power').modal('show');
+                // Retarder légèrement l'ouverture du modal
+                setTimeout(() => {
+                    $('#kt_modal_update_power').modal('show');
+                }, 100); // Ajuster le délai si nécessaire
             }
         </script>
+
+
 
     </div>
 @endsection
