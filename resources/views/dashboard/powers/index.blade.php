@@ -82,10 +82,15 @@
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
                                                         @if( $power->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $power->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $power->id]) }}"><i class="fa fa-trash text-danger"></i> Désactiver</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $power->id]) }}"><i class="ti-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $power->id]) }}"><i class="fa fa-check text-success"></i> Activer</a>
                                                         @endif
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <button class="btn menu-link px-3" onclick="openUpdatePowerModal({{$power->id}}, {{$power->min_power}}, {{ $power->max_power }}, {{ $power->fuel_types->pluck('id') }} )"><i class="fa fa-pen-alt text-dark"></i> Editar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -114,7 +119,7 @@
                     <!--begin::Modal header-->
                     <div class="modal-header" id="kt_modal_add_user_header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Nuevo tipo coche</h2>
+                        <h2 class="fw-bolder">Nueva potentia</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
                         <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -181,7 +186,7 @@
                             <!--begin::Actions-->
                             <div class="text-center pt-15">
                                 <button type="submit" class="btn btn-success">
-                                    Crear Tipo coche
+                                    Crear potentia
                                     <span class="indicator-label"></span>
                                     <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
@@ -197,6 +202,127 @@
             <!--end::Modal dialog-->
         </div>
         <!--end::Modal - Add task-->
+
+        <!--begin::Modal - Update Power-->
+        <div class="modal fade" id="kt_modal_update_power" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header" id="kt_modal_update_power_header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bolder">Actualizar potentia</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--end::Modal header-->
+                    <!--begin::Modal body-->
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                        <!--begin::Form-->
+                        <form id="kt_modal_update_power_form" class="form" method="POST" action="{{ route('update_power') }}">
+                            @csrf
+                            <!-- Hidden input for the power ID -->
+                            <input type="hidden" id="update_power_id" name="id">
+                            <!--begin::Scroll-->
+                            <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_power_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_power_header" data-kt-scroll-wrappers="#kt_modal_update_power_scroll" data-kt-scroll-offset="300px">
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Min potentia</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" min="1" id="update_power_min_power" name="min_power" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar la potentia mínima" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Max potentia</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="number" min="1" id="update_power_max_power" name="max_power" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Insertar la potentia máxima" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">Tipo Combustible</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <div class="mb-3 row">
+                                        @foreach($fuel_types as $fuel_type)
+                                            <div class="col-4">
+                                                <div class="form-check mb-3">
+                                                    <input name="fuel_type[]" class="form-check-input" type="checkbox" value="{{ $fuel_type->id }}">
+                                                    <label class="form-check-label">{{ $fuel_type->title }}</label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                            </div>
+                            <!--end::Scroll-->
+
+                            <!--begin::Actions-->
+                            <div class="text-center pt-15">
+                                <button type="submit" class="btn btn-success">
+                                    Actualizar potentia
+                                    <span class="indicator-label"></span>
+                                    <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+        <!--end::Modal - Update Power-->
+        <script>
+            function openUpdatePowerModal(id, minPower, maxPower, fuelTypes) {
+                // Pré-remplir les champs du formulaire avec les valeurs existantes
+                document.getElementById('update_power_id').value = id;
+                document.getElementById('update_power_min_power').value = minPower;
+                document.getElementById('update_power_max_power').value = maxPower;
+
+                // Décocher toutes les cases à cocher
+                document.querySelectorAll('input[name="fuel_type[]"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+
+                // Cocher les cases correspondant aux types de carburant
+                fuelTypes.forEach(fuelType => {
+                    console.log("Fuel type:", fuelType);
+                    document.querySelector(`input[name="fuel_type[]"][value="${fuelType}"]`).checked = 1;
+                });
+
+                // Ouvrir le modal
+                $('#kt_modal_update_power').modal('show');
+            }
+        </script>
+
     </div>
 @endsection
 

@@ -46,7 +46,7 @@
                                     @foreach($mas as $brand)
                                         <div class="col-2">
                                             <a href="{{ route('invoice_form', $brand->id) }}">
-                                            <img src="{{ $brand->image }}" width="100px">
+                                            <img src="{{ $brand->image }}" width="50px">
                                             </a>
                                         </div>
                                     @endforeach

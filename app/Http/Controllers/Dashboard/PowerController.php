@@ -41,4 +41,22 @@ class PowerController extends Controller
         // Retourner une réponse appropriée
         return back()->with('success', 'Potentia insertien');
     }
+
+    public function updatePower(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:powers,id',
+            'min_power' => 'required|numeric|min:1',
+            'max_power' => 'required|numeric|min:1',
+            'fuel_type' => 'required|array',
+            'fuel_type.*' => 'exists:fuel_types,id',
+        ]);
+
+        $power = Power::find($request->id);
+        $power->min_power = $request->min_power;
+        $power->max_power = $request->max_power;
+        $power->fuel_types()->sync($request->fuel_type);
+        $power->save();
+        return redirect()->back()->with('success', 'Potencia actualizada con éxito.');
+    }
 }

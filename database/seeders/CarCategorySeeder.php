@@ -14,22 +14,48 @@ class CarCategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            'Negocios y paseos',
-            'Vehículo transp. de mercancías a cuenta propia',
-            'Vehículos para transporte público de bienes',
-            'Vehículos de transporte público de pasajeros/persona',
-            'Vehículos de motorizados de dos o tres ruedas',
-            'Vehículo conf. al personal de reparación',
-            'Vehículos de auto-escuelas',
-            'Vehículos de alquiler con o sin conductor',
-            'Maquinaria de construcción móvil',
-            'Coches fúnebres, ambulancias, tract. agrícolas',
+            [
+                'code' => 201,
+                'title'  => 'Negocios y paseos'
+            ],
+            [
+                'code' => 202,
+                'title'  => 'Vehículos para transporte público de bienes'
+            ],
+            [
+                'code' => 203,
+                'title'  => 'Vehículos de transporte público de pasajeros/persona'
+            ],
+            [
+                'code' => 204,
+                'title'  => 'Vehículos de motorizados de dos o tres ruedas'
+            ],
+            [
+                'code' => 205,
+                'title'  => 'Vehículo conf. al personal de reparación'
+            ],
+            [
+                'code' => 206,
+                'title'  => 'Vehículos de auto-escuelas'
+            ],
+            [
+                'code' => 207,
+                'title'  => 'Vehículos de alquiler con o sin conductor'
+            ],
+            [
+                'code' => 208,
+                'title'  => 'Maquinaria de construcción móvil'
+            ],
+            [
+                'code' => 209,
+                'title'  => 'Coches fúnebres, ambulancias, tract. agrícolas'
+            ],
         ];
 
         foreach ($categories as $category){
             CarCategory::create([
-                'title' => $category,
-                'code_category' => random_int(0, 100),
+                'title' => $category['title'],
+                'code_category' => $category['code'],
                 'status' => true
             ]);
         }

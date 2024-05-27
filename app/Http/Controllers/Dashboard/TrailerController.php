@@ -34,7 +34,7 @@ class TrailerController extends Controller
     {
         // Validation des données
         $request->validate([
-            'id' => 'required|integer|exists:trailer_types,id',
+            'id' => 'required|integer|exists:trailers,id',
             'title' => 'required|string|max:255',
         ]);
         $trailer = Trailer::findOrFail($request->id);
