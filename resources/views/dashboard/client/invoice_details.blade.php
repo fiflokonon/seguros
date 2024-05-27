@@ -209,27 +209,9 @@
             </div>
             <!--end::Container-->
         </div>
+            <!--End::Container-->
         <!--end::Post-->
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const brandSelect = document.getElementById('brand-select');
-            const nextButtonContainer = document.getElementById('next-button-container');
-            const nextButton = document.getElementById('next-button');
-
-            brandSelect.addEventListener('change', function () {
-                const selectedBrandId = this.value;
-                if (selectedBrandId) {
-                    const nextButtonUrl = `{{ route('invoice_form', ':id') }}`.replace(':id', selectedBrandId);
-                    nextButton.href = nextButtonUrl;
-                    nextButtonContainer.style.display = 'block';
-                } else {
-                    nextButtonContainer.style.display = 'none';
-                }
-            });
-        });
-
-    </script>
 @endsection
 
 

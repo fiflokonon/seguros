@@ -18,9 +18,16 @@ class InvoiceController extends Controller
     public function invoice_form($id)
     {
         $brand = Brand::findOrFail($id);
-        return view('dashboard.client.invoice_form', [
-            'brand' => $brand
-        ]);
+        if (auth()->user()){
+            return view('dashboard.client.invoice_form', [
+                'brand' => $brand
+            ]);
+        }else{
+            return view('dashboard.client.without_auth_invoice_form', [
+                'brand' => $brand
+            ]);
+        }
+
     }
 
     public function index()

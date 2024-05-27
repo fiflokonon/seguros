@@ -87,9 +87,17 @@ class BrandController extends Controller
     {
         $mas = Brand::where('most_used', true)->get();
         $minos = Brand::where('most_used', false)->get();
-        return view('dashboard.client.brands', [
-            'mas' => $mas,
-            'minos' => $minos
-        ]);
+        if (auth()->user()){
+            return view('dashboard.client.brands', [
+                'mas' => $mas,
+                'minos' => $minos
+            ]);
+        }else{
+            return view('dashboard.client.without_auth_brands', [
+                'mas' => $mas,
+                'minos' => $minos
+            ]);
+        }
+
     }
 }
