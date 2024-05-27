@@ -23,6 +23,19 @@ class InvoiceController extends Controller
         ]);
     }
 
+    public function index()
+    {
+        if (auth()->user()->role->code == "client"){
+            return view('dashboard.invoices.index', [
+                'invoices' => auth()->user()->invoices
+            ]);
+        }else{
+            return view('dashboard.invoices.index', [
+                'invoices' => Invoice::all()
+            ]);
+        }
+    }
+
     public function getPowers($fuelTypeId)
     {
         $fuelType = FuelType::findOrFail($fuelTypeId);
@@ -106,6 +119,7 @@ class InvoiceController extends Controller
             $validatedData['sub_total'] = $subTotal;
             $validatedData['vat'] = $subTotal * 0.15;
             $validatedData['status'] = true;
+            $validatedData['state'] = 'pending';
             if (auth()->user() != null) {
                 $validatedData['user_id'] = auth()->user()->id;
             }

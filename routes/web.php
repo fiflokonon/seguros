@@ -93,6 +93,7 @@ Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
 Route::post('/brands/update', [BrandController::class, 'update'])->name('update_brand');
 Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
 Route::get('/parameters', [ParameterController::class, 'index'])->name('parameters');
+Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices');
 
 
 });

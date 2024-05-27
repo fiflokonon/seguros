@@ -10,10 +10,17 @@ class ComplaintController extends Controller
 {
     public function index()
     {
-        $complaints = Complaint::all();
-        return view('dashboard.complaints.index', [
-            'complaints' => $complaints
-        ]);
+        if (auth()->user()->role->code == "client"){
+            return view('dashboard.complaints.index', [
+                'complaints' => auth()->user()->complaints
+            ]);
+        }else{
+            $complaints = Complaint::all();
+            return view('dashboard.complaints.index', [
+                'complaints' => $complaints
+            ]);
+        }
+
     }
 
     public function add_complaint()

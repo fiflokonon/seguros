@@ -169,6 +169,18 @@
                             <span class="menu-title">Gestión de Sinietros</span>
                         </a>
                     </div>
+                    <div class="menu-item">
+                        <a class="menu-link" href="{{ route('invoices') }}" title="Build your layout and export HTML for server side integration" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                            <span class="menu-icon">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <i class="fa fa-hand-paper"></i>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </span>
+                            <span class="menu-title">Facturas</span>
+                        </a>
+                    </div>
                 @elseif(auth()->user() !=null && auth()->user()->role->code == 'client')
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
@@ -184,7 +196,7 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ route('users') }}">
+                                <a class="menu-link" href="{{ route('complaints') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -202,7 +214,7 @@
                         </div>
                     </div>
                     <div class="menu-item">
-                        <a class="menu-link" href="{{ route('complaints') }}" title="Build your layout and export HTML for server side integration" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                        <a class="menu-link" href="{{ route('invoices') }}"  data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                 <span class="svg-icon svg-icon-2">
@@ -214,7 +226,7 @@
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a class="menu-link" href="{{ route('complaints') }}" title="Build your layout and export HTML for server side integration" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                        <a class="menu-link" href="" title="Build your layout and export HTML for server side integration" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
                                 <span class="svg-icon svg-icon-2">
@@ -235,18 +247,6 @@
                                 <!--end::Svg Icon-->
                             </span>
                             <span class="menu-title">Calacula tu Presupuesto</span>
-                        </a>
-                    </div>
-                    <div class="menu-item">
-                        <a class="menu-link" href="{{ route('complaints') }}" title="Build your layout and export HTML for server side integration" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                            <span class="menu-icon">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-                                <span class="svg-icon svg-icon-2">
-                                    <i class="fa fa-car"></i>
-                                </span>
-                                <!--end::Svg Icon-->
-                            </span>
-                            <span class="menu-title">Ver Historial de Facturas</span>
                         </a>
                     </div>
                 @endif
