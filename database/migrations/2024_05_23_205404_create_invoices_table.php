@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('regis_number')->nullable();
             $table->boolean('status')->default(false);
             $table->double('total')->default(0);
+            $table->string('link')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

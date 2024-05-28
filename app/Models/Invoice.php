@@ -33,7 +33,8 @@ class Invoice extends Model
         'accessories_price',
         'code',
         'sub_total',
-        'vat'
+        'vat',
+        'link'
     ];
 
     public function accessories()
