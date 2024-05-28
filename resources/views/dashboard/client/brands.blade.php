@@ -2,6 +2,7 @@
 @section('title', 'Categorías')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        @if(auth()->user() !=null )
         <!--begin::Toolbar-->
         <div class="toolbar" id="kt_toolbar">
             <!--begin::Container-->
@@ -19,6 +20,7 @@
             <!--end::Container-->
         </div>
         <!--end::Toolbar-->
+        @endif
         <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
@@ -44,7 +46,7 @@
                                 <h4 class="card-title">¿De qué marca es el coche?</h4>
                                 <div class="row">
                                     @foreach($mas as $brand)
-                                        <div class="col-2">
+                                        <div class="col-1">
                                             <a href="{{ route('invoice_form', $brand->id) }}">
                                             <img src="{{ $brand->image }}" width="50px">
                                             </a>
@@ -54,7 +56,7 @@
                                 <div class="mb-3 row">
                                     <label for="example-text-input" class="col-md-12 col-form-label">Si tu marca no está entre las más buscadas, por favor selecciona de esta lista.</label>
                                     <div class="col-md-10">
-                                        <select name="brand" id="brand-select" class="form-select form-select-lg" data-control="select2">
+                                        <select name="brand" id="brand-select" class="form-select form-select-lg">
                                             <option selected disabled>Seleccione una Marca</option>
                                             @foreach($minos as $brand)
                                                 <option value="{{ $brand->id }}">{{ $brand->title }}</option>

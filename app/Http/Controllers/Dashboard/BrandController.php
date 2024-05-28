@@ -83,7 +83,7 @@ class BrandController extends Controller
     }
 
 
-    public function client_brands()
+    /*public function client_brands()
     {
         $mas = Brand::where('most_used', true)->get();
         $minos = Brand::where('most_used', false)->get();
@@ -98,6 +98,15 @@ class BrandController extends Controller
                 'minos' => $minos
             ]);
         }
+    }*/
 
+    public function client_brands()
+    {
+        $mas = Brand::where('most_used', true)->get();
+        $minos = Brand::where('most_used', false)->get();
+        return view('dashboard.client.brands', [
+            'mas' => $mas,
+            'minos' => $minos
+        ]);
     }
 }

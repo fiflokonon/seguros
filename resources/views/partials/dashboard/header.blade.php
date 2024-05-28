@@ -39,8 +39,16 @@
                         @if(auth()->user() !=null && auth()->user()->profile_picture != null)
                             <img alt="Logo" src="/profile_pics/{{auth()->user()->profile_picture}}"/>
                         @else
-                            <img alt="Avatar" src="/assets/media/avatars/admin.jpg"/>                        @endif
+                            <img alt="Avatar" src="/assets/media/avatars/admin.jpg"/>
+                        @endif
                     </div>
+                    <!--begin::Username-->
+                    <div class="d-flex flex-column">
+                        <div class="fw-bolder d-flex align-items-center fs-5">{{ auth()->user() !=null ? auth()->user()->first_name :'' }} {{ auth()->user() !=null ? auth()->user()->last_name : ''}}</div>
+                        <a href="#" class="fw-bold text-muted text-hover-primary fs-7">{{ auth()->user() !=null ? auth()->user()->email: '' }}</a>
+                    </div>
+                    <!--end::Username-->
+
                     <!--begin::User account menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px" data-kt-menu="true">
                         <!--begin::Menu item-->
@@ -75,10 +83,10 @@
                         @if(auth()->user() !=null && auth()->user()->role->code == 'client')
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
+                            <a href="{{ route('invoices') }}" class="menu-link px-5">
                                 <span class="menu-text">Historial de Facturas</span>
                                 <span class="menu-badge">
-                                    <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
+                                    <span class="badge badge-light-danger badge-circle fw-bolder fs-7">{{ auth()->user()->invoices->count() ?? 0 }}</span>
                                 </span>
                             </a>
                         </div>

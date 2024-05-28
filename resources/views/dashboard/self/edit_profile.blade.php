@@ -100,7 +100,7 @@
                                                         </svg>
                                                     </span>
                                                     <!--end::Svg Icon-->
-                                                    <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="75">0</div>
+                                                    <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{ $user->invoices->count() }}">0</div>
                                                 </div>
                                                 <!--end::Number-->
                                                 <!--begin::Label-->
