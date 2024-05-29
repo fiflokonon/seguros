@@ -8,6 +8,7 @@ use App\Models\FuelType;
 use App\Models\Invoice;
 use App\Models\Parameter;
 use App\Models\Tarification;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -126,11 +127,10 @@ class InvoiceController extends Controller
             if (auth()->user() != null) {
                 $validatedData['user_id'] = auth()->user()->id;
             }
-
             // Création de l'instance d'Invoice
             $invoice = Invoice::create($validatedData);
             $invoice->accessories()->attach($request->input('accessory', []));
-
+            $this->save_invoice_pdf($invoice);
             // Retourne une réponse, par exemple un message de succès ou une redirection
             return response()->json(['success' => true, 'invoice_id' => $invoice->id]);
         } catch (ValidationException $e) {
@@ -171,13 +171,64 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::find($id);
         if ($invoice){
-            $email = $this->sendInvoiceEmail($invoice->email, $invoice->code, $invoice);
-            if ($email){
-                return response()->json(['success' => true, 'message' => 'Factura enviada exitosamente por correo electrónico !']);
+            if ($invoice->link != null){
+                $email = $this->sendInvoiceEmail($invoice->email, $invoice->code,$invoice->link);
+                if ($email){
+                    return response()->json(['success' => true, 'message' => 'Factura enviada exitosamente por correo electrónico !']);
+                }else{
+                    return response()->json(['success' => false, 'message' => 'Error al enviar factura por correo electrónico !']);
+                }
             }else{
-                return response()->json(['success' => false, 'message' => 'Error al enviar factura por correo electrónico !']);
+                /*$pdfData = [
+                    'code' => $invoice->code,
+                    'sub_total' => $invoice->sub_total,
+                    'first_name' => $invoice->first_name,
+                    'last_name' => $invoice->last_name,
+                    'email' => $invoice->email,
+                    'phone' => $invoice->phone,
+                    'initial_price' => $invoice->initial_price,
+                    'accessories_price' => $invoice->accessories_price,
+                    'attestation_price' => $invoice->attestation_price,
+                    'vat' => $invoice->vat,
+                    'total' => $invoice->total,
+                    'date' => $invoice->created_at,
+                    'model' => $invoice->model,
+                    'regis_number' => $invoice->regis_number,
+                    'place_number' => $invoice->place_number,
+                    'min_power' => $invoice->power->min_power,
+                    'max_power' => $invoice->power->max_power,
+                    'trailer' => $invoice->trailer->title
+                ];*/
+                $this->save_invoice_pdf($invoice);
+                $email = $this->sendInvoiceEmail($invoice->email, $invoice->code, $invoice->link);
+                if ($email){
+                    return response()->json(['success' => true, 'message' => 'Factura enviada exitosamente por correo electrónico !']);
+                }else{
+                    return response()->json(['success' => false, 'message' => 'Error al enviar factura por correo electrónico !']);
+                }
             }
         }
+        else{
+            return response()->json(['success' => false, 'message' => 'Invoice null'], 404);
+        }
+    }
+
+    /**
+     * @param $invoice
+     * @return void
+     */
+    public function save_invoice_pdf($invoice): void
+    {
+        $pdfData = [
+            'code' => $invoice->code,
+            'invoice' => $invoice
+        ];
+        $pdf = PDF::loadView('factures.facture', $pdfData);
+        // Choisissez l'emplacement où vous souhaitez enregistrer le fichier PDF généré
+        $pdfFilePath = public_path('factures/' . $invoice->code . '.pdf');
+        $pdf->save($pdfFilePath);
+        $invoice->link = 'factures/' . $invoice->code . '.pdf';
+        $invoice->save();
     }
 
 }

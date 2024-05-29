@@ -195,11 +195,18 @@
                                     <!-- begin::Pint-->
                                     <button type="button" class="btn my-1 me-12" style="background-color: #013832; color: white" onclick="window.print();">Imprimir</button>
                                     <!-- end::Pint-->
-                                    <!-- begin::Download-->
-                                    <button type="button" class="btn my-1" style="background-color: #013832; color: white" >Consíguelo por email</button>
-                                    <!-- end::Download-->
+                                    <!-- begin::Download -->
+                                    <button type="button" id="sendInvoiceEmailButton" class="btn my-1" style="background-color: #013832; color: white">Consíguelo por email</button>
+                                    <!-- end::Download -->
                                 </div>
                                 <!-- end::Actions-->
+
+                                <!-- Message de succès -->
+                                <div id="successMessage" class="alert alert-success" style="display: none;">Factura enviada por email con éxito</div>
+
+                                <!-- Message d'erreur -->
+                                <div id="errorMessage" class="alert alert-danger" style="display: none;"></div>
+
                             </div>
                             <!-- end::Footer-->
                         </div>
@@ -214,6 +221,41 @@
             <!--End::Container-->
         <!--end::Post-->
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+                    const sendInvoiceEmailButton = document.getElementById('sendInvoiceEmailButton');
+                    const successMessage = document.getElementById('successMessage');
+                    const errorMessage = document.getElementById('errorMessage');
+
+                    sendInvoiceEmailButton.addEventListener('click', function () {
+                        console.log("Click the button");
+                        // Masquer les messages précédents
+                        successMessage.style.display = 'none';
+                        errorMessage.style.display = 'none';
+
+                        // Envoyer la requête GET pour envoyer l'email
+                        fetch('/api/invoices/{{$invoice->id}}/send')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Masquer le bouton et afficher le message de succès
+                                    sendInvoiceEmailButton.style.display = 'none';
+                                    successMessage.style.display = 'block';
+                                } else {
+                                    // Afficher le message d'erreur
+                                    errorMessage.textContent = data.message || 'Hubo un error al enviar la factura por email';
+                                    errorMessage.style.display = 'block';
+                                }
+                            })
+                            .catch(error => {
+                                // Afficher un message d'erreur standard en cas de problème réseau ou autre
+                                errorMessage.textContent = 'Hubo un error al enviar la factura por email';
+                                errorMessage.style.display = 'block';
+                                console.error('There was a problem with the fetch operation:', error);
+                            });
+                    });
+                });
+    </script>
 @endsection
 
 

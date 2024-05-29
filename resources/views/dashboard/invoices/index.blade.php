@@ -64,6 +64,7 @@
                                             <td>{{ Carbon\Carbon::parse($invoice->created_at)->locale('es')->translatedFormat('d M Y') }}</td>
                                             <td>{{ Carbon\Carbon::parse($invoice->created_at)->locale('es')->translatedFormat('H:i:s') }}</td>
                                             <td>{{ $invoice->code }}</td>
+                                            <td>{{ $invoice->total }} XFA</td>
                                             @if( $invoice->state == 'pending' )
                                                 <td><span class="badge rounded-pill bg-warning">Pendiente</span></td>
                                             @else

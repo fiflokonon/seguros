@@ -139,7 +139,8 @@
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <select name="category" data-control="select2"
-                                                    class="form-select form-select-lg">
+                                                    class="form-select form-select-lg" data-placeholder="Seleccionnar uso del coche">
+                                                <option></option>
                                                 @foreach($categories as $category)
                                                     <option
                                                         value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
@@ -156,7 +157,8 @@
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <select name="type_car" data-control="select2"
-                                                    class="form-select form-select-lg">
+                                                    class="form-select form-select-lg" data-placeholder="Seleccionnar tipo de coche">
+                                                <option></option>
                                                 @foreach($type_cars as $type)
                                                     <option
                                                         value="{{ $type->id }}" {{ old('type_car') == $type->id ? 'selected' : '' }}>{{ $type->title }}</option>
@@ -172,8 +174,8 @@
                                             <label class="form-label mb-3 required">Tipo de Combustible :</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select name="fuel_type" id="fuel-type-select"
-                                                    class="form-select form-select-lg">
+                                            <select name="fuel_type" id="fuel-type-select" class="form-select form-select-lg" data-placeholder="Seleccionar tipo de Combustible">
+                                                <option selected disabled>Seleccionar tipo de Combustible</option>
                                                 @foreach($fuel_types as $type)
                                                     <option
                                                         value="{{ $type->id }}" {{ old('type_car') == $type->id ? 'selected' : '' }}>{{ $type->title }}</option>
@@ -203,8 +205,8 @@
                                             <label class="form-label mb-3 required">Tipo de Remolque :</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select name="trailer" data-control="select2"
-                                                    class="form-select form-select-lg">
+                                            <select name="trailer" data-control="select2" class="form-select form-select-lg" data-placeholder="Seleccionar tipo de Remolque">
+                                                <option></option>
                                                 @foreach($trailers as $trailer)
                                                     <option
                                                         value="{{ $trailer->id }}" {{ old('trailer') == $trailer->id ? 'selected' : '' }}>{{ $trailer->title }}</option>

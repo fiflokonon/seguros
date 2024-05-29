@@ -23,7 +23,14 @@ var KTCreateAccount = function () {
                 console.log("stepper.previous"), e.goPrevious(), KTUtil.scrollTop()
             })), a.push(FormValidation.formValidation(i, {
                 fields: {
-                    regis_number: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
+                    regis_number: {
+                        validators: {
+                            notEmpty: {message: "Campo Obligatorio"},
+                            regexp: {
+                                regexp: /^[A-Za-z]{2}-\d{3}-[A-Za-z]{2}$/,
+                                message: 'El número de registro debe tener el formato: dos letras, un guion, tres dígitos, un guion, dos letras.'
+                            }
+                        }},
                     model: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
                     place_number: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
                     category: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
