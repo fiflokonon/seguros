@@ -4,6 +4,7 @@
 use App\Http\Controllers\Api\ParameterController;
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\User\EditUserController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,6 @@ Route::get('/fuel-types', [ParameterController::class, 'fuel_types']);
 Route::get('/car-categories', [ParameterController::class, 'car_categories']);
 Route::get('/type-cars', [ParameterController::class, 'type_cars']);
 Route::get('/trailers', [ParameterController::class, 'trailers']);
+
+Route::get('/invoices/{id}/send', [InvoiceController::class, 'sendInvoice']);
 

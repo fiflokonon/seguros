@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InvoiceMail;
 use App\Models\Brand;
 use App\Models\FuelType;
 use App\Models\Invoice;
@@ -10,6 +11,7 @@ use App\Models\Tarification;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -153,6 +155,29 @@ class InvoiceController extends Controller
         return view('dashboard.client.invoice_details', [
             'invoice' => $invoice
         ]);
+    }
+
+    public function sendInvoiceEmail($email, $code, $invoice): bool
+    {
+        try {
+            Mail::to($email)->send(new InvoiceMail($code, $invoice));
+            return true; // Email sent successfully
+        } catch (\Throwable $e) {
+            return false; // Error occurred during email sending
+        }
+    }
+
+    public function sendInvoice($id)
+    {
+        $invoice = Invoice::find($id);
+        if ($invoice){
+            $email = $this->sendInvoiceEmail($invoice->email, $invoice->code, $invoice);
+            if ($email){
+                return response()->json(['success' => true, 'message' => 'Factura enviada exitosamente por correo electrónico !']);
+            }else{
+                return response()->json(['success' => false, 'message' => 'Error al enviar factura por correo electrónico !']);
+            }
+        }
     }
 
 }
