@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Complaint;
+use App\Models\Invoice;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +28,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        if (auth()->user()->role->code == "client"){
+            return view('dashboard.index', [
+                'invoices' => Invoice::where('user_id', auth()->user()->id)->paginate(5),
+                'pending_complaints' => Complaint::where('user_id', auth()->user()->id)->where('state', 'pending')->count(),
+                'opened_complaints' => Complaint::where('user_id', auth()->user()->id)->where('state', 'opened')->count(),
+                'closed_complaints' => Complaint::where('user_id', auth()->user()->id)->where('state', 'closed')->count(),
+            ]);
+        }else{
+            return view('dashboard.index', [
+                'invoices' => Invoice::paginate(5),
+                'pending_complaints' => Complaint::where('state', 'pending')->count(),
+                'opened_complaints' => Complaint::where('state', 'opened')->count(),
+                'closed_complaints' => Complaint::where('state', 'closed')->count(),
+                'users_count' => User::count(),
+                'invoices_count' => Invoice::count(),
+                'complaints_count' => Complaint::count(),
+                'roles_count' => Role::count()
+            ]);
+        }
     }
 
     public function error403()

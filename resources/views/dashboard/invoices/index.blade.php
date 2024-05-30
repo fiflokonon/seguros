@@ -67,6 +67,10 @@
                                             <td>{{ $invoice->total }} XFA</td>
                                             @if( $invoice->state == 'pending' )
                                                 <td><span class="badge rounded-pill bg-warning">Pendiente</span></td>
+                                            @elseif($invoice->state == 'approved')
+                                                <td><span class="badge rounded-pill bg-success">Approbado</span></td>
+                                            @elseif($invoice->state == 'refused')
+                                                <td><span class="badge rounded-pill bg-danger">Rechazado</span></td>
                                             @else
                                                 <td><span class="badge rounded-pill bg-danger">Abierto</span></td>
                                             @endif
@@ -85,9 +89,21 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('invoice_details', $invoice->id) }}" class="btn menu-link px-3" ><i class="fa fa-paperclip text-success"></i> Ver Detalles</a>
+                                                        <a href="{{ route('invoice_details', $invoice->id) }}" class="btn menu-link px-3" ><i class="fa fa-paperclip text-success"></i>Detalles</a>
                                                     </div>
                                                     <!--end::Menu item-->
+                                                    @if(auth()->user()->role->code == 'manager')
+                                                        <!--begin::Menu item-->
+                                                        <div class="menu-item px-3">
+                                                            <a href="{{ route('approve_invoice', $invoice->id) }}" class="btn menu-link px-3" ><i class="fa fa-check text-success"></i>Approbado</a>
+                                                        </div>
+                                                        <!--end::Menu item-->
+                                                        <!--begin::Menu item-->
+                                                        <div class="menu-item px-3">
+                                                            <a href="{{ route('refuse_invoice', $invoice->id) }}" class="btn menu-link px-3" ><i class="fa fa-times text-danger"></i>Rechazado</a>
+                                                        </div>
+                                                        <!--end::Menu item-->
+                                                    @endif
                                                 </div>
                                                 <!--end::Menu-->
                                             </td>
@@ -102,6 +118,9 @@
                     </div>
                     <!-- end col -->
                 </div>
+                <ul class="pagination mt-2">
+                    {{ $invoices->links() }}
+                </ul>
             </div>
             <!--end::Container-->
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\InvoiceMail;
 use App\Models\Brand;
+use App\Models\Complaint;
 use App\Models\FuelType;
 use App\Models\Invoice;
 use App\Models\Parameter;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use function Symfony\Component\String\b;
 
 class InvoiceController extends Controller
 {
@@ -34,7 +36,10 @@ class InvoiceController extends Controller
             ]);
         }else{
             return view('dashboard.invoices.index', [
-                'invoices' => Invoice::all()
+                'invoices' => Invoice::paginate(10),
+                'pending_complaints' => Complaint::where('state', 'pending')->count(),
+                'opened_complaints' => Complaint::where('state', 'opened')->count(),
+                'closed_complaints' => Complaint::where('state', 'closed')->count(),
             ]);
         }
     }
@@ -93,9 +98,9 @@ class InvoiceController extends Controller
             // Calculer le sous-total
             $subTotal = $tarification->price + $attestationValue;
             $accessories_price = 0;
-            Log::info("Entry subtotal : $subTotal");
-            Log::info("Entry access price : $accessories_price");
-            Log::info("Accessories entry");
+            #Log::info("Entry subtotal : $subTotal");
+            #Log::info("Entry access price : $accessories_price");
+            #Log::info("Accessories entry");
             foreach ($request->input('accessory', []) as $item) {
                 $accessory = Parameter::find($item);
                 Log::info("Accessory $item : $accessory->value");
@@ -104,8 +109,8 @@ class InvoiceController extends Controller
                     $accessories_price += $accessory->value;
                 }
             }
-            Log::info("Outgoing subtotal : $subTotal");
-            Log::info("Outgoing access price : $accessories_price");
+            #Log::info("Outgoing subtotal : $subTotal");
+            #Log::info("Outgoing access price : $accessories_price");
             // Calculer le total en ajoutant 15% au sous-total
             $total = $subTotal * 1.15;
             // Préparer les données pour la création de la facture
@@ -229,6 +234,31 @@ class InvoiceController extends Controller
         $pdf->save($pdfFilePath);
         $invoice->link = 'factures/' . $invoice->code . '.pdf';
         $invoice->save();
+    }
+
+
+    public function approve_invoice($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        if ($invoice->state == 'approved'){
+            return back()->withErrors('Already approved');
+        }else{
+            $invoice->state = 'approved';
+            $invoice->save();
+            return back()->with('success', 'Approbado con exito !');
+        }
+    }
+
+    public function refuse_invoice($id)
+    {
+        $invoice = Invoice::findOrFail($id);
+        if ($invoice->state == 'refused'){
+            return back()->withErrors('Already refused');
+        }else{
+            $invoice->state = 'refused';
+            $invoice->save();
+            return back()->with('success', 'Rechazado con exito !');
+        }
     }
 
 }

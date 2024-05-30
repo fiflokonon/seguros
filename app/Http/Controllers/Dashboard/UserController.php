@@ -49,6 +49,9 @@ class UserController extends Controller
         $validated['role_id'] = $validated['role'];
         // Création de l'utilisateur
         $user = User::create($validated);
+        $user->verified_email = true;
+        $user->email_verified_at = now();
+        $user->save();
         // Rediriger ou retourner une réponse appropriée
         return redirect()->back()->with('success', 'User created successfully.');
     }

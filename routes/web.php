@@ -69,7 +69,6 @@ Route::get('/categories', [CarCategoryController::class, 'index'])->name('catego
 Route::post('/categories', [CarCategoryController::class, 'store'])->name('add_category');
 Route::post('/categories/update', [CarCategoryController::class, 'update'])->name('update_category');
 
-
 Route::get('/tarifications', [TarificationController::class, 'index'])->name('tarifications');
 Route::post('/tarifications', [TarificationController::class, 'store'])->name('add_tarification');
 Route::post('/tarifications/update', [TarificationController::class, 'update'])->name('update_tarification');
@@ -78,6 +77,8 @@ Route::post('/tarifications/update', [TarificationController::class, 'update'])-
 Route::get('/complaints-list', [ComplaintController::class, 'index'])->name('complaints');
 Route::get('/new-complaint', [ComplaintController::class, 'add_complaint'])->name('new_complaint');
 Route::post('/add-complaint', [ComplaintController::class, 'store'])->name('add_complaint');
+Route::get('/complaints/{id}', [ComplaintController::class, 'complaint_details'])->name('complaint_details');
+Route::post('/complaints/{id}/answer', [ComplaintController::class, 'answer_complaint'])->name('answer_complaint');
 
 
 Route::get('/trailers', [TrailerController::class, 'index'])->name('trailers');
@@ -92,8 +93,12 @@ Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
 Route::post('/brands/update', [BrandController::class, 'update'])->name('update_brand');
 Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
+
 Route::get('/parameters', [ParameterController::class, 'index'])->name('parameters');
+
 Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices');
+Route::get('/invoices/{id}/approve', [InvoiceController::class, 'approve_invoice'])->name('approve_invoice');
+Route::get('/invoices/{id}/refuse', [InvoiceController::class, 'refuse_invoice'])->name('refuse_invoice');
 
 
 });

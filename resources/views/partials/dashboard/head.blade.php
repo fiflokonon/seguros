@@ -19,5 +19,51 @@
     <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
+    <style>
+        #loader {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #loader::after {
+            content: " ";
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin: 8px auto;
+            border-radius: 50%;
+            border: 6px solid #013832;
+            border-color: #013832 transparent #013832 transparent;
+            animation: loader 1.2s linear infinite;
+        }
+
+        @keyframes loader {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .complaint-images img {
+            max-width: 100px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .response {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .response-author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+    </style>
 </head>
 <!--end::Head-->

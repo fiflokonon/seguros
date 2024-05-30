@@ -78,18 +78,17 @@
         <img src="{{ public_path("/assets/media/logos/wp-favicon.png") }}" alt="Logo" style="width: 100px; margin-left: -100px; ">
     </div>
     <div class="header">
-        <p><b>Gepetrol Seguros</b></p>
-        <h1>Facture Pro Forma #{{ $code }}</h1>
-        <p>ESTADO: {{ $invoice->state == 'pending' ? "PENDIENTE" : "OK"}}</p>
+        <b>Gepetrol Seguros</b>
+        <h3>Facture Pro Forma #{{ $code }}</h3>
+        <span>{{ $invoice->state == 'pending' ? "PENDIENTE" : "OK"}}</span>
     </div>
     <div>
         <h2>De:</h2>
         <p style="margin-bottom: 15px;"> Gepetrol Seguros <br>
             Avenida Enrique Nvo S/n, Edificio Alexandra 89 Malabo,<br>
             Telefono Malabo: (+240) 333 099 311 <br>
-            Telefono Malabo: (+240) 350 083 700 -:- 350083701 <br>
+            Telefono Malabo: (+240) 350 083 700 -:- 350083701
         </p>
-        <br>
     </div>
     <div class="row">
         <div class="column">
@@ -98,7 +97,7 @@
         </div>
     </div>
     <div>
-        <p><strong>Fecha : </strong> {{ $invoice->created_at }} </p>
+        <strong>Fecha : </strong> {{ $invoice->created_at }}
     </div>
     <table class="table">
         <thead>

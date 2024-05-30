@@ -49,6 +49,7 @@
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                         <th class="min-w-125px">Titulo</th>
                                         <th class="min-w-125px">Estado</th>
+                                        <th class="min-w-125px">Date</th>
                                         <th class="text-end min-w-70px">Acciones</th>
                                     </tr>
                                     <!--end::Table row-->
@@ -58,15 +59,17 @@
                                     @foreach($complaints as $complaint)
                                         <tr>
                                             <td>{{ $complaint->title }}</td>
-                                            @if( $complaint->status )
-                                                <td><span class="badge rounded-pill bg-success">Actif</span></td>
+                                            @if( $complaint->state == 'pending' )
+                                                <td><span class="badge rounded-pill bg-warning">En progreso</span></td>
+                                            @elseif( $complaint->state == 'closed' )
+                                                <td><span class="badge rounded-pill bg-success">Cerrado</span></td>
                                             @else
-                                                <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
+                                                <td><span class="badge rounded-pill bg-danger">Abierto</span></td>
                                             @endif
                                             <td>{{ $complaint->created_at }}</td>
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Acciones
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -78,11 +81,7 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        @if( $complaint->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_role', ['id' => $complaint->id]) }}"><i class="ti-trash text-danger"></i> Désactiver</a>
-                                                        @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_role', ['id' => $complaint->id]) }}"><i class="ti-check text-success"></i> Activer</a>
-                                                        @endif
+                                                        <a class="menu-link px-3" href="{{ route('complaint_details', ['id' => $complaint->id]) }}"><i class="fa fa-paperclip text-success"></i> Detailles</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>

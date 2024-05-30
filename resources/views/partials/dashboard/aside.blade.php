@@ -251,8 +251,32 @@
                                 <span class="menu-title">Calacula tu Presupuesto</span>
                             </a>
                         </div>
+                    @elseif(auth()->user()->role->code == 'manager')
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('complaints') }}"  data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <i class="fa fa-car"></i>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Siniestros</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('invoices') }}" data-bs-trigger="hover"data-bs-placement="right">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <i class="fa fa-car"></i>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Facturas</span>
+                            </a>
+                        </div>
                     @endif
-
                 @else
                     <div class="menu-item">
                         <a class="menu-link" href="/"  data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">

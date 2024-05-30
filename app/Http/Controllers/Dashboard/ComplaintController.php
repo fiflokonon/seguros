@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Complaint;
+use App\Models\ComplaintAnswer;
 use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
@@ -52,10 +53,39 @@ class ComplaintController extends Controller
         $validated['images'] = json_encode($images);
         // Création de la plainte
         $validated['status'] = true;
+        $validated['state'] = 'pending';
         $validated['user_id'] = auth()->user()->id;
         $complaint = Complaint::create($validated);
         // Rediriger ou retourner une réponse appropriée
         return redirect()->back()->with('success', 'Complaint created successfully.');
-        #return redirect()->route('complaints.show', $complaint->id)->with('success', 'Complaint created successfully.');
+    }
+
+    public function complaint_details($id)
+    {
+        $complaint = Complaint::findOrFail($id);
+        return view('dashboard.complaints.complaint_details', [
+            'complaint' => $complaint
+        ]);
+    }
+
+    public function answer_complaint($id, Request $request)
+    {
+        $complaint = Complaint::findOrFail($id);
+        $validated = $request->validate([
+            'body' => 'required|string',
+        ]);
+        try {
+            ComplaintAnswer::create([
+                'complaint_id' => $complaint->id,
+                'user_id' => auth()->user()->id,
+                'body' => $request->body,
+                'status' => true
+            ]);
+            $complaint->state = 'opened';
+            $complaint->save();
+            return back()->with('success', 'Respuesta enviada con exito !');
+        }catch (\Exception $exception){
+            return back()->withErrors($exception->getMessage());
+        }
     }
 }

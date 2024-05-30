@@ -200,7 +200,7 @@
                                     <!-- end::Download -->
                                 </div>
                                 <!-- end::Actions-->
-
+                                <div id="loader" style="display: none;">Chargement...</div>
                                 <!-- Message de succès -->
                                 <div id="successMessage" class="alert alert-success" style="display: none;">Factura enviada por email con éxito</div>
 
@@ -222,10 +222,11 @@
         <!--end::Post-->
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function () {
                     const sendInvoiceEmailButton = document.getElementById('sendInvoiceEmailButton');
                     const successMessage = document.getElementById('successMessage');
                     const errorMessage = document.getElementById('errorMessage');
+                    const loader = document.getElementById('loader');
 
                     sendInvoiceEmailButton.addEventListener('click', function () {
                         console.log("Click the button");
@@ -233,10 +234,16 @@
                         successMessage.style.display = 'none';
                         errorMessage.style.display = 'none';
 
+                        // Afficher le loader
+                        loader.style.display = 'block';
+
                         // Envoyer la requête GET pour envoyer l'email
                         fetch('/api/invoices/{{$invoice->id}}/send')
                             .then(response => response.json())
                             .then(data => {
+                                // Masquer le loader
+                                loader.style.display = 'none';
+
                                 if (data.success) {
                                     // Masquer le bouton et afficher le message de succès
                                     sendInvoiceEmailButton.style.display = 'none';
@@ -248,6 +255,9 @@
                                 }
                             })
                             .catch(error => {
+                                // Masquer le loader
+                                loader.style.display = 'none';
+
                                 // Afficher un message d'erreur standard en cas de problème réseau ou autre
                                 errorMessage.textContent = 'Hubo un error al enviar la factura por email';
                                 errorMessage.style.display = 'block';
@@ -255,7 +265,7 @@
                             });
                     });
                 });
-    </script>
+            </script>
 @endsection
 
 
