@@ -10,7 +10,7 @@ class TypeCarController extends Controller
 {
     public function index()
     {
-        $types = TypeCar::all();
+        $types = TypeCar::paginate(10);
         return view('dashboard.type_cars.index', [
             'types' => $types
         ]);

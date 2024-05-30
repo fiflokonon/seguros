@@ -36,7 +36,7 @@ class InvoiceController extends Controller
             ]);
         }else{
             return view('dashboard.invoices.index', [
-                'invoices' => Invoice::paginate(10),
+                'invoices' => Invoice::paginate(5),
                 'pending_complaints' => Complaint::where('state', 'pending')->count(),
                 'opened_complaints' => Complaint::where('state', 'opened')->count(),
                 'closed_complaints' => Complaint::where('state', 'closed')->count(),

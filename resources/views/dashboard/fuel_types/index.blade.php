@@ -89,7 +89,7 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <button class="btn menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_fuel_type" data-id="{{ $type->id }}" data-title="{{ $type->title }}" data-code="{{ $type->code }}" data-powers="{{ $type->powers->pluck('id')}}"><i class="fa fa-pen text-success"></i> Modifier</button>
+                                                        <button class="btn menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_fuel_type" data-id="{{ $type->id }}" data-title="{{ $type->title }}" data-code="{{ $type->code }}" data-powers="{{ $type->powers->pluck('id')}}"><i class="fa fa-pen text-success"></i> Modifcar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -104,6 +104,9 @@
                         </div>
                     </div>
                     <!-- end col -->
+                    <ul class="pagination mt-2">
+                        {{ $fuel_types->links() }}
+                    </ul>
                 </div>
             </div>
             <!--end::Container-->
@@ -121,7 +124,7 @@
                         <h2 class="fw-bolder">Nuevo tipo combustible</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" style="background-color: #013832; color: white"  data-kt-users-modal-action="close">
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" style="background-color: #013832; color: white" data-bs-dismiss="modal" aria-label="Close">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -214,7 +217,7 @@
                     <h2 class="fw-bolder">Actualizar tipo de combustible</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                         <span class="svg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

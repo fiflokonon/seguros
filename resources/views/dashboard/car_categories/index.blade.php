@@ -121,6 +121,9 @@
                     </div>
                     <!-- end col -->
                 </div>
+                <ul class="pagination mt-2">
+                    {{ $categories->links() }}
+                </ul>
             </div>
             <!--end::Container-->
         </div>
@@ -137,7 +140,7 @@
                         <h2 class="fw-bolder">Nueva categoria</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -222,7 +225,7 @@
                     <h2 class="fw-bolder">Actualizar Categoría</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                         <span class="svg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

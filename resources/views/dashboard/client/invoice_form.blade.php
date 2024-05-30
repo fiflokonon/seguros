@@ -307,9 +307,10 @@
                                         <div class="fv-row mb-10">
                                             <!--begin::Label-->
                                             <label class="form-label required">Teléfono</label>
+                                            <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input name="phone" class="form-control form-control-lg" value="{{ auth()->user() !== null ? auth()->user()->phone : '' }}"/>
+                                            <input name="phone" id="phone" class="form-control form-control-lg" value="{{ auth()->user() !== null ? auth()->user()->phone : '' }}"/>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -573,6 +574,33 @@
 
 
         </script>
+        <script>
+                // Attendez que le DOM soit chargé
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Sélectionnez le champ de numéro de téléphone
+                    var input = document.querySelector("#phone");
+
+                    // Initialisez intl-tel-input
+                    var iti = window.intlTelInput(input, {
+                        initialCountry: "gq", // Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
+                        separateDialCode: true, // Inclure le code de pays dans le champ de numéro de téléphone
+                        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Script utilitaire requis
+                    });
+
+                    // Écoutez l'événement de soumission du formulaire
+                    document.querySelector("form").addEventListener("submit", function () {
+                        // Récupérez le code de pays sélectionné
+                        var countryCode = iti.getSelectedCountryData().dialCode;
+
+                        // Récupérez la valeur du numéro de téléphone
+                        var phoneNumber = input.value;
+
+                        // Concaténez le code de pays avec le numéro de téléphone
+                        input.value = "+" + countryCode + phoneNumber;
+                    });
+                });
+
+            </script>
     </div>
 @endsection
 

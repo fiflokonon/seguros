@@ -10,7 +10,7 @@ class TrailerController extends Controller
 {
     public function index()
     {
-        $trailers = Trailer::all();
+        $trailers = Trailer::paginate(10);
         return view('dashboard.trailers.index', [
             'trailers' => $trailers
         ]);

@@ -103,6 +103,9 @@
                         </div>
                     </div>
                     <!-- end col -->
+                    <ul class="pagination mt-2">
+                        {{ $roles->links() }}
+                    </ul>
                 </div>
             </div>
             <!--end::Container-->

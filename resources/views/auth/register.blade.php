@@ -14,6 +14,8 @@
     <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -90,8 +92,9 @@
                         </div>
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
-                            <label for="" class="form-label">Teléfono</label>
-                            <input type="tel" placeholder="+240" name="phone" autocomplete="off" class="form-control bg-transparent"  value="{{ old('phone') }}"/>
+                            <label for="phone" class="col-form-label-lg required">Teléfono</label>
+                            <br>
+                            <input type="tel" name="phone" autocomplete="off" id="phone" class="form-control form-control-lg bg-transparent" value="{{ old('phone') }}" style="width: 100% !important;"/>
                         </div>
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
@@ -135,6 +138,34 @@
 <!--end::Root-->
 <!--end::Main-->
 <!--begin::Javascript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"></script>
+<script>
+    // Attendez que le DOM soit chargé
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sélectionnez le champ de numéro de téléphone
+        var input = document.querySelector("#phone");
+
+        // Initialisez intl-tel-input
+        var iti = window.intlTelInput(input, {
+            initialCountry: "gq", // Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
+            separateDialCode: true, // Inclure le code de pays dans le champ de numéro de téléphone
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Script utilitaire requis
+        });
+
+        // Écoutez l'événement de soumission du formulaire
+        document.querySelector("form").addEventListener("submit", function () {
+            // Récupérez le code de pays sélectionné
+            var countryCode = iti.getSelectedCountryData().dialCode;
+
+            // Récupérez la valeur du numéro de téléphone
+            var phoneNumber = input.value;
+
+            // Concaténez le code de pays avec le numéro de téléphone
+            input.value = "+" + countryCode + phoneNumber;
+        });
+    });
+
+</script>
 <script>var hostUrl = "assets/";</script>
 <!--begin::Global Javascript Bundle(used by all pages)-->
 <script src="assets/plugins/global/plugins.bundle.js"></script>

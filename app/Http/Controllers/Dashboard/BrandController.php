@@ -10,8 +10,8 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $brands = Brand::all();
-        #$brands = Brand::paginate(10);
+        #$brands = Brand::all();
+        $brands = Brand::paginate(10);
         return view('dashboard.brands.index', [
             'brands' => $brands
         ]);

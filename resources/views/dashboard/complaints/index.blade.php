@@ -96,6 +96,10 @@
                         </div>
                     </div>
                     <!-- end col -->
+                    <ul class="pagination mt-2">
+                        {{ $complaints->links() }}
+                    </ul>
+
                 </div>
             </div>
             <!--end::Container-->

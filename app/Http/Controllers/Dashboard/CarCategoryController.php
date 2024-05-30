@@ -10,7 +10,7 @@ class CarCategoryController extends Controller
 {
     public function index()
     {
-        $categories = CarCategory::all();
+        $categories = CarCategory::paginate(5);
         return view('dashboard.car_categories.index', [
             'categories' => $categories
         ]);

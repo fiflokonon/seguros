@@ -108,6 +108,9 @@
                         </div>
                     </div>
                     <!-- end col -->
+                    <ul class="pagination mt-2">
+                        {{ $tarifications->links() }}
+                    </ul>
                 </div>
             </div>
             <!--end::Container-->
@@ -125,7 +128,7 @@
                         <h2 class="fw-bolder">Nueva cotización</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -279,7 +282,7 @@
                         <h2 class="fw-bolder">Actualizar Cotización</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -449,7 +452,6 @@
                 $('#kt_modal_update_tarification').modal('show');
             }
         </script>
-
     </div>
 @endsection
 

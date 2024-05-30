@@ -50,6 +50,7 @@
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                         <th class="min-w-125px">Tipo de Remolque</th>
                                         <th class="min-w-125px">Estado</th>
+                                        <th class="min-w-125px">Date</th>
                                         <th class="text-end min-w-70px">Acciones</th>
                                     </tr>
                                     <!--end::Table row-->
@@ -103,6 +104,9 @@
                         </div>
                     </div>
                     <!-- end col -->
+                    <ul class="pagination mt-2">
+                        {{ $trailers->links() }}
+                    </ul>
                 </div>
             </div>
             <!--end::Container-->
@@ -120,7 +124,7 @@
                         <h2 class="fw-bolder">Nuevo tipo remolque</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -184,7 +188,7 @@
                         <h2 class="fw-bolder">Actualizar tipo remolque</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

@@ -13,10 +13,10 @@ class ComplaintController extends Controller
     {
         if (auth()->user()->role->code == "client"){
             return view('dashboard.complaints.index', [
-                'complaints' => auth()->user()->complaints
+                'complaints' => auth()->user()->complaints()->paginate(10)
             ]);
         }else{
-            $complaints = Complaint::all();
+            $complaints = Complaint::paginate(10);
             return view('dashboard.complaints.index', [
                 'complaints' => $complaints
             ]);

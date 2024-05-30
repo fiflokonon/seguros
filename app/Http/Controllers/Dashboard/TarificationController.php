@@ -15,7 +15,7 @@ class TarificationController extends Controller
 {
     public function index()
     {
-        $tarifications = Tarification::all();
+        $tarifications = Tarification::paginate(5);
         return view('dashboard.tarifications.index', [
             'tarifications' => $tarifications,
             'categories' => CarCategory::all(),

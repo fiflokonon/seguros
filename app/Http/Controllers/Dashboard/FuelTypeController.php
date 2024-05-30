@@ -11,7 +11,7 @@ class FuelTypeController extends Controller
 {
     public function index()
     {
-        $fuel_types = FuelType::all();
+        $fuel_types = FuelType::paginate(10);
         return view('dashboard.fuel_types.index', [
             'fuel_types' => $fuel_types,
             'powers' => Power::all()

@@ -12,7 +12,7 @@ class PowerController extends Controller
 {
     public function index()
     {
-        $powers = Power::all();
+        $powers = Power::paginate(5);
         return view('dashboard.powers.index', [
             'powers' => $powers,
             'fuel_types' => FuelType::all()
