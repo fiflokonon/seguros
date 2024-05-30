@@ -582,7 +582,8 @@
 
                     // Initialisez intl-tel-input
                     var iti = window.intlTelInput(input, {
-                        initialCountry: "gq", // Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
+                        initialCountry: "gq",
+                        onlyCountries: ["gq"],// Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
                         separateDialCode: true, // Inclure le code de pays dans le champ de numéro de téléphone
                         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Script utilitaire requis
                     });
