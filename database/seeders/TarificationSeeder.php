@@ -19,9 +19,11 @@ class TarificationSeeder extends Seeder
     public function run(): void
     {
         $cat_201 = CarCategory::where('code_category', 201)->first();
+        $cat_202 = CarCategory::where('code_category', 202)->first();
         $gasolina = FuelType::where('title', 'Gasolina')->first();
         $diesel = FuelType::where('title', 'Diesel')->first();
         $ve_turismo = TypeCar::where('title', 'Vehículo de Turismo')->first();
+        $ve_util_con_carga_sup = TypeCar::where('title', 'Vehículo Utilitario Con Carga  Util <3.5 T')->first();
         $with_trailer = Trailer::where('title', 'Véhiculo con Remolque')->first();
         $without_trailer = Trailer::where('title', 'Véhiculo sin Remolque')->first();
         $trailer = Trailer::where('title', 'Remolque')->first();
@@ -40,6 +42,7 @@ class TarificationSeeder extends Seeder
         $p_24_to_999 = Power::where('min_power', 24)->where('max_power', 999)->first();
 
         $tarifications = [
+            /**CAT 201**/
             [
                 'car_category_id' => $cat_201->id,
                 'type_car_id' => $ve_turismo->id,
@@ -254,6 +257,125 @@ class TarificationSeeder extends Seeder
                 'power_id' => $p_17_to_999->id,
                 'trailer_id' => $without_trailer->id,
                 'price' => 158715,
+                'status' => true
+            ],
+
+            /**CAT 202**/
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $gasolina->id,
+                'power_id' => $p_0_to_2->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 84600,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $gasolina->id,
+                'power_id' => $p_3_to_6->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 95490,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $gasolina->id,
+                'power_id' => $p_7_to_10->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 100462,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $gasolina->id,
+                'power_id' => $p_11_to_14->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 125580,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $gasolina->id,
+                'power_id' => $p_15_to_23->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 156973,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $gasolina->id,
+                'power_id' => $p_24_to_999->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 188364,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_0_to_1->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 84600,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_2_to_4->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 95490,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_5_to_7->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 100462,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_8_to_10->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 125580,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_11_to_16->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 156973,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_17_to_999->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 188364,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_17_to_999->id,
+                'trailer_id' => $without_trailer->id,
+                'price' => 188364,
                 'status' => true
             ],
         ];
