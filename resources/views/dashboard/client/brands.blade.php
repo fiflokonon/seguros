@@ -2,7 +2,7 @@
 @section('title', 'Categorías')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-        @if(auth()->user() !=null )
+
         <!--begin::Toolbar-->
         <div class="toolbar" id="kt_toolbar">
             <!--begin::Container-->
@@ -20,7 +20,7 @@
             <!--end::Container-->
         </div>
         <!--end::Toolbar-->
-        @endif
+
         <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
             <!--begin::Container-->
