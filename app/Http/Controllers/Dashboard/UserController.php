@@ -19,6 +19,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        #dd($request->all());
         // Validation des données d'entrée
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
@@ -50,10 +51,11 @@ class UserController extends Controller
         $validated['role_id'] = $validated['role'];
         // Création de l'utilisateur
         $user = User::create($validated);
-
-        $user->verified_email = true;
-        $user->email_verified_at = now();
-        $user->save();
+        if ($request->status == 1){
+            $user->verified_email = true;
+            $user->email_verified_at = now();
+            $user->save();
+        }
         // Rediriger ou retourner une réponse appropriée
         return redirect()->back()->with('success', 'Usuario creado con éxito.');
     }

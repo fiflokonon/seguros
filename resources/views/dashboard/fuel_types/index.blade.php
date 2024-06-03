@@ -89,7 +89,7 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <button class="btn menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_fuel_type" data-id="{{ $type->id }}" data-title="{{ $type->title }}" data-code="{{ $type->code }}" data-powers="{{ $type->powers->pluck('id')}}"><i class="fa fa-pen text-success"></i> Modifcar</button>
+                                                        <button class="btn menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_fuel_type" data-id="{{ $type->id }}" data-title="{{ $type->title }}" data-code="{{ $type->code }}" data-powers="{{ $type->powers->pluck('id')}}"><i class="fa fa-pen text-success"></i> Modificar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>

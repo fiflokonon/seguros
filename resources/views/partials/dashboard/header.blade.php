@@ -18,7 +18,7 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="../../demo1/dist/index.html" class="d-lg-none">
+            <a href="{{ route('home') }}" class="d-lg-none">
                 <img alt="Logo" src="/assets/media/logos/logo-2.svg" class="h-30px" />
             </a>
         </div>
@@ -37,7 +37,7 @@
                     <!--begin::Menu wrapper-->
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                         @if(auth()->user() !=null && auth()->user()->profile_picture != null)
-                            <img alt="Logo" src="/profile_pics/{{auth()->user()->profile_picture}}"/>
+                            <img alt="Avatar" src="/profile_pics/{{auth()->user()->profile_picture}}"/>
                         @else
                             <img alt="Avatar" src="/assets/media/avatars/admin.jpg"/>
                         @endif
