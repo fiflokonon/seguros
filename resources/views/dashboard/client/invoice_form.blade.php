@@ -175,7 +175,7 @@
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <select name="fuel_type" id="fuel-type-select" class="form-select form-select-lg" data-placeholder="Seleccionar tipo de Combustible">
-                                                <option selected disabled>Seleccionar tipo de Combustible</option>
+                                                <option selected disabled value="">Seleccionar tipo de Combustible</option>
                                                 @foreach($fuel_types as $type)
                                                     <option
                                                         value="{{ $type->id }}" {{ old('type_car') == $type->id ? 'selected' : '' }}>{{ $type->title }}</option>
@@ -310,7 +310,8 @@
                                             <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input name="phone" id="phone" class="form-control form-control-lg" value="{{ auth()->user() !== null ? auth()->user()->phone : '' }}"/>
+                                            <input name="phone" type="tel" id="phone" class="form-control form-control-lg" value="{{ auth()->user() !== null ? auth()->user()->phone : '' }}"/>
+                                            <div id="errorMessage" class="text-danger mt-2" style="display: none;">Por favor ingrese solo números.</div>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -538,12 +539,12 @@
                                 window.location.href = `/invoices/${invoiceId}/details`;
                             } else if(!data.success){
                                 // Gérer les erreurs
-                                console.error('Erreur:', data.message);
+                                console.error('Erreur:', data.message.json());
                                 Swal.fire({
-                                    text: data.message,
+                                    text: "Error al enviar el formulario. Intentar otra vez.",
                                     icon: "error",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok",
+                                    confirmButtonText: "Ok !",
                                     customClass: { confirmButton: "btn btn-light" }
                                 });
                             }
@@ -551,10 +552,10 @@
                                 // Gérer les erreurs
                                 console.error('Erreur:', data.message);
                                 Swal.fire({
-                                    text: "Erreur lors de l'envoi du formulaire. Veuillez réessayer.",
+                                    text: "Error al enviar el formulario. Intentar otra vez.",
                                     icon: "error",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok, compris!",
+                                    confirmButtonText: "Ok!",
                                     customClass: { confirmButton: "btn btn-light" }
                                 });
                             }
@@ -562,10 +563,10 @@
                         .catch(error => {
                             console.error('Erreur:', error);
                             Swal.fire({
-                                text: "Erreur lors de l'envoi du formulaire. Veuillez réessayer.",
+                                text: "Error al enviar el formulario. Intentar otra vez.",
                                 icon: "error",
                                 buttonsStyling: false,
-                                confirmButtonText: "Ok, compris!",
+                                confirmButtonText: "Ok!",
                                 customClass: { confirmButton: "btn btn-light" }
                             });
                         });
@@ -600,6 +601,21 @@
                         input.value = "+" + countryCode + phoneNumber;
                     });
                 });
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    const exampleInput = document.getElementById('phone');
+                    const errorMessage = document.getElementById('errorMessage');
+
+                    exampleInput.addEventListener('input', function () {
+                        const value = exampleInput.value;
+                        if (/^\d*$/.test(value)) {
+                            errorMessage.style.display = 'none';
+                        } else {
+                            exampleInput.value = value.replace(/\D/g, ''); // Remove non-digit characters
+                            errorMessage.style.display = 'block';
+                        }
+                    });
+                })
 
             </script>
     </div>

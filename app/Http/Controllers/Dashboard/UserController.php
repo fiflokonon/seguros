@@ -34,6 +34,7 @@ class UserController extends Controller
             'id_passport' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'password' => 'required|string|min:8',
+            'status' => 'required'
         ]);
 
         // Gestion du téléchargement de l'image de profil
@@ -49,10 +50,11 @@ class UserController extends Controller
         $validated['role_id'] = $validated['role'];
         // Création de l'utilisateur
         $user = User::create($validated);
+
         $user->verified_email = true;
         $user->email_verified_at = now();
         $user->save();
         // Rediriger ou retourner une réponse appropriée
-        return redirect()->back()->with('success', 'User created successfully.');
+        return redirect()->back()->with('success', 'Usuario creado con éxito.');
     }
 }

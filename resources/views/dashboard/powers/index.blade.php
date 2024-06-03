@@ -62,9 +62,9 @@
                                             <td>{{ $power->min_power }}</td>
                                             <td>{{ $power->max_power }}</td>
                                             @if( $power->status )
-                                                <td><span class="badge rounded-pill bg-success">Actif</span></td>
+                                                <td><span class="badge rounded-pill bg-success">Activo</span></td>
                                             @else
-                                                <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
+                                                <td><span class="badge rounded-pill bg-danger">Inactivo</span></td>
                                             @endif
                                             {{--<td>{{ $type->created_at }}</td>--}}
                                             <!--begin::Action=-->

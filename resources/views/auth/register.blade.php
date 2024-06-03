@@ -95,6 +95,7 @@
                             <label for="phone" class="col-form-label-lg required">Teléfono</label>
                             <br>
                             <input type="tel" name="phone" autocomplete="off" id="phone" class="form-control form-control-lg bg-transparent" value="{{ old('phone') }}" style="width: 100% !important;"/>
+                            <div id="errorMessage" class="text-danger mt-2" style="display: none;">Por favor ingrese solo números.</div>
                         </div>
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
@@ -117,13 +118,13 @@
                         <!--end::Accept-->
                         <!--begin::Submit button-->
                         <div class="d-grid mb-10">
-                            <button type="submit" class="btn text-uppercase" style="background-color: #013832; color: white">Registrar</button>
+                            <button type="submit" class="btn text-uppercase" style="background-color: #013832; color: white" id="sub_button">Registrar</button>
                         </div>
                         <!--end::Submit button-->
-                        <!--begin::Sign up-->
+                        <!--begin::Sign In-->
                         <div class="text-gray-500 text-center fw-semibold fs-6">¿Ya eres cliente?
                             <a href="{{ route('login') }}" class="link-info fw-semibold">Iniciar sesión</a></div>
-                        <!--end::Sign up-->
+                        <!--end::Sign In-->
                     </form>
                     <!--end::Form-->
                 </div>
@@ -165,6 +166,25 @@
             input.value = "+" + countryCode + phoneNumber;
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const exampleInput = document.getElementById('phone');
+        const errorMessage = document.getElementById('errorMessage');
+        const submit_button = document.getElementById('sub_button');
+        console.log("Button", submit_button);
+
+        exampleInput.addEventListener('input', function () {
+            const value = exampleInput.value;
+            if (/^\d*$/.test(value)) {
+                errorMessage.style.display = 'none';
+                submit_button.style.display = 'block';
+            } else {
+                exampleInput.value = value.replace(/\D/g, ''); // Remove non-digit characters
+                errorMessage.style.display = 'block';
+                submit_button.style.display = 'none';
+            }
+        });
+    })
 
 </script>
 <script>var hostUrl = "assets/";</script>

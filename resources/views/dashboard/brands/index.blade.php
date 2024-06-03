@@ -276,9 +276,9 @@
                                         <!--begin::Email=-->
                                         <td>
                                             @if($brand->status)
-                                                <div class="badge badge-light-success fw-bolder">Actif</div>
+                                                <div class="badge badge-light-success fw-bolder">Activo</div>
                                             @else
-                                                <div class="badge badge-light-success fw-bolder">Inactif</div>
+                                                <div class="badge badge-light-success fw-bolder">Inactivo</div>
                                             @endif
                                         </td>
                                         <!--end::Email=-->

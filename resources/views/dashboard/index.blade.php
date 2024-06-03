@@ -127,7 +127,7 @@
                                                         <span class="text-gray-700 fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1">{{ $complaints_count }}</span>
                                                         <!--end::Number-->
                                                         <!--begin::Desc-->
-                                                        <span class="text-gray-500 fw-bold fs-8">Siniestros</span>
+                                                        <span class="text-gray-500 fw-bold fs-8">Sinietros</span>
                                                         <!--end::Desc-->
                                                     </div>
                                                     <!--end::Stats-->
@@ -219,7 +219,7 @@
                                                         <span class="text-gray-700 fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1">{{ $pending_complaints }}</span>
                                                         <!--end::Number-->
                                                         <!--begin::Desc-->
-                                                        <span class="text-gray-500 fw-bold fs-8">Siniestros progresso</span>
+                                                        <span class="text-gray-500 fw-bold fs-8">Sinietros progresso</span>
                                                         <!--end::Desc-->
                                                     </div>
                                                     <!--end::Stats-->
@@ -248,7 +248,7 @@
                                                         <span class="text-gray-700 fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1">{{ $opened_complaints }}</span>
                                                         <!--end::Number-->
                                                         <!--begin::Desc-->
-                                                        <span class="text-gray-500 fw-bold fs-8">Siniestros abiertos</span>
+                                                        <span class="text-gray-500 fw-bold fs-8">Sinietros abiertos</span>
                                                         <!--end::Desc-->
                                                     </div>
                                                     <!--end::Stats-->
@@ -277,7 +277,7 @@
                                                         <span class="text-gray-700 fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1">{{ $closed_complaints }}</span>
                                                         <!--end::Number-->
                                                         <!--begin::Desc-->
-                                                        <span class="text-gray-500 fw-bold fs-8">Siniestros cerrados</span>
+                                                        <span class="text-gray-500 fw-bold fs-8">Sinietros cerrados</span>
                                                         <!--end::Desc-->
                                                     </div>
                                                     <!--end::Stats-->
@@ -340,7 +340,7 @@
                                                         <span class="text-gray-700 fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1">{{ $pending_complaints }}</span>
                                                         <!--end::Number-->
                                                         <!--begin::Desc-->
-                                                        <span class="text-gray-500 fw-bold fs-8">Siniestros progresso</span>
+                                                        <span class="text-gray-500 fw-bold fs-8">Sinietros progresso</span>
                                                         <!--end::Desc-->
                                                     </div>
                                                     <!--end::Stats-->
@@ -369,7 +369,7 @@
                                                         <span class="text-gray-700 fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1">{{ $opened_complaints }}</span>
                                                         <!--end::Number-->
                                                         <!--begin::Desc-->
-                                                        <span class="text-gray-500 fw-bold fs-8">Siniestros abiertos</span>
+                                                        <span class="text-gray-500 fw-bold fs-8">Sinietros abiertos</span>
                                                         <!--end::Desc-->
                                                     </div>
                                                     <!--end::Stats-->
@@ -398,7 +398,7 @@
                                                         <span class="text-gray-700 fw-boldest d-block fs-2qx lh-1 ls-n1 mb-1">{{ $closed_complaints }}</span>
                                                         <!--end::Number-->
                                                         <!--begin::Desc-->
-                                                        <span class="text-gray-500 fw-bold fs-8">Siniestros cerrados</span>
+                                                        <span class="text-gray-500 fw-bold fs-8">Sinietros cerrados</span>
                                                         <!--end::Desc-->
                                                     </div>
                                                     <!--end::Stats-->

@@ -261,7 +261,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                                <span class="menu-title">Siniestros</span>
+                                <span class="menu-title">Sinietros</span>
                             </a>
                         </div>
                         <div class="menu-item">

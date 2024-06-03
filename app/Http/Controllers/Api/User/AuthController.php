@@ -216,7 +216,7 @@ class AuthController extends Controller
         }
         else
         {
-            return response()->json(['success' => false, 'message' => 'Utilisateur non trouvé ou inactif'], 404);
+            return response()->json(['success' => false, 'message' => 'Utilisateur non trouvé ou inactivo'], 404);
         }
     }
 

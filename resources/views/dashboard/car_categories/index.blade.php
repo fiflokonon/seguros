@@ -67,9 +67,9 @@
                                             <td>{{ $category->code_category }}</td>
                                             <td>{{ $category->title }}</td>
                                             @if( $category->status )
-                                                <td><span class="badge rounded-pill bg-success">Actif</span></td>
+                                                <td><span class="badge rounded-pill bg-success">Activo</span></td>
                                             @else
-                                                <td><span class="badge rounded-pill bg-danger">Inactif</span></td>
+                                                <td><span class="badge rounded-pill bg-danger">Inactivo</span></td>
                                             @endif
                                             {{--<td>{{ $category->created_at }}</td>--}}
                                             <!--begin::Action=-->

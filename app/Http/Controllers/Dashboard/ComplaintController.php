@@ -57,7 +57,7 @@ class ComplaintController extends Controller
         $validated['user_id'] = auth()->user()->id;
         $complaint = Complaint::create($validated);
         // Rediriger ou retourner une réponse appropriée
-        return redirect()->back()->with('success', 'Complaint created successfully.');
+        return redirect()->back()->with('success', 'Sinietro registrodo con éxito !');
     }
 
     public function complaint_details($id)
@@ -83,7 +83,7 @@ class ComplaintController extends Controller
             ]);
             $complaint->state = 'opened';
             $complaint->save();
-            return back()->with('success', 'Respuesta enviada con exito !');
+            return back()->with('success', 'Respuesta enviada con éxito !');
         }catch (\Exception $exception){
             return back()->withErrors($exception->getMessage());
         }

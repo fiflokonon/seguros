@@ -40,9 +40,10 @@ class TarificationSeeder extends Seeder
         $p_17_to_999 = Power::where('min_power', 17)->where('max_power', 999)->first();
         $p_23_to_999 = Power::where('min_power', 23)->where('max_power', 999)->first();
         $p_24_to_999 = Power::where('min_power', 24)->where('max_power', 999)->first();
+        $p_17_to_99999 = Power::where('min_power', 17)->where('max_power', 9999)->first();
 
         $tarifications = [
-            /**CAT 201**/
+            /**CAT 201*/
             [
                 'car_category_id' => $cat_201->id,
                 'type_car_id' => $ve_turismo->id,
@@ -260,7 +261,7 @@ class TarificationSeeder extends Seeder
                 'status' => true
             ],
 
-            /**CAT 202**/
+            /**CAT 202*/
             [
                 'car_category_id' => $cat_202->id,
                 'type_car_id' => $ve_util_con_carga_sup->id,
@@ -376,6 +377,69 @@ class TarificationSeeder extends Seeder
                 'power_id' => $p_17_to_999->id,
                 'trailer_id' => $without_trailer->id,
                 'price' => 188364,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_0_to_1->id,
+                'trailer_id' => $with_trailer->id,
+                'price' => 0,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_2_to_4->id,
+                'trailer_id' => $with_trailer->id,
+                'price' => 0,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_5_to_7->id,
+                'trailer_id' => $with_trailer->id,
+                'price' => 0,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_8_to_10->id,
+                'trailer_id' => $with_trailer->id,
+                'price' => 0,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_11_to_16->id,
+                'trailer_id' => $with_trailer->id,
+                'price' => 0,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_17_to_99999->id,
+                'trailer_id' => $with_trailer->id,
+                'price' => 0,
+                'status' => true
+            ],
+            [
+                'car_category_id' => $cat_202->id,
+                'type_car_id' => $ve_util_con_carga_sup->id,
+                'fuel_type_id' => $diesel->id,
+                'power_id' => $p_17_to_99999->id,
+                'trailer_id' => $with_trailer->id,
+                'price' => 0,
                 'status' => true
             ],
         ];

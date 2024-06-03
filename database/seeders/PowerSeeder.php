@@ -79,6 +79,11 @@ class PowerSeeder extends Seeder
                 'max_power' => 4,
                 'status' => true
             ],
+            [
+                'min_power' => 17,
+                'max_power' => 9999,
+                'status' => true
+            ],
         ]);
     }
 }

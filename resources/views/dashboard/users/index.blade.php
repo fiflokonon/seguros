@@ -65,7 +65,7 @@ $roles = \App\Models\Role::all();
                                                     <h2 class="fw-bolder">Crear Nuevo Usuario</h2>
                                                     <!--end::Modal title-->
                                                     <!--begin::Close-->
-                                                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                                                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal" aria-label="Close">
                                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                                         <span class="svg-icon svg-icon-1">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -163,11 +163,53 @@ $roles = \App\Models\Role::all();
                                                                 <!--end::Roles-->
                                                             </div>
                                                             <!--end::Input group-->
+                                                            <!--begin::Input group-->
+                                                            <div class="mb-7">
+                                                                <!--begin::Label-->
+                                                                <label class="required fw-bold fs-6 mb-5">Estado</label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Status-->
+                                                                <!--begin::Input row-->
+                                                                <div class="d-flex fv-row">
+                                                                    <!--begin::Radio-->
+                                                                    <div class="form-check form-check-custom form-check-solid">
+                                                                        <!--begin::Input-->
+                                                                        <input class="form-check-input me-3" name="status" type="radio" value="1" id="kt_modal_update_role_option_0" />
+                                                                        <!--end::Input-->
+                                                                        <!--begin::Label-->
+                                                                        <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                                                            <div class="fw-bolder text-gray-800">Activo</div>
+                                                                        </label>
+                                                                        <!--end::Label-->
+                                                                    </div>
+                                                                    <!--end::Radio-->
+                                                                </div>
+                                                                <!--end::Input row-->
+                                                                <div class='separator separator-dashed my-5'></div>
+                                                                <div class="d-flex fv-row">
+                                                                    <!--begin::Radio-->
+                                                                    <div class="form-check form-check-custom form-check-solid">
+                                                                        <!--begin::Input-->
+                                                                        <input class="form-check-input me-3" name="status" type="radio" value="0" id="kt_modal_update_role_option_0" checked='checked' />
+                                                                        <!--end::Input-->
+                                                                        <!--begin::Label-->
+                                                                        <label class="form-check-label" for="kt_modal_update_role_option_0">
+                                                                            <div class="fw-bolder text-gray-800">Inactivo</div>
+                                                                        </label>
+                                                                        <!--end::Label-->
+                                                                    </div>
+                                                                    <!--end::Radio-->
+                                                                </div>
+                                                                <!--end::Input row-->
+                                                                <div class='separator separator-dashed my-5'></div>
+                                                                <!--end::Status-->
+                                                            </div>
+                                                            <!--end::Input group-->
                                                         </div>
                                                         <!--end::Scroll-->
                                                         <!--begin::Actions-->
                                                         <div class="text-center pt-15">
-                                                            <button type="submit" class="btn"  style="background-color: #013832; color: white">
+                                                            <button type="submit" class="btn" id="add_user_submit"  style="background-color: #013832; color: white">
                                                                 Crear usario
                                                                 <span class="indicator-label"></span>
                                                                 <span class="indicator-progress">Please wait...<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -243,10 +285,10 @@ $roles = \App\Models\Role::all();
                                         <!--end::Two step=-->
                                         <!--begin::Email=-->
                                         <td>
-                                            @if($user->status)
-                                                <div class="badge badge-light-success fw-bolder">Actif</div>
+                                            @if($user->email_verified_at)
+                                                <div class="badge badge-light-success fw-bolder">Activo</div>
                                             @else
-                                                <div class="badge badge-light-success fw-bolder">Inactif</div>
+                                                <div class="badge badge-light-danger fw-bolder">Inactivo</div>
                                             @endif
                                         </td>
                                         <!--end::Email=-->

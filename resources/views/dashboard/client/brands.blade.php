@@ -44,13 +44,11 @@
                                     </div>
                                 @endif
                                 <h4 class="card-title">¿De qué marca es el coche?</h4>
-                                <div class="row">
+                                <div class="">
                                     @foreach($mas as $brand)
-                                        <div class="col-1">
-                                            <a href="{{ route('invoice_form', $brand->id) }}">
-                                            <img src="{{ $brand->image }}" width="50px">
-                                            </a>
-                                        </div>
+                                        <a href="{{ route('invoice_form', $brand->id) }}">
+                                        <img src="{{ $brand->image }}" width="80px">
+                                        </a>
                                     @endforeach
                                 </div>
                                 <div class="mb-3 row">

@@ -10,10 +10,10 @@ var KTCreateAccount = function () {
                 var t = a[e.getCurrentStepIndex() - 1];
                 t ? t.validate().then((function (t) {
                     console.log("validated!"), "Valid" == t ? (e.goNext(), KTUtil.scrollTop()) : Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Lo sentimos, parece que se han detectado algunos errores. Inténtalo de nuevo.",
                         icon: "error",
                         buttonsStyling: !1,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Ok, lo tengo!",
                         customClass: {confirmButton: "btn btn-light"}
                     }).then((function () {
                         KTUtil.scrollTop()
@@ -27,7 +27,7 @@ var KTCreateAccount = function () {
                         validators: {
                             notEmpty: {message: "Campo Obligatorio"},
                             regexp: {
-                                regexp: /^[A-Za-z]{2}-\d{3}-[A-Za-z]{2}$/,
+                                regexp: /^[A-Za-z]{2}-\d{3}-[A-Za-z]{1,2}$/,
                                 message: 'El número de registro debe tener el formato: dos letras, un guion, tres dígitos, un guion, dos letras.'
                             }
                         }},
@@ -64,10 +64,6 @@ var KTCreateAccount = function () {
                 }
             })), a.push(FormValidation.formValidation(i, {
                 fields: {
-                    business_name: {validators: {notEmpty: {message: "Busines name is required"}}},
-                    business_descriptor: {validators: {notEmpty: {message: "Busines descriptor is required"}}},
-                    business_type: {validators: {notEmpty: {message: "Busines type is required"}}},
-                    business_description: {validators: {notEmpty: {message: "Busines description is required"}}},
                     business_email: {
                         validators: {
                             notEmpty: {message: "Busines email is required"},
@@ -85,22 +81,10 @@ var KTCreateAccount = function () {
                 }
             })), a.push(FormValidation.formValidation(i, {
                 fields: {
-                    card_name: {validators: {notEmpty: {message: "Name on card is required"}}},
-                    card_number: {
-                        validators: {
-                            notEmpty: {message: "Card member is required"},
-                            creditCard: {message: "Card number is not valid"}
-                        }
-                    },
-                    card_expiry_month: {validators: {notEmpty: {message: "Month is required"}}},
-                    card_expiry_year: {validators: {notEmpty: {message: "Year is required"}}},
-                    card_cvv: {
-                        validators: {
-                            notEmpty: {message: "CVV is required"},
-                            digits: {message: "CVV must contain only digits"},
-                            stringLength: {min: 3, max: 4, message: "CVV must contain 3 to 4 digits only"}
-                        }
-                    }
+                    first_name: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
+                    last_name: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
+                    phone: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
+                    email: {validators: {notEmpty: {message: "Campo Obligatorio"}}},
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger,
@@ -115,10 +99,10 @@ var KTCreateAccount = function () {
                     console.log("validated!"), "Valid" == t ? (e.preventDefault(), o.disabled = !0, o.setAttribute("data-kt-indicator", "on"), setTimeout((function () {
                         o.removeAttribute("data-kt-indicator"), o.disabled = !1, r.goNext()
                     }), 2e3)) : Swal.fire({
-                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        text: "Lo sentimos, parece que se han detectado algunos errores. Inténtalo de nuevo.",
                         icon: "error",
                         buttonsStyling: !1,
-                        confirmButtonText: "Ok, got it!",
+                        confirmButtonText: "Ok lo tengo!",
                         customClass: {confirmButton: "btn btn-light"}
                     }).then((function () {
                         KTUtil.scrollTop()

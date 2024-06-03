@@ -1,5 +1,5 @@
 @extends('partials.dashboard.index')
-@section('title', 'Siniestros')
+@section('title', 'Sinietros')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
