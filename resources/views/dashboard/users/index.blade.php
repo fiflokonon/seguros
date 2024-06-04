@@ -308,7 +308,16 @@ $roles = \App\Models\Role::all();
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('profile', $user->id) }}" class="menu-link px-3">Detailles</a>
+                                                    <a href="{{ route('profile', $user->id) }}" class="menu-link px-3"> <i class="fa fa-plus text-info"></i> Detailles</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    @if($user->status)
+                                                        <a href="{{ route('change_user_status', $user->id) }}" class="menu-link px-3"> <i class="fa fa-times text-danger"></i> Desactivar</a>
+                                                    @else
+                                                        <a href="{{ route('change_user_status', $user->id) }}" class="menu-link px-3"> <i class="fa fa-check text-success"></i> Activar</a>
+                                                    @endif
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>

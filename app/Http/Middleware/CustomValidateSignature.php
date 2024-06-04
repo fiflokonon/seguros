@@ -19,7 +19,7 @@ class CustomValidateSignature
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        dd($request);
+        #dd($request);
         // Vérifiez si la signature est valide
         if (! URL::hasValidSignature($request)) {
             // Déconnexion de l'utilisateur

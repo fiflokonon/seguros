@@ -60,4 +60,19 @@ class UserController extends Controller
         // Rediriger ou retourner une réponse appropriée
         return redirect()->back()->with('success', 'Usuario creado con éxito.');
     }
+
+    public function change_status($id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->status){
+            $user->status = false;
+            $user->save();
+            return redirect()->back()->with('success', 'Usuario desactivado con éxito.');
+        }else{
+            $user->status = true;
+            $user->save();
+            return redirect()->back()->with('success', 'Usuario activado con éxito.');
+        }
+    }
+
 }

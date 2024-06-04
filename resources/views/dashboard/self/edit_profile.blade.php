@@ -323,24 +323,42 @@
                                 </div>
                                 <!--end::Input group-->
                                 @if(auth()->user()->role->code == 'admin')
-                                <!--begin::Input group-->
-                                <div class="row mb-6">
-                                    <!--begin::Label-->
-                                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Role</label>
-                                    <!--end::Label-->
-                                    <!--begin::Col-->
-                                    <div class="col-lg-8 fv-row">
-                                        <!--begin::Input-->
-                                        <select name="role" data-control="select2"  class="form-select form-select-lg">
-                                            @foreach($roles as $role)
-                                                <option value="{{ $role->id }}"  {{ old('sex', $user->role->id) == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
-                                            @endforeach
-                                        </select>
-                                        <!--end::Input-->
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Role</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <!--begin::Input-->
+                                            <select name="role" data-control="select2"  class="form-select form-select-lg">
+                                                @foreach($roles as $role)
+                                                    <option value="{{ $role->id }}"  {{ old('sex', $user->role->id) == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Col-->
                                     </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Input group-->
+                                    <!--end::Input group-->
+
+                                    <!--begin::Input group-->
+                                    <div class="row mb-6">
+                                        <!--begin::Label-->
+                                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Estado</label>
+                                        <!--end::Label-->
+                                        <!--begin::Col-->
+                                        <div class="col-lg-8 fv-row">
+                                            <!--begin::Input-->
+                                            <select name="status" data-control="select2"  class="form-select form-select-lg">
+                                                    <option value="1"  {{ old('status', $user->status) == 1 ? 'selected' : '' }}>Activo</option>
+                                                    <option value="0"  {{ old('status', $user->status) == 0 ? 'selected' : '' }}>Inactivo</option>
+                                            </select>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Input group-->
                                 @endif
                             </div>
                             <!--end::Card body-->

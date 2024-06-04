@@ -181,7 +181,11 @@
                             <!--begin::Col-->
                             <div class="col-lg-8 d-flex align-items-center">
                                 <span class="fw-bolder fs-6 text-gray-800 me-2">{{ $user->email }}</span>
-                                <span class="badge badge-success">Verified</span>
+                                @if($user->verified_email || $user->email_verified_at)
+                                <span class="badge badge-success">verificado</span>
+                                @else
+                                    <span class="badge badge-danger">no verificado</span>
+                                @endif
                             </div>
                             <!--end::Col-->
                         </div>
@@ -272,6 +276,37 @@
                             <!--begin::Label-->
                         </div>
                         <!--end::Input group-->
+                        @if(auth()->user()->role->code == 'admin')
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">Role</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <!--begin::Input-->
+                                    <span class="fw-bold fs-6 text-gray-800">{{ $user->role->title }}</span>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">Estado</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <!--begin::Input-->
+                                    <span class="fw-bold fs-6 text-gray-800">{{ $user->status ? 'Activo' : 'Inactivo' }}</span>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                        @endif
                     </div>
                     <!--end::Card body-->
                 </div>

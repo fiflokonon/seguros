@@ -67,6 +67,7 @@ Route::get('/roles/{id}/deactivate', [RoleController::class, 'deactivateRole'])-
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::post('/users', [UserController::class, 'store'])->name('add_user');
+Route::get('/users/{id}/change-status', [UserController::class, 'change_status'])->name('change_user_status');
 
 Route::get('/fuel-types', [FuelTypeController::class, 'index'])->name('fuel_types');
 Route::post('/fuel-types', [FuelTypeController::class, 'store'])->name('add_fuel_type');
