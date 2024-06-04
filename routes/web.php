@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\CustomVerificationController;
 use App\Http\Controllers\Dashboard\BrandController;
 use App\Http\Controllers\Dashboard\CarCategoryController;
 use App\Http\Controllers\Dashboard\ComplaintController;
@@ -36,6 +37,18 @@ Route::get('/error-forbidden', [HomeController::class, 'error403'])->name('error
 Route::get('/error-not-found', [HomeController::class, 'error404'])->name('error-not-found');
 
 Auth::routes(['verify' => true]);
+
+Route::get('/email/verify', [CustomVerificationController::class, 'show'])
+    ->middleware('auth')
+    ->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [CustomVerificationController::class, 'verify'])
+    ->middleware(['auth', 'custom-signed'])
+    ->name('verification.verify');
+
+Route::post('/email/resend', [CustomVerificationController::class, 'resend'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.resend');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

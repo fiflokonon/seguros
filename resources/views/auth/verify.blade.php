@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
 <html lang="en">
 <!--begin::Head-->
 <head><base href="../../">
@@ -72,17 +61,6 @@ License: For each use you must have a valid license purchased only from above li
             <!--end::Illustration-->
         </div>
         <!--end::Content-->
-        <!--begin::Footer-->
-        <div class="d-flex flex-center flex-column-auto p-10">
-            <!--begin::Links-->
-            <div class="d-flex align-items-center fw-bold fs-6">
-                <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-                <a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-                <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
-            </div>
-            <!--end::Links-->
-        </div>
-        <!--end::Footer-->
     </div>
     <!--end::Authentication - Signup Verify Email-->
 </div>

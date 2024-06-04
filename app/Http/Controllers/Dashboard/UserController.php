@@ -54,6 +54,7 @@ class UserController extends Controller
         if ($request->status == 1){
             $user->verified_email = true;
             $user->email_verified_at = now();
+            $user->status = true;
             $user->save();
         }
         // Rediriger ou retourner une réponse appropriée

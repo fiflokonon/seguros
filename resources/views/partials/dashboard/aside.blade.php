@@ -3,8 +3,8 @@
     <!--begin::Brand-->
     <div class="aside-logo bg-light flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="../../demo1/dist/index.html">
-            <img alt="Logo" src="/assets/media/logos/logo-c-blue.png" class="h-50px logo"/>
+        <a href="/">
+            <img alt="Logo" src="/assets/media/logos/logo-c-blue.png" class="h-50px logo" style="padding-bottom: 0px;"/>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->

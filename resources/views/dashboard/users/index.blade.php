@@ -120,8 +120,10 @@ $roles = \App\Models\Role::all();
                                                                 <!--begin::Label-->
                                                                 <label class="required fw-bold fs-6 mb-2">Teléfono</label>
                                                                 <!--end::Label-->
+                                                                <br>
                                                                 <!--begin::Input-->
-                                                                <input type="tel" name="phone" class="form-control mb-3 mb-lg-0" placeholder="Teléfono" value="{{ old('phone') }}"/>
+                                                                <input type="tel" name="phone" id="phone" class="form-control mb-3 mb-lg-0" placeholder="Teléfono" value="{{ old('phone') }}"/>
+                                                                <div id="errorMessage" class="text-danger mt-2" style="display: none;">Por favor ingrese solo números.</div>
                                                                 <!--end::Input-->
                                                             </div>
                                                             <!--end::Input group-->
@@ -285,7 +287,7 @@ $roles = \App\Models\Role::all();
                                         <!--end::Two step=-->
                                         <!--begin::Email=-->
                                         <td>
-                                            @if($user->email_verified_at)
+                                            @if($user->status)
                                                 <div class="badge badge-light-success fw-bolder">Activo</div>
                                             @else
                                                 <div class="badge badge-light-danger fw-bolder">Inactivo</div>
@@ -332,5 +334,52 @@ $roles = \App\Models\Role::all();
         </div>
         <!--end::Post-->
     </div>
+    <script>
+        // Attendez que le DOM soit chargé
+        document.addEventListener('DOMContentLoaded', function () {
+            // Sélectionnez le champ de numéro de téléphone
+            var input = document.querySelector("#phone");
+
+            // Initialisez intl-tel-input
+            var iti = window.intlTelInput(input, {
+                initialCountry: "gq",
+                onlyCountries: ["gq"],// Sélection automatique du pays basée sur l'adresse IP de l'utilisateur
+                separateDialCode: true, // Inclure le code de pays dans le champ de numéro de téléphone
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js", // Script utilitaire requis
+            });
+
+            // Écoutez l'événement de soumission du formulaire
+            document.querySelector("form").addEventListener("submit", function () {
+                // Récupérez le code de pays sélectionné
+                var countryCode = iti.getSelectedCountryData().dialCode;
+
+                // Récupérez la valeur du numéro de téléphone
+                var phoneNumber = input.value;
+
+                // Concaténez le code de pays avec le numéro de téléphone
+                input.value = "+" + countryCode + phoneNumber;
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const exampleInput = document.getElementById('phone');
+            const errorMessage = document.getElementById('errorMessage');
+            const submit_button = document.getElementById('sub_button');
+            console.log("Button", submit_button);
+
+            exampleInput.addEventListener('input', function () {
+                const value = exampleInput.value;
+                if (/^\d*$/.test(value)) {
+                    errorMessage.style.display = 'none';
+                    submit_button.style.display = 'block';
+                } else {
+                    exampleInput.value = value.replace(/\D/g, ''); // Remove non-digit characters
+                    errorMessage.style.display = 'block';
+                    submit_button.style.display = 'none';
+                }
+            });
+        })
+
+    </script>
 @endsection
 

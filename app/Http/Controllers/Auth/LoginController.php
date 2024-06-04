@@ -44,12 +44,11 @@ class LoginController extends Controller
             auth()->logout();
             $user->sendEmailVerificationNotification();
             return redirect()->route('login')
-                ->with('warning', 'Vous devez vérifier votre adresse e-mail. Un nouveau lien de vérification a été envoyé à votre adresse e-mail.');
+                ->with('warning', 'Necesita verificar su dirección de correo electrónico. Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.');
         }
         if (!$user->is_active()) {
             auth()->logout();
-            return redirect()->route('login')
-                ->with('warning', 'Votre compte est désactivé. Veuillez contacter les administrateurs !');
+            return redirect()->route('login')->with('warning', 'Su cuenta está desactivada. ¡Por favor contacte a los administradores !');
         }
     }
 }
