@@ -91,6 +91,16 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
+    public function is_active()
+    {
+        if ($this->status){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
