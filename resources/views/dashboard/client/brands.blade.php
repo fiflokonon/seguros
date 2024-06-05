@@ -54,7 +54,7 @@
                                 <div class="mb-3 row">
                                     <label for="example-text-input" class="col-md-12 col-form-label">Si tu marca no está entre las más buscadas, por favor selecciona de esta lista.</label>
                                     <div class="col-md-10">
-                                        <select name="brand" id="brand-select" class="form-select form-select-lg">
+                                        <select name="brand" id="brand-select" class="form-select form-select-lg" data-control="select2">
                                             <option selected disabled>Seleccione una Marca</option>
                                             @foreach($minos as $brand)
                                                 <option value="{{ $brand->id }}">{{ $brand->title }}</option>
@@ -76,21 +76,26 @@
         </div>
         <!--end::Post-->
     </div>
+    <!-- Inclure jQuery via un CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const brandSelect = document.getElementById('brand-select');
-            const nextButtonContainer = document.getElementById('next-button-container');
-            const nextButton = document.getElementById('next-button');
-
-            brandSelect.addEventListener('change', function () {
-                const selectedBrandId = this.value;
-                if (selectedBrandId) {
-                    const nextButtonUrl = `{{ route('invoice_form', ':id') }}`.replace(':id', selectedBrandId);
+        $(document).ready(function() {
+            // Initialiser Select2
+            $('#brand-select').select2();
+            // Attacher l'événement change
+            $('#brand-select').on('change', function() {
+                const nextButtonContainer = document.getElementById('next-button-container');
+                const nextButton = document.getElementById('next-button');
+                var selectedBrand = $(this).val();
+                //console.log('La valeur sélectionnée est : ' + selectedBrand);
+                if (selectedBrand) {
+                    const nextButtonUrl = `{{ route('invoice_form', ':id') }}`.replace(':id', selectedBrand);
                     nextButton.href = nextButtonUrl;
                     nextButtonContainer.style.display = 'block';
                 } else {
                     nextButtonContainer.style.display = 'none';
                 }
+                // Vous pouvez également exécuter d'autres actions ici
             });
         });
 

@@ -317,4 +317,5 @@
         </div>
         <!--end::Post-->
     </div>
+
 @endsection
