@@ -42,7 +42,7 @@
                                     </a>
                                     <!--end::Logo-->
                                     <!--begin::Text-->
-                                    <div class="text-sm-end fw-bold fs-4 text-muted mt-7">
+                                    <div class="text-sm-end fw-bold fs-4 text-black mt-7">
                                         <div> Gepetrol Seguros</div>
                                         <div>Avenida Enrique Nvo S/n, Edificio Alexandra 89 Malabo</div>
                                         <div>(+240) 333 099 311</div>
@@ -68,11 +68,11 @@
                                     <!--begin::Order details-->
                                     <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bolder">
                                         <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Date</span>
+                                            <span class="text-black">Fecha</span>
                                             <span class="fs-5">{{ Carbon\Carbon::parse($invoice->created_at)->locale('es')->translatedFormat('d M Y H:i') }}</span>
                                         </div>
                                         <div class="flex-root d-flex flex-column">
-                                            <span class="text-muted">Invoice ID</span>
+                                            <span class="text-black">Invoice ID</span>
                                             <span class="fs-5">#INV-{{ $invoice->code }}</span>
                                         </div>
                                     </div>
@@ -83,12 +83,12 @@
                                         <div class="table-responsive border-bottom mb-9">
                                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                                 <thead>
-                                                <tr class="border-bottom fs-6 fw-bolder text-muted">
+                                                <tr class="border-bottom fs-6 fw-bolder text-black">
                                                     <th class="min-w-175px pb-2">Descripción</th>
                                                     <th class="min-w-100px text-end pb-2">Total</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody class="fw-bold text-gray-600">
+                                                <tbody class="fw-bold text-black-600">
                                                 <!--begin::Products-->
                                                 <tr>
                                                     <!--begin::Product-->
@@ -119,7 +119,7 @@
                                                     </td>
                                                     <!--end::Product-->
                                                     <!--begin::Total-->
-                                                    <td class="text-end">{{ $invoice->accessories_price }}</td>
+                                                    <td class="text-end">{{ $invoice->accessories_price }} XFA</td>
                                                     <!--end::Total-->
                                                 </tr>
                                                 <tr>
@@ -135,26 +135,26 @@
                                                     </td>
                                                     <!--end::Product-->
                                                     <!--begin::Total-->
-                                                    <td class="text-end">{{ $invoice->attestation_price }}</td>
+                                                    <td class="text-end">{{ $invoice->attestation_price }} XFA</td>
                                                     <!--end::Total-->
                                                 </tr>
                                                 <!--end::Products-->
                                                 <!--begin::Subtotal-->
                                                 <tr>
                                                     <td colspan="3" class="text-end">Subtotal</td>
-                                                    <td class="text-end">{{ $invoice->sub_total }}</td>
+                                                    <td class="text-end">{{ $invoice->sub_total }} XFA</td>
                                                 </tr>
                                                 <!--end::Subtotal-->
                                                 <!--begin::VAT-->
                                                 <tr>
                                                     <td colspan="3" class="text-end">IVA (15%)</td>
-                                                    <td class="text-end">{{ $invoice->vat }}</td>
+                                                    <td class="text-end">{{ $invoice->vat }} XFA</td>
                                                 </tr>
                                                 <!--end::VAT-->
                                                 <!--begin::Grand total-->
                                                 <tr>
                                                     <td colspan="3" class="fs-3 text-dark fw-bolder text-end">Total</td>
-                                                    <td class="text-dark fs-3 fw-boldest text-end">{{ $invoice->total }}</td>
+                                                    <td class="text-dark fs-3 fw-boldest text-end">{{ $invoice->total }} XFA</td>
                                                 </tr>
                                                 <!--end::Grand total-->
                                                 </tbody>
@@ -166,7 +166,7 @@
                                         <!--begin::Billing & shipping-->
                                         <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10">
                                             <div class="flex-root d-flex flex-column">
-                                                <span class="text-muted fw-bolder">Detailles de la Cotization</span>
+                                                <span class="text-black fw-bolder">Detailles de la Cotization</span>
                                                 <span class="fs-6">
                                                     <b>Modelo del coche :</b> {{ $invoice->model }}
                                                     <br />
