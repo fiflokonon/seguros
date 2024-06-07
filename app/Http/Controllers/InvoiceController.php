@@ -82,7 +82,9 @@ class InvoiceController extends Controller
             // Récupérer la valeur du paramètre "Attestation"
             $attestation = Parameter::where('title', 'Attestación')->first();
             $attestationValue = $attestation ? $attestation->value : 0;
-
+            // Récupérer la valeur du paramètre "Attestation"
+            $accessorio = Parameter::where('title', 'Accesorios')->first();
+            $accessorioValue = $accessorio ? $accessorio->value : 0;
             // Récupérer la tarification
             $tarification = Tarification::where('car_category_id', $validatedData['category'])
                 ->where('type_car_id', $validatedData['type_car'])
@@ -124,7 +126,8 @@ class InvoiceController extends Controller
             $validatedData['code'] = $code;
             $validatedData['initial_price'] = $tarification->price;
             $validatedData['attestation_price'] = $attestation->value;
-            $validatedData['accessories_price'] = $accessories_price;
+            $validatedData['extra_price'] = $accessories_price;
+            $validatedData['accessories_price'] = $accessorioValue;
             $validatedData['sub_total'] = $subTotal;
             $validatedData['vat'] = $subTotal * 0.15;
             $validatedData['status'] = true;

@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->double('initial_price')->default(0);
             $table->double('attestation_price')->default(0);
+            $table->double('extra_price')->default(0);
             $table->double('sub_total')->default(0);
             $table->double('accessories_price')->default(0);
             $table->double('vat')->default(0);

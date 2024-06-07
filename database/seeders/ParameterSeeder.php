@@ -38,6 +38,12 @@ class ParameterSeeder extends Seeder
                 'accessory' => false,
                 'status' => true
             ],
+            [
+                'title' => 'Accesorios',
+                'value' => 10000,
+                'accessory' => false,
+                'status' => true
+            ],
         ]);
     }
 }
