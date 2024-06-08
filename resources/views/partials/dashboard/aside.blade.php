@@ -1,10 +1,10 @@
 <!--begin::Aside-->
 <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
     <!--begin::Brand-->
-    <div class="aside-logo bg-light flex-column-auto" id="kt_aside_logo">
+    <div class="aside-logo bg-light flex-column-auto h-100px" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="/">
-            <img alt="Logo" src="/assets/media/logos/logo-c-blue.png" class="h-50px logo" style="padding-bottom: 0px;"/>
+            <img alt="Logo" src="/assets/media/logos/logo-c-blue.png" class="h-100px logo" style="padding-bottom: 0px;"/>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
