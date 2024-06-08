@@ -44,7 +44,7 @@ class ComplaintController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 // Stocker chaque image dans le dossier 'complaints' à la racine du répertoire public
-                $fileName = time() . '_' . $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $filePath = $file->move(public_path('complaints'), $fileName);
                 $images[] = $fileName;
             }
