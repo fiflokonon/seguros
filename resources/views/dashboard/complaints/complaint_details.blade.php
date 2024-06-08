@@ -55,7 +55,9 @@
                                             <span class="mb-4 fw-bolder">Imagenes Adjuntas : </span>
                                             <div class="complaint-images mb-4">
                                                 @foreach(json_decode($complaint->images) as $image)
-                                                <img src="/complaints/{{$image}}" alt="Image" width="250">
+                                                <a href="/complaints/{{$image}}" target="_blank">
+                                                    <img src="/complaints/{{$image}}" alt="Image" width="300">
+                                                </a>
                                                 @endforeach
                                             </div>
                                         </div>
