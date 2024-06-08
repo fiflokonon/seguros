@@ -98,7 +98,7 @@ class InvoiceController extends Controller
             }
 
             // Calculer le sous-total
-            $subTotal = $tarification->price + $attestationValue;
+            $subTotal = $tarification->price + $attestationValue + $accessorioValue;
             $accessories_price = 0;
             #Log::info("Entry subtotal : $subTotal");
             #Log::info("Entry access price : $accessories_price");

@@ -78,11 +78,11 @@
                                     </div>
                                     <!--end::Order details-->
                                     <!--begin:Order summary-->
-                                    <div class="d-flex justify-content-between flex-column">
+                                    <div class="d-flex justify-content-between flex-column mt-2">
                                         <!--begin::Table-->
                                         <div class="table-responsive border-bottom mb-9">
                                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
-                                                <thead>
+                                                <thead class="bg-gray-100 p-3">
                                                 <tr class="border-bottom fs-6 fw-bolder text-black">
                                                     <th class="min-w-175px pb-2">Descripción</th>
                                                     <th class="min-w-100px text-end pb-2">Total</th>
@@ -103,7 +103,7 @@
                                                     </td>
                                                     <!--end::Product-->
                                                     <!--begin::Total-->
-                                                    <td class="text-end">{{ $invoice->initial_price }}</td>
+                                                    <td class="text-end">{{ $invoice->initial_price }} XFA</td>
                                                     <!--end::Total-->
                                                 </tr>
                                                 <tr>
@@ -139,24 +139,122 @@
                                                     <!--end::Total-->
                                                 </tr>
                                                 <!--end::Products-->
-                                                <!--begin::Subtotal-->
+                                                @if(!$invoice->accessories->isNotEmpty())
                                                 <tr>
-                                                    <td colspan="3" class="text-end">Subtotal</td>
-                                                    <td class="text-end">{{ $invoice->sub_total }} XFA</td>
+                                                    <!--begin::Product-->
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Title-->
+                                                            <div class="ms-5">
+                                                                <div class="fw-boldest">Extras Seleccionados</div>
+                                                            </div>
+                                                            <!--end::Title-->
+                                                        </div>
+                                                    </td>
+                                                    <!--end::Product-->
                                                 </tr>
-                                                <!--end::Subtotal-->
-                                                <!--begin::VAT-->
                                                 <tr>
-                                                    <td colspan="3" class="text-end">IVA (15%)</td>
-                                                    <td class="text-end">{{ $invoice->vat }} XFA</td>
+                                                    <!--begin::Product-->
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Title-->
+                                                            <div class="ms-5">
+                                                                <div class="">No hay extras seleccionados</div>
+                                                            </div>
+                                                            <!--end::Title-->
+                                                        </div>
+                                                    </td>
+                                                    <!--end::Product-->
                                                 </tr>
-                                                <!--end::VAT-->
-                                                <!--begin::Grand total-->
+                                                <!--end::Products-->
+                                                @else
+                                                    <tr>
+                                                        <!--begin::Product-->
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <!--begin::Title-->
+                                                                <div class="ms-5">
+                                                                    <div class="fw-boldest">Extras Seleccionados</div>
+                                                                </div>
+                                                                <!--end::Title-->
+                                                            </div>
+                                                        </td>
+                                                        <!--end::Product-->
+                                                    </tr>
+                                                    <!--end::Products-->
+                                                    @foreach($invoice->accessories as $accessory)
+                                                    <tr>
+                                                        <!--begin::Product-->
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <!--begin::Title-->
+                                                                <div class="ms-5">
+                                                                    <div class="">{{ $accessory->title }}</div>
+                                                                </div>
+                                                                <!--end::Title-->
+                                                            </div>
+                                                        </td>
+                                                        <!--end::Product-->
+                                                        <!--begin::Total-->
+                                                        <td class="text-end">{{ $accessory->value }} XFA</td>
+                                                        <!--end::Total-->
+                                                    </tr>
+                                                    <!--end::Products-->
+                                                    @endforeach
+                                                @endif
                                                 <tr>
-                                                    <td colspan="3" class="fs-3 text-dark fw-bolder text-end">Total</td>
-                                                    <td class="text-dark fs-3 fw-boldest text-end">{{ $invoice->total }} XFA</td>
+                                                    <!--begin::Product-->
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Title-->
+                                                            <div class="ms-5">
+                                                                <div class="fw-bolder">Subtotal</div>
+                                                            </div>
+                                                            <!--end::Title-->
+                                                        </div>
+                                                    </td>
+                                                    <!--end::Product-->
+                                                    <!--begin::Total-->
+                                                    <td class="text-end fs-3 fw-boldest">{{ $invoice->sub_total }} XFA</td>
+                                                    <!--end::Total-->
                                                 </tr>
-                                                <!--end::Grand total-->
+                                                <!--end::Products-->
+
+                                                <tr>
+                                                    <!--begin::Product-->
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Title-->
+                                                            <div class="ms-5">
+                                                                <div class="fw-bolder">IVA (15%)</div>
+                                                            </div>
+                                                            <!--end::Title-->
+                                                        </div>
+                                                    </td>
+                                                    <!--end::Product-->
+                                                    <!--begin::Total-->
+                                                    <td class="text-end fs-3 fw-boldest fs-3 fw-boldest">{{ $invoice->vat }} XFA</td>
+                                                    <!--end::Total-->
+                                                </tr>
+                                                <!--end::Products-->
+
+                                                <tr>
+                                                    <!--begin::Product-->
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Title-->
+                                                            <div class="ms-5">
+                                                                <div class="fw-bolder">Total</div>
+                                                            </div>
+                                                            <!--end::Title-->
+                                                        </div>
+                                                    </td>
+                                                    <!--end::Product-->
+                                                    <!--begin::Total-->
+                                                    <td class="text-end fs-3 fw-boldest">{{ $invoice->total }} XFA</td>
+                                                    <!--end::Total-->
+                                                </tr>
+                                                <!--end::Products-->
                                                 </tbody>
                                             </table>
                                         </div>
