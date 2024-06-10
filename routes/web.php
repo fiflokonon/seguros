@@ -109,6 +109,7 @@ Route::post('/brands/update', [BrandController::class, 'update'])->name('update_
 Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
 
 Route::get('/parameters', [ParameterController::class, 'index'])->name('parameters');
+Route::post('/parameters/update', [ParameterController::class, 'update'])->name('update_parameter');
 
 Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices');
 Route::get('/invoices/{id}/approve', [InvoiceController::class, 'approve_invoice'])->name('approve_invoice');
