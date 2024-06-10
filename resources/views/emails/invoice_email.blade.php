@@ -40,11 +40,11 @@
     </style>
 </head>
 <body>
-<h1>Factura de Seguro</h1>
+<h1>FACTURA PRO FORMA DE SEGUROS GEPETROL SEGUROS</h1>
     <div>
-        <h3 style="text-decoration: underline">Code de la factura:</h3> <span>{{$code}}</span><br>
+        <h3 style="text-decoration: underline">Codigo de la factura: <span>{{$code}}</span> </h3> <br>
         <p>Gracias por elegir <b>Seguros Gepetrol</b>.
-        <p>Adjunto su factura</p>
+        <p>Adjunto su factura Pro Forma</p>
     </div>
 </body>
 </html>

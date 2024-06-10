@@ -132,7 +132,7 @@
             <strong>Total :</strong> <b>{{ $invoice->total }} XFA</b>
         </div>
     </div>
-    <div class="foot-2">
+    <div class="foot-2" style="margin-top: 100px;">
         <div class="total">
             <b>Detalles de la Cotización</b>
         </div>
