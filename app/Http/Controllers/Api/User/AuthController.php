@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VerificationCodeMail;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\VerificationCode;
 use Exception;
@@ -101,17 +102,19 @@ class AuthController extends Controller
                 $email = $this->sendVerificationCode($request->email, $code);
                 if ($email)
                 {
+                    $role = Role::where('code', 'client')->first();
                     User::create([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'email' => $request->email,
                     'phone' => $request->phone,
+                    'role_id' => $role->id,
                     'password' => Hash::make($request->password),
                     'status' => true
                 ]);
-                    return response()->json(['success' => true,
-                        'response' => $code,
-                        'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'], 201);
+                return response()->json(['success' => true,
+                    'response' => $code,
+                    'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'], 201);
                 }
                 else
                 {
@@ -186,7 +189,7 @@ class AuthController extends Controller
                     if (Hash::check($password, $user->password)) {
                         $verification_code->markAsUsed();
                         $user->verified_email = true;
-                        $user->statut = true;
+                        $user->status = true;
                         $user->save();
                         $token = $user->createToken('Token Name')->plainTextToken;
                         $token = explode('|', $token)[1];

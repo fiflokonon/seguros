@@ -4,6 +4,7 @@
 use App\Http\Controllers\Api\ParameterController;
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\User\EditUserController;
+use App\Http\Controllers\Api\User\ResetPasswordController;
 use App\Http\Controllers\InvoiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/me', [AuthController::class, 'getMe'])->middleware('auth:sanctum');
-Route::post('/login', 'App\Http\Controllers\Api\User\AuthController@login');
-Route::post('/register', 'App\Http\Controllers\Api\User\AuthController@register');
-Route::post('/forget-password', 'App\Http\Controllers\Api\User\ResetPasswordController@getEmail');
-Route::post('/reset-password', 'App\Http\Controllers\Api\User\ResetPasswordController@validateKey');
-Route::post('/validate-account', 'App\Http\Controllers\Api\User\AuthController@validateCode');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/forget-password', [ResetPasswordController::class, 'getEmail']);
+Route::post('/reset-password', [ResetPasswordController::class, 'validateKey']);
+Route::post('/validate-account', [AuthController::class, 'validateCode']);
 
 Route::post('/profile-photo', [AuthController::class, 'addProfilePhoto'])->middleware('auth:sanctum');
 Route::post('/edit-profil', [EditUserController::class, 'editProfile'])->middleware('auth:sanctum');
