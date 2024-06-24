@@ -60,6 +60,52 @@ class AuthController extends Controller
         }
     }
 
+    public function check_email(Request $request)
+    {
+        // Validation de l'email
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users,email',
+        ]);
+        if ($validator->fails()) {
+            $messages = $validator->errors();
+            foreach ($messages->messages() as $key => $value) {
+                if ($messages->has($key . '.required')) {
+                    $response = $key;
+                    return response()->json([
+                        'success' => false,
+                        'message' => $response
+                    ], 400);
+                } elseif ($messages->has($key . '.unique')) {
+                    $response = $key;
+                    return response()->json([
+                        'success' => false,
+                        'message' => $response
+                    ], 400);
+                } else {
+                    $response = $value[0];
+                    return response()->json([
+                        'success' => false,
+                        'message' => $response
+                    ], 400);
+                }
+            }
+        }
+        $code = $this->generateCode($request->email);
+        $email = $this->sendVerificationCode($request->email, $code);
+        if ($email){
+            return response()->json([
+                'success' => true,
+                'response' => $code,
+                'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'
+            ], 201);
+
+        }
+        else
+        {
+            return response()->json(['success' => false, 'message' => "Erreur lors de l'envoi de l'email"], 400);
+        }
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -171,55 +217,56 @@ class AuthController extends Controller
         }
     }
 
-    public function validateCode(Request $request) {
+    public function validateCode(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255',
+                Rule::unique('users')->where(function ($query) use ($request) {
+                    return $query->where('email', $request->email)->where('id', '<>', $request->id);
+                })],
+            'phone' => ['required', 'string', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'code' => ['required', 'string', 'exists:verification_codes,code']
+        ]);
         $code = $request->code;
         $email = $request->email;
-        $password = $request->password;
-        $user = User::where('email', $email)->first();
-        if ($user)
-        {
-            $verification_code = VerificationCode::where('is_used', false)
-                ->where('code', $code)
-                ->where('email', $email)
-                ->where('expires_at', '>', now())
-                ->first();
-            if ($verification_code) {
-                try {
-                    // Vérifier si le mot de passe de l'utilisateur correspond
-                    if (Hash::check($password, $user->password)) {
-                        $verification_code->markAsUsed();
-                        $user->verified_email = true;
-                        $user->status = true;
-                        $user->save();
-                        $token = $user->createToken('Token Name')->plainTextToken;
-                        $token = explode('|', $token)[1];
-                        return response()->json(
-                            [
-                                'success' => true,
-                                'response' => [
-                                    'token' => $token,
-                                    'user' => $user
-                                ]]
-                            , 201);
-                    } else {
-                        // Si le mot de passe ne correspond pas, annuler la validation du compte
-                        $user->verified_email = false;
-                        $user->statut = false;
-                        $user->save();
-                        return response()->json(['success' => false, 'message' => 'Échec de l\'authentification'], 401);
-                    }
-                } catch (Exception $exception) {
-                    return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
-                }
-            }
-            else
-            {
-                return response()->json(['success' => false, 'message' => 'Code Invalide']);
+        $verification_code = VerificationCode::where('is_used', false)
+            ->where('code', $code)
+            ->where('email', $email)
+            ->where('expires_at', '>', now())
+            ->first();
+        if ($verification_code) {
+            try {
+                $role = Role::where('code', 'client')->first();
+                $user = User::create([
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'role_id' => $role->id,
+                    'password' => Hash::make($request->password),
+                    'verified_email' => true,
+                    'status' => true
+                ]);
+                $token = $user->createToken('Token Name')->plainTextToken;
+                $token = explode('|', $token)[1];
+                return response()->json(
+                    [
+                        'success' => true,
+                        'response' => [
+                            'token' => $token,
+                            'user' => $user
+                        ]]
+                    , 201);
+            } catch (Exception $exception) {
+                return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
             }
         }
         else
         {
-            return response()->json(['success' => false, 'message' => 'Utilisateur non trouvé ou inactivo'], 404);
+            return response()->json(['success' => false, 'message' => 'Code Invalide']);
         }
     }
 
