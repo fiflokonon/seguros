@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\CarCategory;
 use App\Models\FuelType;
+use App\Models\Parameter;
 use App\Models\TypeCar;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ class ParameterController extends Controller
 {
     public function fuel_types()
     {
-        $fuel_types = FuelType::where('status', true)->get();
+        $fuel_types = FuelType::with('powers')->where('status', true)->get();
         if ($fuel_types)
             return response()->json(['success' => true, 'response' => $fuel_types]);
         else
@@ -44,5 +46,27 @@ class ParameterController extends Controller
             return response()->json(['success' => true, 'response' => $trailers]);
         else
             return response()->json(['success' => false, 'message' => 'No hay tipo de remolque en la base de datos.'], 404);
+    }
+
+    public function brands()
+    {
+        $mas = Brand::where('most_used', true)->get();
+        $minos = Brand::where('most_used', false)->get();
+        return response()->json([
+            'success' => true,
+            'response' => [
+                'most_used' => $mas,
+                'less_used' => $minos
+            ]
+        ]);
+    }
+
+    public function accessories()
+    {
+        $accessories = Parameter::where('accessory', true)->get();
+        return response()->json([
+            'success' => true,
+            'response' => $accessories
+        ]);
     }
 }

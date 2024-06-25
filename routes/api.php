@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Api\ComplaintController;
 use App\Http\Controllers\Api\ParameterController;
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\User\EditUserController;
@@ -36,6 +37,11 @@ Route::get('/fuel-types', [ParameterController::class, 'fuel_types']);
 Route::get('/car-categories', [ParameterController::class, 'car_categories']);
 Route::get('/type-cars', [ParameterController::class, 'type_cars']);
 Route::get('/trailers', [ParameterController::class, 'trailers']);
+Route::get('/brands', [ParameterController::class, 'brands']);
+Route::get('/accessories', [ParameterController::class, 'accessories']);
+Route::get('/complaints', [ComplaintController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/complaints', [ComplaintController::class, 'create_complaint'])->middleware('auth:sanctum');
+Route::post('/brands/{id}/invoice', [InvoiceController::class, 'store']);
 
 Route::get('/invoices/{id}/send', [InvoiceController::class, 'sendInvoice']);
 

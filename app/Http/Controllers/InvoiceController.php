@@ -75,7 +75,6 @@ class InvoiceController extends Controller
                 'phone' => 'required|string|max:255',
                 'accessory' => 'array'
             ]);
-
             // Générer un code unique alphanumérique
             $code = $this->generateUniqueCode();
 
@@ -86,13 +85,14 @@ class InvoiceController extends Controller
             $accessorio = Parameter::where('title', 'Accesorios')->first();
             $accessorioValue = $accessorio ? $accessorio->value : 0;
             // Récupérer la tarification
+
             $tarification = Tarification::where('car_category_id', $validatedData['category'])
                 ->where('type_car_id', $validatedData['type_car'])
                 ->where('fuel_type_id', $validatedData['fuel_type'])
                 ->where('power_id', $validatedData['power'])
                 ->where('trailer_id', $validatedData['trailer'])
                 ->first();
-
+            #dd($tarification);
             if (!$tarification) {
                 return response()->json(['success' => false, 'message' => 'No hay cotización para ese tipo de coche.']);
             }
@@ -139,8 +139,17 @@ class InvoiceController extends Controller
             $invoice = Invoice::create($validatedData);
             $invoice->accessories()->attach($request->input('accessory', []));
             $this->save_invoice_pdf($invoice);
+            // Retourne une réponse JSON pour les appels API
+            /*if ($request->expectsJson()) {
+                dd("TRUE");
+                if ($request->user()){
+                    $invoice->user_id = $request->user()->id;
+                    $invoice->save();
+                }
+                return response()->json(['success' => true, 'invoice_id' => $invoice->id, 'response' => $invoice]);
+            }*/
             // Retourne une réponse, par exemple un message de succès ou une redirection
-            return response()->json(['success' => true, 'invoice_id' => $invoice->id]);
+            return response()->json(['success' => true, 'invoice_id' => $invoice->id, 'response' => $invoice]);
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
@@ -149,13 +158,6 @@ class InvoiceController extends Controller
         }
     }
 
-    private function generateUniqueCode()
-    {
-        do {
-            $code = strtoupper(Str::random(10));
-        } while (Invoice::where('code', $code)->exists());
-        return $code;
-    }
 
     public function invoice_details($id)
     {
