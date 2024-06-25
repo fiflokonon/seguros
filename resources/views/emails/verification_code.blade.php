@@ -56,7 +56,6 @@
         });
     });
 </script>
-<h1>Tu código de verificación de correo electrónico</h1>
 <h1>Te damos la bienvenida a nuestra plataforma.</h1>
 <p>Por favor utilice el siguiente código para validar su cuenta :</p>
 <div class="code" id="code">{{ $code }}</div>

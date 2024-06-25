@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/me', [AuthController::class, 'getMe'])->middleware('auth:sanctum');
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/check-email', [AuthController::class, 'check_email']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/forget-password', [ResetPasswordController::class, 'getEmail']);
 Route::post('/reset-password', [ResetPasswordController::class, 'validateKey']);

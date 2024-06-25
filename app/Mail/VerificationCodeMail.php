@@ -27,6 +27,6 @@ class VerificationCodeMail extends Mailable
             ->with([
                 'code' => $this->code
             ])
-            ->subject('Votre code de validation de compte');
+            ->subject('Código de verificación de correo electrónico');
     }
 }

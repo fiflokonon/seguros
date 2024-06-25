@@ -24,7 +24,7 @@ class TemporaryCodeEmail extends Mailable
             ->with([
                 'code' => $this->code
             ])
-            ->subject('Votre code de réinitialisation de mot de passe');
+            ->subject('Código de restablecimiento de contraseña');
     }
 
 }
