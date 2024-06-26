@@ -41,6 +41,8 @@ Route::get('/brands', [ParameterController::class, 'brands']);
 Route::get('/accessories', [ParameterController::class, 'accessories']);
 Route::get('/complaints', [ComplaintController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/complaints', [ComplaintController::class, 'create_complaint'])->middleware('auth:sanctum');
+Route::get('/invoices', [InvoiceController::class, 'user_invoices'])->middleware('auth:sanctum');
+
 Route::post('/brands/{id}/invoice', [InvoiceController::class, 'store']);
 
 Route::get('/invoices/{id}/send', [InvoiceController::class, 'sendInvoice']);

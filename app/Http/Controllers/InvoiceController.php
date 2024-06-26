@@ -44,6 +44,16 @@ class InvoiceController extends Controller
         }
     }
 
+    public function user_invoices(Request $request)
+    {
+        $user = $request->user();
+        if ($user){
+            return response()->json(['success' => true, 'response' => $user->invoices]);
+        }else{
+            return response()->json(['success' => false, 'message' => 'Not authorized', 401]);
+        }
+    }
+
     public function getPowers($fuelTypeId)
     {
         $fuelType = FuelType::findOrFail($fuelTypeId);
