@@ -90,20 +90,26 @@ class AuthController extends Controller
                 }
             }
         }
-        $code = $this->generateCode($request->email);
-        $email = $this->sendVerificationCode($request->email, $code);
-        if ($email){
-            return response()->json([
-                'success' => true,
-                'response' => $code,
-                'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'
-            ], 201);
+        try {
+            $code = $this->generateCode($request->email);
+            $email = $this->sendVerificationCode($request->email, $code);
+            if ($email){
+                return response()->json([
+                    'success' => true,
+                    'response' => $code,
+                    'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'
+                ], 201);
 
-        }
-        else
+            }
+            else
+            {
+                return response()->json(['success' => false, 'message' => "Erreur lors de l'envoi de l'email"], 400);
+            }
+        }catch (\Exception $exception)
         {
-            return response()->json(['success' => false, 'message' => "Erreur lors de l'envoi de l'email"], 400);
+            return response()->json(['success' => false, 'message' => $exception->getMessage()], 400);
         }
+
     }
 
     public function register(Request $request)
