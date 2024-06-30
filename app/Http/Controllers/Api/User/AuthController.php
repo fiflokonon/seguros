@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -62,11 +63,16 @@ class AuthController extends Controller
 
     public function check_email(Request $request)
     {
+        Log::info('check_email called');
+
         // Validation de l'email
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
         ]);
+
         if ($validator->fails()) {
+            Log::info('Validation failed', $validator->errors()->toArray());
+
             $messages = $validator->errors();
             foreach ($messages->messages() as $key => $value) {
                 if ($messages->has($key . '.required')) {
@@ -93,23 +99,22 @@ class AuthController extends Controller
         try {
             $code = $this->generateCode($request->email);
             $email = $this->sendVerificationCode($request->email, $code);
-            if ($email){
+
+            Log::info('Email sent', ['email' => $request->email, 'code' => $code]);
+
+            if ($email) {
                 return response()->json([
                     'success' => true,
                     'response' => $code,
                     'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'
                 ], 201);
-
-            }
-            else
-            {
+            } else {
                 return response()->json(['success' => false, 'message' => "Erreur lors de l'envoi de l'email"], 400);
             }
-        }catch (\Exception $exception)
-        {
+        } catch (\Exception $exception) {
+            Log::error('Exception occurred', ['message' => $exception->getMessage()]);
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 400);
         }
-
     }
 
     public function register(Request $request)
@@ -200,7 +205,7 @@ class AuthController extends Controller
         // Vérifier si la clé temporaire existe déjà pour l'email fourni
         while (VerificationCode::where('email', $email)->where('code', $code)->exists()) {
             // Si la clé existe déjà, générer une nouvelle clé unique
-            $code = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+            $code = str_pad(mt_rand(0, 9999), 5, '0', STR_PAD_LEFT);
         }
         // Enregistrer la clé temporaire dans la base de données
         VerificationCode::create([
