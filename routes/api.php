@@ -46,4 +46,4 @@ Route::get('/invoices', [InvoiceController::class, 'user_invoices'])->middleware
 Route::post('/brands/{id}/invoice', [InvoiceController::class, 'store']);
 
 Route::get('/invoices/{id}/send', [InvoiceController::class, 'sendInvoice']);
-
+Route::get('/get-powers/{id}', [InvoiceController::class, 'getPowers']);

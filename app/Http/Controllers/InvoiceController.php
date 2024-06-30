@@ -58,8 +58,9 @@ class InvoiceController extends Controller
     {
         $fuelType = FuelType::findOrFail($fuelTypeId);
         $powers = $fuelType->powers; // Assuming the relationship is defined in the FuelType model
-
         return response()->json([
+            'success' => true,
+            'response' => $powers,
             'powers' => $powers
         ]);
     }
