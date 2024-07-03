@@ -169,13 +169,21 @@ class InvoiceController extends Controller
         }
     }
 
-
     public function invoice_details($id)
     {
         $invoice = Invoice::findOrFail($id);
         return view('dashboard.client.invoice_details', [
             'invoice' => $invoice
         ]);
+    }
+
+    public function api_invoice_details($id)
+    {
+        $invoice = Invoice::with('accessories', 'brand', 'trailer', 'power')->find($id);
+        if ($invoice)
+            return response()->json(['success' => true, 'response' => $invoice]);
+        else
+            return response()->json(['success' => false, 'message' => 'Facture non trouvée.'], 404);
     }
 
     public function sendInvoiceEmail($email, $code, $invoice): bool

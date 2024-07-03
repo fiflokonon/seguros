@@ -43,7 +43,9 @@ Route::get('/complaints', [ComplaintController::class, 'index'])->middleware('au
 Route::post('/complaints', [ComplaintController::class, 'create_complaint'])->middleware('auth:sanctum');
 Route::get('/invoices', [InvoiceController::class, 'user_invoices'])->middleware('auth:sanctum');
 
+
 Route::post('/brands/{id}/invoice', [InvoiceController::class, 'store']);
 
 Route::get('/invoices/{id}/send', [InvoiceController::class, 'sendInvoice']);
 Route::get('/get-powers/{id}', [InvoiceController::class, 'getPowers']);
+Route::get('/invoices/{id}/details', [InvoiceController::class, 'api_invoice_details']);
