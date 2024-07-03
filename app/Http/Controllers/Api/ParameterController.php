@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\CarCategory;
 use App\Models\FuelType;
 use App\Models\Parameter;
+use App\Models\Trailer;
 use App\Models\TypeCar;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,7 @@ class ParameterController extends Controller
 
     public function trailers()
     {
-        $trailers = TypeCar::where('status', true)->get();
+        $trailers = Trailer::where('status', true)->get();
         if ($trailers)
             return response()->json(['success' => true, 'response' => $trailers]);
         else
