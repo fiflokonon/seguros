@@ -14,7 +14,8 @@ class ComplaintController extends Controller
         if ($user->role->code == "client"){
             return response()->json([
                     'success' => true,
-                    'complaints' => auth()->user()->complaints()->paginate(10)
+                    'complaints' => auth()->user()->complaints
+                    #'complaints' => auth()->user()->complaints()->paginate(10)
                 ]);
         }else{
             return response()->json([
