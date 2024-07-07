@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class EditUserController extends Controller
 {
-
     public function editProfile(Request $request)
     {
         if ($request->user()) {
@@ -46,11 +45,10 @@ class EditUserController extends Controller
 
             // Mise à jour des informations de l'utilisateur
             $user->update($data);
-            return response()->json(['success' => true, 'message' => 'Informations de profil mises à jour avec succès', 'user' => $user], 200);
+            return response()->json(['success' => true, 'message' => 'La información del perfil se actualizó exitosamente.', 'user' => $user], 200);
         } else {
             return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);
         }
     }
-
 
 }

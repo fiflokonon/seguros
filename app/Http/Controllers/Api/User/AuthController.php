@@ -33,11 +33,11 @@ class AuthController extends Controller
                 $emailSent = $this->sendVerificationCode($user->email, $code);
                 if ($emailSent)
                 {
-                    return response()->json(['success' => false, 'activation' => true , 'message' => "Votre compte n'est pas activé. Vous venez de recevoir un code d'activation par e-mail. Veuillez entrer le code pour activer votre compte."], 401);
+                    return response()->json(['success' => false, 'activation' => true , 'message' => "Su cuenta no está activada. Acaba de recibir un código de activación por correo electrónico. Por favor ingrese el código para activar su cuenta."], 401);
                 }
                 else
                 {
-                    return response()->json(['success' => false, 'message' => "Erreu lors de l'envoi de l'email! Veuillez reéssayer la connexion"], 500);
+                    return response()->json(['success' => false, 'message' => "¡Error al enviar el correo electrónico! Por favor intenta la conexión nuevamente !"], 500);
                 }
             }
             else
@@ -57,14 +57,13 @@ class AuthController extends Controller
         }
         else
         {
-            return response()->json(['success' => false, 'message' => 'Identifiants invalides'], 401);
+            return response()->json(['success' => false, 'message' => 'Identificadores incorrectos'], 401);
         }
     }
 
     public function check_email(Request $request)
     {
-        Log::info('check_email called');
-
+        #Log::info('check_email called');
         // Validation de l'email
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
@@ -72,7 +71,6 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             Log::info('Validation failed', $validator->errors()->toArray());
-
             $messages = $validator->errors();
             foreach ($messages->messages() as $key => $value) {
                 if ($messages->has($key . '.required')) {
@@ -106,10 +104,10 @@ class AuthController extends Controller
                 return response()->json([
                     'success' => true,
                     'response' => $code,
-                    'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'
+                    'message' => '¡Has recibido un código por correo electrónico! Por favor ingrésalo para validar tu cuenta.'
                 ], 201);
             } else {
-                return response()->json(['success' => false, 'message' => "Erreur lors de l'envoi de l'email"], 400);
+                return response()->json(['success' => false, 'message' => "Error al enviar correo electrónico."], 400);
             }
         } catch (\Exception $exception) {
             Log::error('Exception occurred', ['message' => $exception->getMessage()]);
@@ -171,11 +169,11 @@ class AuthController extends Controller
                 ]);
                 return response()->json(['success' => true,
                     'response' => $code,
-                    'message' => 'Vous avez reçu un code par email! Veuillez l\'entrer afin de valider votre compte'], 201);
+                    'message' => '¡Has recibido un código por correo electrónico! Por favor ingrésalo para validar tu cuenta.'], 201);
                 }
                 else
                 {
-                    return response()->json(['success' => false, 'message' => "Erreur lors de l'envoi de l'email"], 400);
+                    return response()->json(['success' => false, 'message' => "Error al enviar correo electrónico."], 400);
                 }
 
             }catch (\Exception $exception)
@@ -184,7 +182,6 @@ class AuthController extends Controller
             }
         }
     }
-
 
     public function getMe(Request $request)
     {
@@ -300,12 +297,12 @@ class AuthController extends Controller
             }
             else
             {
-                response()->json(['success' => false, 'message' => 'Erreur lors de l\'enregistrement de l\'image' ], 500);
+                response()->json(['success' => false, 'message' => 'Error al guardar la imagen' ], 500);
             }
         }
         else
         {
-            return response()->json(['success' => false, 'message' => 'U'], 401);
+            return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);
         }
     }
 
@@ -316,7 +313,7 @@ class AuthController extends Controller
         {
             $valid_extensions = ['jpeg', 'png', 'jpg'];
             if (!$file->isValid() || !in_array($file->getClientOriginalExtension(), $valid_extensions)) {
-                return response()->json(['success' => false, 'message' => 'Le fichier est invalide'], 400);
+                return response()->json(['success' => false, 'message' => 'El archivo no es válido'], 400);
             }
             $filename = uniqid(). '.' .$file->getClientOriginalExtension();
             $file->move(public_path('images/profil/'), $filename);
@@ -324,7 +321,7 @@ class AuthController extends Controller
         }
         else
         {
-            return response()->json(['success' => false, 'message' => 'Le fichier est vide'], 400);
+            return response()->json(['success' => false, 'message' => 'El archivo esta vacio'], 400);
         }
     }
 }

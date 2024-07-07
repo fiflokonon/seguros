@@ -25,21 +25,20 @@ class ResetPasswordController extends Controller
             {
                 $sent = $this->sendTemporaryCode($email, $code);
                 if ($sent)
-                    return response()->json(['success' => true, 'code' => $code, 'message' => 'Email envoyé']);
+                    return response()->json(['success' => true, 'code' => $code, 'message' => 'Email enviado']);
                 else
-                    return response()->json(['success' => false, 'message' => 'Erreur lors de l\'envoi de l\'email'], 500);
+                    return response()->json(['success' => false, 'message' => 'Error al enviar correo electrónico'], 500);
             }
             else
             {
-                return response()->json(['success' => false, 'message' => 'Erreur lors de génération du code'], 500);
+                return response()->json(['success' => false, 'message' => 'Error al generar código'], 500);
             }
         }
         else
         {
-            return response()->json(['success' => false, 'message' => 'Utilisateur non trouvé ou inactivo'], 404);
+            return response()->json(['success' => false, 'message' => 'Usuario no encontrado o inactivo'], 404);
         }
     }
-
 
     public function generateKey($email) {
         $key = str_pad(mt_rand(0, 9999), 5, '0', STR_PAD_LEFT);
@@ -89,7 +88,7 @@ class ResetPasswordController extends Controller
                         $user->password = Hash::make($password);
                         $user->save();
                         $temporary_code->markAsUsed();
-                        return response()->json(['success' => true, 'message' => 'Mot de passe mis à jour']);
+                        return response()->json(['success' => true, 'message' => 'Contraseña actualizada']);
                     }catch (Exception $exception)
                     {
                         return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
@@ -97,17 +96,17 @@ class ResetPasswordController extends Controller
                 }
                 else
                 {
-                    return response()->json(['success' => false, 'message' => 'Clé Invalide']);
+                    return response()->json(['success' => false, 'message' => 'Codigo invalido']);
                 }
             }
             else
             {
-                return response()->json(['success' => false, 'message' => 'Utilisateur non trouvé ou inactivo'], 404);
+                return response()->json(['success' => false, 'message' => 'Usuario no encontrado o inactivo'], 404);
             }
         }
         else
         {
-            return response()->json(['success' => false, 'message' => 'Champ de mot de passe requis'], 400);
+            return response()->json(['success' => false, 'message' => 'Campo de contraseña requerido'], 400);
         }
     }
 
