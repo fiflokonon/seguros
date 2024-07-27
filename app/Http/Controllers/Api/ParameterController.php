@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\CarCategory;
+use App\Models\Complaint;
 use App\Models\FuelType;
+use App\Models\Invoice;
 use App\Models\Parameter;
 use App\Models\Trailer;
 use App\Models\TypeCar;
@@ -68,6 +70,19 @@ class ParameterController extends Controller
         return response()->json([
             'success' => true,
             'response' => $accessories
+        ]);
+    }
+
+    public function stats(Request $request)
+    {
+        return response()->json([
+            'success' => true,
+            'response' => [
+                'invoices' => Invoice::where('user_id', $request->user()->id)->count(),
+                'pending_complaints' => Complaint::where('user_id', auth()->user()->id)->where('state', 'pending')->count(),
+                'opened_complaints' => Complaint::where('user_id', auth()->user()->id)->where('state', 'opened')->count(),
+                'closed_complaints' => Complaint::where('user_id', auth()->user()->id)->where('state', 'closed')->count(),
+            ]
         ]);
     }
 }

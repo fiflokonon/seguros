@@ -28,6 +28,32 @@ class InvoiceController extends Controller
         ]);
     }
 
+    public function validateRegisNumber(Request $request)
+    {
+        $regisNumber = $request->regis_number;
+        // Définir le motif pour la validation du numéro de registre.
+        $pattern = '/^[A-Za-z]{2}-\d{3}-[A-Za-z]{1,2}$/';
+        // Vérifier si le numéro de registre est vide.
+        if (empty($regisNumber)) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Campo Obligatorio'
+        ]);
+        }
+        // Vérifier si le numéro de registre correspond au motif.
+        if (!preg_match($pattern, $regisNumber)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El número de registro debe tener el formato: dos letras, un guion, tres dígitos, un guion, dos letras.'
+            ]);
+        }
+        // Retourner le résultat de la validation.
+        return response()->json([
+            'success' => true,
+            'message' => 'Validación exitosa'
+        ]);
+    }
+
     public function index()
     {
         if (auth()->user()->role->code == "client"){
