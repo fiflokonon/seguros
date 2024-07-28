@@ -177,8 +177,7 @@
                                             <select name="fuel_type" id="fuel-type-select" class="form-select form-select-lg" data-placeholder="Seleccionar tipo de Combustible">
                                                 <option selected disabled value="">Seleccionar tipo de Combustible</option>
                                                 @foreach($fuel_types as $type)
-                                                    <option
-                                                        value="{{ $type->id }}" {{ old('type_car') == $type->id ? 'selected' : '' }}>{{ $type->title }}</option>
+                                                    <option value="{{ $type->id }}" {{ old('type_car') == $type->id ? 'selected' : '' }}>{{ $type->title }}</option>
                                                 @endforeach
                                             </select>
                                             <!--end::Input-->
@@ -186,16 +185,15 @@
                                         <!--end::Input group-->
 
                                         <!--begin::Input group-->
-                                        <div class="mb-10 fv-row">
+                                        <div class="mb-10 fv-row" id="power-select-container">
                                             <!--begin::Label-->
                                             <label class="form-label mb-3 required">¿Conoces la potencia de tu coche en
                                                 CV? :</label>
                                             <!--end::Label-->
-                                            <!--begin::Row-->
-                                            <div class="row mb-2" id="power-options" data-kt-buttons="true">
-                                                <!-- Options will be dynamically populated here -->
-                                            </div>
-                                            <!--end::Row-->
+                                            <select name="power" data-control="select2"  id="power-select" class="form-select form-select-lg" data-placeholder="Seleccionar Power">
+                                                <option selected disabled value="">Seleccionar Power</option>
+                                                <!-- Dynamically populated options here -->
+                                            </select>
                                         </div>
                                         <!--end::Input group-->
 
@@ -454,14 +452,13 @@
 
             document.addEventListener('DOMContentLoaded', function () {
                 const fuelTypeSelect = document.getElementById('fuel-type-select');
-                const powerOptionsContainer = document.getElementById('power-options');
+                const powerSelect = document.getElementById('power-select');
 
                 fuelTypeSelect.addEventListener('change', function () {
                     const fuelTypeId = this.value;
                     fetchPowers(fuelTypeId);
                 });
 
-                // Function to fetch powers based on selected fuel type
                 function fetchPowers(fuelTypeId) {
                     fetch(`/get-powers/${fuelTypeId}`)
                         .then(response => response.json())
@@ -473,32 +470,20 @@
                         });
                 }
 
-                // Function to update power options in the DOM
                 function updatePowerOptions(powers) {
-                    powerOptionsContainer.innerHTML = ''; // Clear existing options
+                    powerSelect.innerHTML = ''; // Clear existing options
+                    const defaultOption = document.createElement('option');
+                    defaultOption.selected = true;
+                    defaultOption.disabled = true;
+                    defaultOption.value = '';
+                    defaultOption.textContent = 'Seleccionar Power';
+                    powerSelect.appendChild(defaultOption);
+
                     powers.forEach(power => {
-                        const colDiv = document.createElement('div');
-                        colDiv.classList.add('col');
-
-                        const label = document.createElement('label');
-                        label.classList.add('btn', 'btn-outline', 'btn-outline-dashed', 'btn-outline-default', 'w-100', 'p-4');
-
-                        const input = document.createElement('input');
-                        input.type = 'radio';
-                        input.required = true;
-                        input.classList.add('btn-check');
-                        input.name = 'power';
-                        input.value = power.id;
-
-                        const span = document.createElement('span');
-                        span.classList.add('fw-bolder', 'fs-3');
-                        span.textContent = `${power.min_power} CV - ${power.max_power} CV`;
-
-                        label.appendChild(input);
-                        label.appendChild(span);
-                        colDiv.appendChild(label);
-
-                        powerOptionsContainer.appendChild(colDiv);
+                        const option = document.createElement('option');
+                        option.value = power.id;
+                        option.textContent = `${power.min_power} CV - ${power.max_power} CV`;
+                        powerSelect.appendChild(option);
                     });
                 }
 
