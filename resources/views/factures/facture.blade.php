@@ -87,7 +87,7 @@
         <p style="margin-bottom: 15px;"> Gepetrol Seguros <br>
             Avenida Enrique Nvo S/n, Edificio Alexandra 89 Malabo,<br>
             Telefono Malabo: (+240) 333 099 311 <br>
-            Telefono Malabo: (+240) 350 083 700 -:- 350083701
+            Telefono Bata: (+240) 350 083 700 -:- 350083701
         </p>
     </div>
     <div class="row">
