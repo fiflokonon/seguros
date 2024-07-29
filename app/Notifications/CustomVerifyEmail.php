@@ -82,7 +82,6 @@ class CustomVerifyEmail extends Notification
     {
         return (new MailMessage)
             ->subject('Verificando su dirección de correo electrónico')
-            ->line('<h1>¡Hola! </h1>')
             ->line('Haga clic en el botón a continuación para verificar su dirección de correo electrónico.')
             ->action('Confirme su dirección de correo electrónico', $url)
             ->line('Si no creó una cuenta, no es necesario realizar ninguna otra acción.');

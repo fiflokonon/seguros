@@ -118,9 +118,11 @@
                     </div>
                     <!-- end col -->
                 </div>
+                @if($invoices->links())
                 <ul class="pagination mt-2">
                     {{ $invoices->links() }}
                 </ul>
+                @endif
             </div>
             <!--end::Container-->
         </div>

@@ -86,8 +86,8 @@
         <h2>De:</h2>
         <p style="margin-bottom: 15px;"> Gepetrol Seguros <br>
             Avenida Enrique Nvo S/n, Edificio Alexandra 89 Malabo,<br>
-            Telefono Malabo: (+240) 333 099 311 <br>
-            Telefono Bata: (+240) 350 083 700 -:- 350083701
+            Teléfono Malabo: (+240) 333 099 311 <br>
+            Teléfono Bata: (+240) 350 083 700 -:- 350083701
         </p>
     </div>
     <div class="row">
@@ -119,6 +119,14 @@
                 <td>Precio Atestación</td>
                 <td>{{ $invoice->attestation_price }} XFA</td>
             </tr>
+            @if($invoice->accessories->isNotEmpty())
+                @foreach($invoice->accessories as $accessory)
+                <tr>
+                    <td>{{ $accessory->title }}</td>
+                    <td>{{ $accessory->value }} XFA</td>
+                </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
     <div class="foot">
