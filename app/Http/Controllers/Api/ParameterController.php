@@ -55,11 +55,13 @@ class ParameterController extends Controller
     {
         $mas = Brand::where('most_used', true)->get();
         $minos = Brand::where('most_used', false)->get();
+        $brands = Brand::all();
         return response()->json([
             'success' => true,
             'response' => [
                 'most_used' => $mas,
-                'less_used' => $minos
+                'less_used' => $minos,
+                'brands' => $brands
             ]
         ]);
     }
