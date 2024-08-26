@@ -97,7 +97,7 @@ class HomeController extends Controller
             'address' => 'nullable|string|max:255',
             'password' => 'nullable|string|min:8|confirmed',
             'verified_email' => 'nullable|boolean',
-            'status' => 'required',
+            'status' => 'nullable',
         ]);
 
         // Récupérer l'utilisateur à mettre à jour

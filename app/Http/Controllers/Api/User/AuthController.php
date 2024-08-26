@@ -97,9 +97,7 @@ class AuthController extends Controller
         try {
             $code = $this->generateCode($request->email);
             $email = $this->sendVerificationCode($request->email, $code);
-
-            Log::info('Email sent', ['email' => $request->email, 'code' => $code]);
-
+            #Log::info('Email sent', ['email' => $request->email, 'code' => $code]);
             if ($email) {
                 return response()->json([
                     'success' => true,
@@ -220,7 +218,7 @@ class AuthController extends Controller
             Mail::to($email)->send(new VerificationCodeMail($code));
             return true; // Email sent successfully
         } catch (\Throwable $e) {
-            #die(var_dump($e->getMessage()));
+            die(var_dump($e->getMessage()));
             return false; // Error occurred during email sending
         }
     }
