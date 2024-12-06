@@ -42,9 +42,9 @@ class LoginController extends Controller
     {
         if (!$user->hasVerifiedEmail()) {
             auth()->logout();
+            //Send again the verification email
             $user->sendEmailVerificationNotification();
-            return redirect()->route('login')
-                ->with('warning', 'Necesita verificar su dirección de correo electrónico. Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.');
+            return redirect()->route('login')->with('warning', 'Necesita verificar su dirección de correo electrónico. Se ha enviado un nuevo enlace de verificación a su dirección de correo electrónico.');
         }
         if (!$user->is_active()) {
             auth()->logout();

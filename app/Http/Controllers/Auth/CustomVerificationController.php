@@ -37,10 +37,14 @@ class CustomVerificationController extends Controller
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
             // Modifier un autre attribut ici
-            $request->user()->update([
+            $user = $request->user();
+            $user->status = true;
+            $user->verified_email = true;
+            $user->save();
+            /*$request->user()->update([
                 'status' => true,
                 'verified_email' => true
-            ]);
+            ]);*/
         }
         return redirect()->intended('/home?verified=1');
     }
