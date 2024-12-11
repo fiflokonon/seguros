@@ -61,6 +61,7 @@
                     <!--begin::Form-->
                     <form class="form w-100" method="POST" action="{{ route('password.email') }}">
                         @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
                         <!--begin::Heading-->
                         <div class="text-center mb-11">
                             <!--begin::Title-->
