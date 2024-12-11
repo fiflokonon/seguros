@@ -2,7 +2,7 @@
 <html lang="en">
 <!--begin::Head-->
 <head>
-    <title>Crowdfunding - Mot de passe oublié</title>
+    <title>Seguros - Contraseña olvidada</title>
     <meta charset="utf-8" />
     <meta name="description" content="Apportez votre contribution aux personnes dans le besoin" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,15 +24,6 @@
 <!--begin::Main-->
 <!--begin::Root-->
 <div class="d-flex flex-column flex-root">
-    <!--begin::Page bg image-->
-    <style>
-        body {
-            background-image: url('/assets/media/bg-3.png');
-            background-size: cover
-        }
-        [data-theme="dark"] body { background-image: url('/assets/media/bg-3.png'); }
-    </style>
-    <!--end::Page bg image-->
     <!--begin::Authentication - Sign-in -->
     <div class="d-flex flex-column flex-column-fluid flex-lg-row">
         <!--begin::Aside-->
@@ -45,8 +36,8 @@
                 </a>
                 <!--end::Logo-->
                 <!--begin::Title-->
-                <h1 class="text-white m-0 text-center mb-5">Vous avez oublié votre mot de passe !</h1>
-                <h2 class="text-white fw-normal m-0 justify-content-center">Entrez votre email et recevez le lien de réinititalisation de mot de passe</h2>
+                <h1 class="text-dark m-0 text-center mb-5">¡Olvidaste tu contraseña!</h1>
+                <h2 class="text-dark fw-normal m-0 justify-content-center">Ingresa tu correo electrónico y recibe el enlace de restablecimiento de contraseña</h2>
                 <!--end::Title-->
             </div>
             <!--begin::Aside-->
@@ -73,20 +64,20 @@
                         <!--begin::Heading-->
                         <div class="text-center mb-11">
                             <!--begin::Title-->
-                            <h1 class="text-dark fw-bolder mb-3">Mot de passe oublié</h1>
+                            <h1 class="text-dark fw-bolder mb-3">Contraseña olvidada</h1>
                             <!--end::Title-->
                         </div>
                         <!--begin::Heading-->
                         <!--begin::Input group=-->
                         <div class="fv-row mb-8">
                             <!--begin::Email-->
-                            <label for="email" class="form-label">Email</label>
-                            <input id="email" type="text" placeholder="Entrez votre adresse mail" name="email" autocomplete="off" class="form-control bg-transparent" />
+                            <label for="email" class="form-label">Correo Electronico</label>
+                            <input id="email" type="text" placeholder="Correo Electronico" name="email" autocomplete="off" class="form-control bg-transparent" />
                             <!--end::Email-->
                         </div>
                         <!--begin::Submit button-->
                         <div class="d-grid mb-10">
-                            <button type="submit" class="btn btn-info text-uppercase">Envoyer</button>
+                            <button type="submit" class="btn  text-uppercase" style="background-color: #013832; color: white">Enviar</button>
                         </div>
                         <!--end::Submit button-->
                     </form>
