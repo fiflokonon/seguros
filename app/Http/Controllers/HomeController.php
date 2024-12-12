@@ -112,7 +112,6 @@ class HomeController extends Controller
             $filePath = $file->move(public_path('profile_pics'), $fileName);
             $validated['profile_picture'] = $fileName;
         }
-
         // Hash du mot de passe si nécessaire
         if (!empty($validated['password'])) {
             $validated['password'] = Hash::make($validated['password']);
@@ -120,12 +119,10 @@ class HomeController extends Controller
             // Ne pas écraser le mot de passe s'il n'a pas été mis à jour
             unset($validated['password']);
         }
-
         // Mise à jour des attributs de l'utilisateur
         $user->update($validated);
-
         // Rediriger ou retourner une réponse appropriée
-        return redirect()->route('profile', $user->id)->with('success', 'Profile updated successfully.');
+        return redirect()->route('profile', $user->id)->with('success', 'Perfil actualizado exitosamente.');
     }
 
 }

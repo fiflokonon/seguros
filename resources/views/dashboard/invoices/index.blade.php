@@ -118,10 +118,10 @@
                     </div>
                     <!-- end col -->
                 </div>
-                @if($invoices->links())
-                <ul class="pagination mt-2">
-                    {{ $invoices->links() }}
-                </ul>
+                @if($invoices->count() > 0 && !empty($invoices->links()))
+                    <ul class="pagination mt-2">
+                        {{ $invoices->links() }}
+                    </ul>
                 @endif
             </div>
             <!--end::Container-->
