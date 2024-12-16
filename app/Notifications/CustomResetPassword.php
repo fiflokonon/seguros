@@ -41,10 +41,13 @@ class CustomResetPassword extends Notification
         ], false));
 
         return (new MailMessage)
+            ->greeting('¡Hola!')
+            ->salutation('Atentamente,')
             ->subject('Restablecer contraseña')
-            ->line('Está recibiendo este correo electrónico porque recibimos una solicitud de restablecimiento de contraseña para su cuenta.')
+            ->line('Ha recibido este correo electrónico porque hemos recibido una solicitud para restablecer la contraseña de su cuenta.')
+            ->line('Por favor, haga clic en el botón a continuación para restablecer su contraseña:')
             ->action('Restablecer mi contraseña', $url)
-            ->line('Si no ha solicitado un restablecimiento de contraseña, no es necesario realizar ninguna acción.');
+            ->line('Si no solicitó un restablecimiento de contraseña, no necesita realizar ninguna acción.');
     }
 
     /**
