@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="description" content="Apportez votre contribution aux personnes dans le besoin" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
@@ -34,6 +34,11 @@
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
                         </div>
                     @endif
                     <form class="form w-100" method="POST" action="{{ route('password.update') }}">

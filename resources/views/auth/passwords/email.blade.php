@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="description" content="Apportez votre contribution aux personnes dans le besoin" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="/assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.png" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -38,6 +38,11 @@
                             </ul>
                         </div>
                     @endif
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <form class="form w-100" method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <div class="text-center mb-11">
@@ -48,7 +53,7 @@
                             <input id="email_reset" type="email" placeholder="Correo Electrónico" name="email" autocomplete="off" class="form-control bg-transparent" required />
                         </div>
                         <div class="d-grid mb-10">
-                            <button type="submit" class="btn btn-primary text-uppercase" style="background-color: #013832; color: white">Enviar</button>
+                            <button type="submit" class="btn text-uppercase" style="background-color: #013832; color: white">Enviar</button>
                         </div>
                     </form>
                 </div>
