@@ -84,10 +84,14 @@ Route::post('/type-cars/update', [TypeCarController::class, 'update'])->name('up
 Route::get('/categories', [CarCategoryController::class, 'index'])->name('categories');
 Route::post('/categories', [CarCategoryController::class, 'store'])->name('add_category');
 Route::post('/categories/update', [CarCategoryController::class, 'update'])->name('update_category');
+Route::get('/categories/{id}/activate', [CarCategoryController::class, 'activateCategory'])->name('activate_category');
+Route::get('/categories/{id}/deactivate', [CarCategoryController::class, 'deactivateCategory'])->name('deactivate_category');
 
 Route::get('/tarifications', [TarificationController::class, 'index'])->name('tarifications');
 Route::post('/tarifications', [TarificationController::class, 'store'])->name('add_tarification');
 Route::post('/tarifications/update', [TarificationController::class, 'update'])->name('update_tarification');
+Route::get('/tarifications/{id}/activate', [TarificationController::class, 'activateTarification'])->name('activate_tarification');
+Route::get('/tarifications/{id}/deactivate', [TarificationController::class, 'deactivateTarification'])->name('deactivate_tarification');
 
 
 Route::get('/complaints-list', [ComplaintController::class, 'index'])->name('complaints');

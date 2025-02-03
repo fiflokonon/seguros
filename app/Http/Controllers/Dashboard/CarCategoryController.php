@@ -48,4 +48,28 @@ class CarCategoryController extends Controller
         // Rediriger avec un message de succès
         return redirect()->back()->with('success', 'Categoría actualizada con éxito.');
     }
+
+    public function activateCategory(int $id)
+    {
+        $category = CarCategory::find($id);
+        if ($category->status){
+            $category->status = true;
+            $category->save();
+            return back()->with('success', 'Categoría desactivada con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede activar esta categoría']);
+        }
+    }
+
+    public function deactivateCategory(int $id)
+    {
+        $category = CarCategory::find($id);
+        if ($category->status){
+            $category->status = false;
+            $category->save();
+            return back()->with('success', 'Categoría desactivada con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede desactivar esta categoría']);
+        }
+    }
 }
