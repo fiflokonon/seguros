@@ -63,7 +63,7 @@ class FuelTypeController extends Controller
     public function activateFuelType(int $id)
     {
         $fuelType = FuelType::find($id);
-        if ($fuelType->status){
+        if (!$fuelType->status){
             $fuelType->status = true;
             $fuelType->save();
             return back()->with('success', 'Tipo de combustible desactivado con éxito');

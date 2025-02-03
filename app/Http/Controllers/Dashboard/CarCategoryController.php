@@ -52,7 +52,7 @@ class CarCategoryController extends Controller
     public function activateCategory(int $id)
     {
         $category = CarCategory::find($id);
-        if ($category->status){
+        if (!$category->status){
             $category->status = true;
             $category->save();
             return back()->with('success', 'Categoría desactivada con éxito');

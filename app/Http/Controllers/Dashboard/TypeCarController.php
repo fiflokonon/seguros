@@ -46,4 +46,28 @@ class TypeCarController extends Controller
         // Redirection avec un message de succès
         return redirect()->back()->with('success', 'Tipo coche actualizado con éxito.');
     }
+
+    public function activateType(int $id)
+    {
+        $type = TypeCar::find($id);
+        if (!$type->status){
+            $type->status = true;
+            $type->save();
+            return back()->with('success', 'Tipo activado con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede activar este tipo coche']);
+        }
+    }
+
+    public function deactivateType(int $id)
+    {
+        $type = TypeCar::find($id);
+        if ($type->status){
+            $type->status = false;
+            $type->save();
+            return back()->with('success', 'Tipo desactivado con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede desactivar este tipo coche']);
+        }
+    }
 }

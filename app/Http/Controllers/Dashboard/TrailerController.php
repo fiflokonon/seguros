@@ -43,6 +43,28 @@ class TrailerController extends Controller
         return redirect()->back()->with('success', 'Tipo remolque actualizado con éxito.');
     }
 
+    public function activateTrailer(int $id)
+    {
+        $trailer = Trailer::find($id);
+        if (!$trailer->status){
+            $trailer->status = true;
+            $trailer->save();
+            return back()->with('success', 'Remolque activado con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede activar este remolque']);
+        }
+    }
 
+    public function deactivateTrailer(int $id)
+    {
+        $trailer = Trailer::find($id);
+        if ($trailer->status){
+            $trailer->status = false;
+            $trailer->save();
+            return back()->with('success', 'Remolque desactivado con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede desactivar este remolque']);
+        }
+    }
 
 }

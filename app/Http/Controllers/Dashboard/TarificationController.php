@@ -107,7 +107,7 @@ class TarificationController extends Controller
     public function activateTarification(int $id)
     {
         $tarification = Tarification::find($id);
-        if ($tarification->status){
+        if (!$tarification->status){
             $tarification->status = true;
             $tarification->save();
             return back()->with('success', 'Cotización actualizada con éxito.');
