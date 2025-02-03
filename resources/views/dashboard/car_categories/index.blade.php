@@ -94,11 +94,10 @@
                                                     <div class="menu-item px-3">
                                                         @if( $category->status)
                                                             <a class="menu-link px-3"
-                                                               href="{{ route('deactivate_role', ['id' => $category->id]) }}"><i
-                                                                    class="fa fa-trash text-danger"></i> Désactiver</a>
+                                                               href="{{ route('deactivate_category', ['id' => $category->id]) }}"><i class="fa fa-trash text-danger"></i> Désactiver</a>
                                                         @else
                                                             <a class="menu-link px-3"
-                                                               href="{{ route('activate_role', ['id' => $category->id]) }}"><i
+                                                               href="{{ route('activate_category', ['id' => $category->id]) }}"><i
                                                                     class="fa fa-check text-success"></i> Activer</a>
                                                         @endif
                                                     </div>
