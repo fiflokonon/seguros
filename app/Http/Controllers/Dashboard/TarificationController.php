@@ -104,4 +104,28 @@ class TarificationController extends Controller
         return redirect()->back()->with('success', 'Cotización actualizada con éxito.');
     }
 
+    public function activateTarification(int $id)
+    {
+        $tarification = Tarification::find($id);
+        if ($tarification->status){
+            $tarification->status = true;
+            $tarification->save();
+            return back()->with('success', 'Cotización actualizada con éxito.');
+        }else{
+            return back()->withErrors(['error' => "No se puede activar esta cotización"]);
+        }
+    }
+
+    public function deactivateTarification(int $id)
+    {
+        $tarification = Tarification::find($id);
+        if ($tarification){
+            $tarification->status = false;
+            $tarification->save();
+            return back()->with('success', 'Tarification désactivé avec succès');
+        }else{
+            return back()->withErrors(['error' => 'No se puede desactivar esta cotización']);
+        }
+    }
+
 }

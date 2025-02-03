@@ -72,6 +72,8 @@ Route::get('/users/{id}/change-status', [UserController::class, 'change_status']
 Route::get('/fuel-types', [FuelTypeController::class, 'index'])->name('fuel_types');
 Route::post('/fuel-types', [FuelTypeController::class, 'store'])->name('add_fuel_type');
 Route::post('/fuel-types/update', [FuelTypeController::class, 'update'])->name('update_fuel_type');
+Route::get('/fuel-types/{id}/activate', [FuelTypeController::class, 'activateFuelType'])->name('activate_fuel_type');
+Route::get('/fuel-types/{id}/deactivate', [FuelTypeController::class, 'deactivateFuelType'])->name('deactivate_fuel_type');
 
 
 Route::get('/type-cars', [TypeCarController::class, 'index'])->name('type_cars');
@@ -98,6 +100,7 @@ Route::post('/complaints/{id}/answer', [ComplaintController::class, 'answer_comp
 Route::get('/trailers', [TrailerController::class, 'index'])->name('trailers');
 Route::post('/trailers', [TrailerController::class, 'store'])->name('add_trailer');
 Route::post('/trailers/update', [TrailerController::class, 'update'])->name('update_trailer');
+
 
 Route::get('/powers', [PowerController::class, 'index'])->name('powers');
 Route::post('/powers', [PowerController::class, 'store'])->name('add_power');

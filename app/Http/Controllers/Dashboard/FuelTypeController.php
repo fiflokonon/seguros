@@ -59,4 +59,28 @@ class FuelTypeController extends Controller
         // Rediriger avec un message de succès
         return redirect()->back()->with('success', 'Tipo de combustible actualizado con éxito.');
     }
+
+    public function activateFuelType(int $id)
+    {
+        $fuelType = FuelType::find($id);
+        if ($fuelType->status){
+            $fuelType->status = true;
+            $fuelType->save();
+            return back()->with('success', 'Tipo de combustible desactivado con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede activar este tipo de combustible']);
+        }
+    }
+
+    public function deactivateFuelType(int $id)
+    {
+        $fuelType = FuelType::find($id);
+        if ($fuelType->status){
+            $fuelType->status = false;
+            $fuelType->save();
+            return back()->with('success', 'Tipo de combustible desactivado con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede desactivar este tipo de combustible']);
+        }
+    }
 }

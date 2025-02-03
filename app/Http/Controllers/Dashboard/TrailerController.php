@@ -43,4 +43,6 @@ class TrailerController extends Controller
         return redirect()->back()->with('success', 'Tipo remolque actualizado con éxito.');
     }
 
+
+
 }
