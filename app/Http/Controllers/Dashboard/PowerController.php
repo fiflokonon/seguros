@@ -59,4 +59,28 @@ class PowerController extends Controller
         $power->save();
         return redirect()->back()->with('success', 'Potencia actualizada con éxito.');
     }
+
+    public function activatePower(int $id)
+    {
+        $power = Power::find($id);
+        if (!$power->status){
+            $power->status = true;
+            $power->save();
+            return back()->with('success', 'Potencia activada con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede activar esta potencia']);
+        }
+    }
+
+    public function deactivatePower(int $id)
+    {
+        $power = Power::find($id);
+        if ($power->status){
+            $power->status = false;
+            $power->save();
+            return back()->with('success', 'Potencia desactivada con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede desactivar esta potencia']);
+        }
+    }
 }

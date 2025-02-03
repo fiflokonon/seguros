@@ -111,6 +111,8 @@ Route::get('/trailers/{id}/deactivate', [TrailerController::class, 'deactivateTr
 Route::get('/powers', [PowerController::class, 'index'])->name('powers');
 Route::post('/powers', [PowerController::class, 'store'])->name('add_power');
 Route::put('/powers/update', [PowerController::class, 'update'])->name('update_power');
+Route::get('/powers/{id}/activate', [PowerController::class, 'activatePower'])->name('activate_power');
+Route::get('/powers/{id}/deactivate', [PowerController::class, 'deactivatePower'])->name('deactivate_power');
 
 Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
