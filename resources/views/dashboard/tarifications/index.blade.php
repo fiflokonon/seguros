@@ -93,7 +93,7 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <button class="btn menu-link px-3" onclick="openUpdateTarificationModal({{ $tarification->id }}, '{{ $tarification->category_id }}', '{{ $tarification->type_car_id }}', '{{ $tarification->fuel_type_id }}', '{{ $tarification->trailer_id }}', '{{ $tarification->power_id }}', '{{ $tarification->min_place }}', '{{ $tarification->max_place }}', '{{ $tarification->price }}')"><i class="fa fa-pen-alt text-dark"></i> Modificar</button>
+                                                        <button class="btn menu-link px-3" onclick="openUpdateTarificationModal({{ $tarification->id }}, '{{ $tarification->car_category_id }}', '{{ $tarification->type_car_id }}', '{{ $tarification->fuel_type_id }}', '{{ $tarification->trailer_id }}', '{{ $tarification->power_id }}', '{{ $tarification->min_place }}', '{{ $tarification->max_place }}', '{{ $tarification->price }}')"><i class="fa fa-pen-alt text-dark"></i> Modificar</button>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -300,7 +300,6 @@
                         <!--begin::Form-->
                         <form id="kt_modal_update_tarification_form" class="form" method="POST" action="{{ route('update_tarification') }}">
                             @csrf
-                            @method('PUT')
                             <!-- Hidden input for the tarification ID -->
                             <input type="hidden" id="update_tarification_id" name="id">
 

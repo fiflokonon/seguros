@@ -79,9 +79,10 @@ class TarificationController extends Controller
 
     public function update(Request $request)
     {
+        #dd($request->all());
         $request->validate([
             'id' => 'required|exists:tarifications,id',
-            'category' => 'required|exists:categories,id',
+            'category' => 'required|exists:car_categories,id',
             'type_car' => 'required|exists:type_cars,id',
             'fuel_type' => 'required|exists:fuel_types,id',
             'trailer' => 'required|exists:trailers,id',
@@ -91,7 +92,7 @@ class TarificationController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
         $tarification = Tarification::find($request->id);
-        $tarification->category_id = $request->category;
+        $tarification->car_category_id = $request->category;
         $tarification->type_car_id = $request->type_car;
         $tarification->fuel_type_id = $request->fuel_type;
         $tarification->trailer_id = $request->trailer;
