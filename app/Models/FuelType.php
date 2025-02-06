@@ -19,6 +19,6 @@ class FuelType extends Model
 
     public function powers()
     {
-        return $this->belongsToMany(Power::class, 'power_fuel_types', 'fuel_type_id', 'power_id');
+        return $this->belongsToMany(Power::class, 'power_fuel_types', 'fuel_type_id', 'power_id')->where('status', true);
     }
 }

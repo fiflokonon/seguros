@@ -82,6 +82,30 @@ class BrandController extends Controller
         return redirect()->back()->with('success', 'Marca actualizada con éxito');
     }
 
+    public function activate_brand(int $id)
+    {
+        $brand = Brand::find($id);
+        if (!$brand->status){
+            $brand->status = true;
+            $brand->save();
+            return back()->with('success', 'Marca activada con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede activar esta marca']);
+        }
+    }
+
+    public function deactivate_brand(int $id)
+    {
+        $brand = Brand::find($id);
+        if ($brand->status){
+            $brand->status = false;
+            $brand->save();
+            return back()->with('success', 'Marca desactivada con éxito');
+        }else{
+            return back()->withErrors(['error' => 'No se puede desactivar esta marca']);
+        }
+    }
+
 
     /*public function client_brands()
     {
@@ -102,8 +126,8 @@ class BrandController extends Controller
 
     public function client_brands()
     {
-        $mas = Brand::where('most_used', true)->get();
-        $minos = Brand::where('most_used', false)->get();
+        $mas = Brand::where('most_used', true)->where('status', true)->get();
+        $minos = Brand::where('most_used', false)->where('status', true)->get();
         return view('dashboard.client.brands', [
             'mas' => $mas,
             'minos' => $minos

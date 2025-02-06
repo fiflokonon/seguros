@@ -80,9 +80,9 @@
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
                                                         @if( $type->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_fuel_type', ['id' => $type->id]) }}"><i class="fa fa-trash text-danger"></i> Désactiver</a>
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_fuel_type', ['id' => $type->id]) }}"><i class="fa fa-trash text-danger"></i> Désactivar</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_fuel_type', ['id' => $type->id]) }}"><i class="fa fa-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_fuel_type', ['id' => $type->id]) }}"><i class="fa fa-check text-success"></i> Activar</a>
                                                         @endif
                                                     </div>
 

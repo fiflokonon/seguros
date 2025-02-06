@@ -1,11 +1,11 @@
 @extends('partials.dashboard.index')
 @section('title', 'Categorías')
 @php
-    $categories = \App\Models\CarCategory::all();
+    $categories = \App\Models\CarCategory::where('status', true)->get();
     $fuel_types = \App\Models\FuelType::whereHas('powers')->get();
-    $powers = \App\Models\Power::all();
-    $trailers = \App\Models\Trailer::all();
-    $type_cars = \App\Models\TypeCar::all();
+    $powers = \App\Models\Power::where('status', true)->get();
+    $trailers = \App\Models\Trailer::where('status', true)->get();
+    $type_cars = \App\Models\TypeCar::where('status', true)->get();
     $accessories = \App\Models\Parameter::where('accessory', true)->get();
 @endphp
 @section('content')

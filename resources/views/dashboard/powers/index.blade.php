@@ -82,9 +82,9 @@
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
                                                         @if( $power->status)
-                                                            <a class="menu-link px-3" href="{{ route('deactivate_power', ['id' => $power->id]) }}"><i class="fa fa-trash text-danger"></i> Désactiver</a>
+                                                            <a class="menu-link px-3" href="{{ route('deactivate_power', ['id' => $power->id]) }}"><i class="fa fa-trash text-danger"></i> Desactivar</a>
                                                         @else
-                                                            <a class="menu-link px-3" href="{{ route('activate_power', ['id' => $power->id]) }}"><i class="fa fa-check text-success"></i> Activer</a>
+                                                            <a class="menu-link px-3" href="{{ route('activate_power', ['id' => $power->id]) }}"><i class="fa fa-check text-success"></i> Activar</a>
                                                         @endif
                                                     </div>
                                                     <!--end::Menu item-->
