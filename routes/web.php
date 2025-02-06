@@ -118,6 +118,8 @@ Route::get('/brands-list', [BrandController::class, 'index'])->name('brands');
 Route::post('/new-brand', [BrandController::class, 'store'])->name('add_brand');
 Route::post('/brands/update', [BrandController::class, 'update'])->name('update_brand');
 Route::get('/marcas', [BrandController::class, 'client_brands'])->name('client_brands');
+Route::get('/brands/{id}/activate', [BrandController::class, 'activate_brand'])->name('activate_brand');
+Route::get('/brands/{id}/deactivate', [BrandController::class, 'deactivate_brand'])->name('deactivate_brand');
 
 Route::get('/parameters', [ParameterController::class, 'index'])->name('parameters');
 Route::post('/parameters/update', [ParameterController::class, 'update'])->name('update_parameter');
