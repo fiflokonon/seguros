@@ -300,11 +300,14 @@
                                                     <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_update_user" onclick="setBrandData({{ $brand->id }}, '{{ $brand->title }}', {{ $brand->most_used }}, '{{ $brand->image }}')" class="menu-link px-3"> <i class="fa fa-pen-alt text-dark"></i> Modifiar</a>
                                                 </div>
                                                 <!--end::Menu item-->
-                                                <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
+                                                    @if( $brand->status)
+                                                        <a class="menu-link px-3"
+                                                           href="{{ route('deactivate_brand', ['id' => $brand->id]) }}"><i class="fa fa-trash text-danger"></i> Desactivar</a>
+                                                    @else
+                                                        <a class="menu-link px-3" href="{{ route('activate_brand', ['id' => $brand->id]) }}"><i class="fa fa-check text-success"></i> Activar</a>
+                                                    @endif
                                                 </div>
-                                                <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->
                                         </td>

@@ -2,7 +2,7 @@
 @section('title', 'Categorías')
 @php
     $categories = \App\Models\CarCategory::where('status', true)->get();
-    $fuel_types = \App\Models\FuelType::whereHas('powers')->get();
+    $fuel_types = \App\Models\FuelType::whereHas('powers')->where('status', true)->get();
     $powers = \App\Models\Power::where('status', true)->get();
     $trailers = \App\Models\Trailer::where('status', true)->get();
     $type_cars = \App\Models\TypeCar::where('status', true)->get();
